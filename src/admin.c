@@ -2369,7 +2369,7 @@ void admin_shutdown(CONTEXT)
 
                                 /* ---->  Log who and reason, then begin shutdown  <---- */
                                 ptr = (char *) punctuate((char *) arg1,0,'.');
-                                writelog(SERVER_LOG,1,"SHUTDOWN","Shutdown started by %s(#%d) (REASON:  %s)  -   Shutdown in %d minutes time.",getname(player),player,String(ptr),minutes);
+                                writelog(SERVER_LOG,1,"SHUTDOWN","Shutdown started by %s(#%d) (REASON:  %s)  -   Shutdown in %d minute%s time.",getname(player),player,String(ptr),minutes, Plural(minutes));
                                 shutdown_reason  = (char *) alloc_string(substitute(player,scratch_return_string,(char *) String(ptr),0,ANSI_LWHITE,NULL));
                                 shutdown_counter = minutes + 1;
                                 shutdown_timing  = 0;
