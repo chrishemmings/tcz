@@ -265,7 +265,7 @@ void combat_delay(CONTEXT)
                                       if(amount > MINUTE) amount = MINUTE;
                                       if(now < db[victim].data->player.damagetime)
                                          amount += (db[victim].data->player.damagetime - now);
-                                      db[victim].data->player.damagetime += amount;
+                                      db[victim].data->player.damagetime = now + amount;
                                       if(db[victim].data->player.damagetime < now)
                                          db[victim].data->player.damagetime = now;
                                       setreturn(OK,COMMAND_SUCC);
