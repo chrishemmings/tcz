@@ -599,7 +599,7 @@ void comms_notify(CONTEXT)
               if(Level3(db[player].owner) || (in_command && (Wizard(current_command) || Apprentice(current_command))) || (db[player].owner == recipient) || (db[player].owner == Controller(recipient)) || can_write_to(player,db[recipient].location,0)) {
                  if((player == recipient) || (!Quiet(recipient) && !Quiet(db[recipient].location)) || (level(db[player].owner) > level(recipient))) {
                     command_type |=  LEADING_BACKGROUND;
-                    output(getdsc(recipient),recipient,0,1,0,"%s",substitute(player,scratch_buffer,(char *) arg2,0,ANSI_LCYAN,NULL));
+                    output(getdsc(recipient),recipient,0,1,0,"%s",substitute(recipient,scratch_buffer,(char *) arg2,0,ANSI_LCYAN,NULL));
                     command_type &= ~LEADING_BACKGROUND;
                     if(!in_command) {
                        if(player != recipient)
