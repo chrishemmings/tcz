@@ -587,7 +587,7 @@
 #define SESSION_TIME                   15        /*  Time (In minutes) between session title changes (Admin may forcefully change or reset the session title using 'session reset [<TITLE>]'.)  */
 #define WHISPER_TIME                   1         /*  Amount of time (In seconds) a user must wait between whispers to a particular user  */
 #define COMMENT_TIME                   60        /*  Amount of time (In seconds) a user must wait before they can make another complaint/comment/suggestion/bug report  */
-#define NEWBIE_TIME                    2         /*  Amount of total connect time (In hours) a user is still considered a 'Newbie'.  */
+#define NEWBIE_TIME                    7200         /*  Amount of total connect time (In seconds) a user is still considered a 'Newbie'.  */
 #define IDLE_TIME                      5         /*  Allowed idle time (In minutes) before character's time spent idle is updated  */
 #define MAIL_TIME                      15        /*  Amount of time (In seconds) a user must wait between sending mail to a particular user  */
 #define NAME_TIME                      900       /*  Time before characters can change their name again  */
