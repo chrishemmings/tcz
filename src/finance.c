@@ -384,9 +384,9 @@ void finance_transaction(CONTEXT)
         } else who = db[player].owner;
 
         if(in_command || Connected(player)) {
-           if(!(command_type & FUSE_CMD) || (in_command && Valid(current_command) && Wizard(current_command))) {
-              if(!(command_type & AREA_CMD) || (in_command && Valid(current_command) && Wizard(current_command))) {
-                 if(!val1 || !in_command || (Valid(current_command) && ((player == db[current_command].owner) || Wizard(current_command)))) {
+           if(!(command_type & FUSE_CMD) || (in_command && Valid(current_command) && Apprentice(current_command))) {
+              if(!(command_type & AREA_CMD) || (in_command && Valid(current_command) && Apprentice(current_command))) {
+                 if(!val1 || !in_command || (Valid(current_command) && ((player == db[current_command].owner) || Apprentice(current_command)))) {
                     if(who != player) {
                        time_t total;
 
@@ -408,7 +408,7 @@ void finance_transaction(CONTEXT)
 
                                 if(((amount = tofloat(amnt,NULL)) >= 0.01) || (amount < 0)) {
                                    if(amount >= 0) {
-                                      if(!in_command || (Valid(current_command) && ((player == db[current_command].owner) || Wizard(current_command) || (amount <= db[player].data->player.restriction)))) {
+                                      if(!in_command || (Valid(current_command) && ((player == db[current_command].owner) || Apprentice(current_command) || (amount <= db[player].data->player.restriction)))) {
                                          if((!val1 && ((currency_to_double(&(db[player].data->player.credit)) - amount) >= 0)) ||
                                             (val1  && ((currency_to_double(&(db[player].data->player.balance)) - amount) >= 0))) {
                                                currency_add(&(db[player].data->player.expenditure),amount);
@@ -429,7 +429,7 @@ void finance_transaction(CONTEXT)
 						  }
 					       }
 
-                                               if(!in_command || !Wizard(current_command))
+                                               if(!in_command || !Apprentice(current_command))
                                                   writelog(TRANSACTION_LOG,0,"PAYMENT","%s(#%d) payed %.2f credits into %s(#%d)'s %s.",getname(player),player,amount,getname(who),who,(account) ? "bank account":"pocket");
                                                pay_victim = who, pay_time = now + TRANSACTION_TIME, pay_who = player;
                                                setreturn(OK,COMMAND_SUCC);
