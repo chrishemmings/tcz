@@ -190,7 +190,7 @@ unsigned char ok_character_name(dbref player,dbref who,const char *name)
 	 if(instring("guest",name)) return(1);
 
 	 /* ---->  Ensure name doesn't contain invalid characters, doesn't just consist of '_'s and/or numbers and doesn't start with a number  <---- */
-	 if(isdigit(*name) && !Level2(player)) return(1);
+	 if(isdigit(*name) && (player == NOTHING || !Level2(player))) return(1);
 	 bad_language_filter(buffer,name);
 	 for(scan = buffer; *scan; scan++)
 	     if(!ValidCharName(*scan)) return(1);
