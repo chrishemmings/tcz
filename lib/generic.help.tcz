@@ -1145,6 +1145,7 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %TOPIC bugfixes
 %TOPIC codefixes
 %TITLE Brief summary of latest %w%l%@%M v%{@?version version}%x source code bug fixes
+%9%9%c%l20/12/2004 %y %lSM  %x The query '%g%l%u{@?set *<NAME> = <FRIEND FLAG> = flist/fothers%x' now works correctly.
 %9%9%c%l19/12/2004 %y %lSM  %x '%g%l%(@character%)%x' command now creates a Home Room for the created character instead of the Administrator who ran the command.
 %9%9%c%l14/12/2004 %y %lSM  %x Corrected formatting of the '%g%l%(@shutdown%)%x' command.
 %9%9%c%l14/12/2004 %y %lSM  %x Fixed crash when Guest types '%g%l%u@password <OLD> = <NEW>%x'.
@@ -1155,9 +1156,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l22/08/2001 %y %lJPB %x '%y%lCommand%x' log file is now %m%lSupreme Being%x only.
 %9%9%c%l15/08/2001 %y %lJPB %x Pointer bug in '%g%l%(afk%)%x' fixed (Caused crash.)
 %9%9%c%l06/08/2001 %y %lJPB %x Infinite loop bug in %(matching%) code fixed.
-%9%9%c%l01/08/2001 %y %lJPB %x Binary tree bug in '%g%l%(@sort%)%x' fixed (Caused %(Dynamic Array%) elements to be lost.)
 
 %PAGE
+%9%9%c%l01/08/2001 %y %lJPB %x Binary tree bug in '%g%l%(@sort%)%x' fixed (Caused %(Dynamic Array%) elements to be lost.)
 %9%9%c%l30/07/2001 %y %lJPB %x DNS lookup is now disabled in config file (Still causes hang with unresolvable address.)
 %9%9%c%l30/07/2001 %y %lJPB %x Fixed crash in connect/create character code.
 %9%9%c%l27/07/2001 %y %lJPB %x Commands that can be used at the login screen ('%g%l%(help%)%x', '%g%l%(set%)%x', etc.) can no-longer be used as a character name or first word of one.
@@ -1168,9 +1169,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l25/07/2001 %y %lJPB %x '%g%l%(emergency%)%x' can no-longer be used on an administrator.
 %9%9%c%l25/07/2001 %y %lJPB %x Write permission rules to self within Mortal-owned compound command have been changed  -  See '%g%l%<@chpid%>%x', 2nd page.
 %9%9%c%l25/07/2001 %y %lJPB %x Permission check on '%g%l{%(@?lastsite%)}%x' fixed.
-%9%9%c%l25/07/2001 %y %lJPB %x Problem with write permission to self in '%g%l%(@chpid%)%x' command fixed.
 
 %PAGE
+%9%9%c%l25/07/2001 %y %lJPB %x Problem with write permission to self in '%g%l%(@chpid%)%x' command fixed.
 %9%9%c%l24/07/2001 %y %lJPB %x Check for unopenable user log file added (Caused crash.)
 %9%9%c%l24/07/2001 %y %lJPB %x BBS '%g%l%(^bbs append%)%x' '%g%l{@?date_to_string}%x' corrected to '%g%l{%(@?realtime%)}%x'.
 %9%9%c%l24/07/2001 %y %lJPB %x '%g%lhere%x' returns location of user executing command.
