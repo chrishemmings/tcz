@@ -44,14 +44,18 @@ struct author_details authors[] = {
 /*      Next  Date  Date                                                      */
 /*      Ptr:  From: To:   Initials:  Full Name:         Nickname:    E-mail:  */
 /*      ~~~~  ~~~~~ ~~~   ~~~~~~~~~  ~~~~~~~~~~         ~~~~~~~~~    ~~~~~~~  */
+       {NULL, NULL, NULL, 0, "BY",  "Bennet Yee",         NULL,	       NULL},
+       {NULL, NULL, NULL, 0, "DA",  "David Applegate",    NULL,	       NULL},
        {NULL, NULL, NULL, 0, "DP",  "Dave Proctor",       NULL,        NULL},
        {NULL, NULL, NULL, 0, "GDW", "Gary D. Wallage",    NULL,        NULL},
-       {NULL, NULL, NULL, 0, "JPB", "Jonathan P. Boggis", "JC Digita", "email@jcdigita.com"},
+       {NULL, NULL, NULL, 0, "JA"   "James Aspnes",       NULL,        NULL},
+       {NULL, NULL, NULL, 0, "JPB", "Jonathan Boggis",    "JC Digita", "email@jcdigita.com"},
        {NULL, NULL, NULL, 0, "MJH", "Malcolm J. Harwood", NULL,        NULL},
        {NULL, NULL, NULL, 0, "NH",  "Nick Huggins",       NULL,        NULL},
-       {NULL, NULL, NULL, 0, "PC",  "Peter Crowther",     "Wizard",    "wizard@uglymug.org"},
+       {NULL, NULL, NULL, 0, "PC",  "Peter Crowther",     "Ozzard",    "wizard@uglymug.org"},
        {NULL, NULL, NULL, 0, "RH",  "Robin Heydon",       NULL,        NULL},
-       {NULL, NULL, NULL, 0, "SAB", "Simon A. Boggis",    "Badpenny",  "badpenny@tcz.net"},
+       {NULL, NULL, NULL, 0, "SM",  "Shaun McVey",	  "Monster",   "tcz_monster@users.sourceforge.net"},
+       {NULL, NULL, NULL, 0, "SAB", "Simon Boggis",       "Badpenny",  NULL},
        {NULL, NULL, NULL, 0, NULL,  NULL,                 NULL,        NULL}
 };
 
