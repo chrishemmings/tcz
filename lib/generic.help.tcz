@@ -1145,6 +1145,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %TOPIC bugfixes
 %TOPIC codefixes
 %TITLE Brief summary of latest %w%l%@%M v%{@?version version}%x source code bug fixes
+%9%9%c%l14/12/2004 %y %lSM  %x Corrected formatting of the @shutdown command.
+%9%9%c%l14/12/2004 %y %lSM  %x Fixed crash when Guest types @password <OLD> = <NEW>.
+%9%9%c%l09/12/2004 %y %lSM  %x Fixed crash when player types 'authors' or 'modules' at the login prompt under certain situations.
 %9%9%c%l01/12/2004 %y %lSM  %x Fixed crash when player types a string which begins with a digit at the username of the login prompt.
 %9%9%c%l26/08/2001 %y %lJPB %x Brief/full '%g%l%(scan%)%x' implemented ('%g%l%(scanbrief%)%x'/'%g%l%(scanfull%)%x'.)
 %9%9%c%l24/08/2001 %y %lJPB %x Fixed problem with simple '%g%l%(more%)%x' pager used by '%g%l%(disclaimer%)%x'.
@@ -1153,11 +1156,11 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l06/08/2001 %y %lJPB %x Infinite loop bug in %(matching%) code fixed.
 %9%9%c%l01/08/2001 %y %lJPB %x Binary tree bug in '%g%l%(@sort%)%x' fixed (Caused %(Dynamic Array%) elements to be lost.)
 %9%9%c%l30/07/2001 %y %lJPB %x DNS lookup is now disabled in config file (Still causes hang with unresolvable address.)
+
+%PAGE
 %9%9%c%l30/07/2001 %y %lJPB %x Fixed crash in connect/create character code.
 %9%9%c%l27/07/2001 %y %lJPB %x Commands that can be used at the login screen ('%g%l%(help%)%x', '%g%l%(set%)%x', etc.) can no-longer be used as a character name or first word of one.
 %9%9%c%l26/07/2001 %y %lJPB %x '%g%l%(lastcommand%)%x' no-longer logs unnecesary hack warning in '%y%lHack%x' log file.
-
-%PAGE
 %9%9%c%l26/07/2001 %y %lJPB %x '%y%lCommand%x' log restricted to %m%lDeity%x only.
 %9%9%c%l26/07/2001 %y %lJPB %x Guardian alarm implemented (Shuts %@%m down if it gets stuck in an infinite loop.)
 %9%9%c%l25/07/2001 %y %lJPB %x Problem with alias binary tree fixed (Add/change alias.)  %r%lPlease check your aliases list for duplicate/corrupt aliases.
@@ -1166,11 +1169,11 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l25/07/2001 %y %lJPB %x Permission check on '%g%l{%(@?lastsite%)}%x' fixed.
 %9%9%c%l25/07/2001 %y %lJPB %x Problem with write permission to self in '%g%l%(@chpid%)%x' command fixed.
 %9%9%c%l24/07/2001 %y %lJPB %x Check for unopenable user log file added (Caused crash.)
+
+%PAGE
 %9%9%c%l24/07/2001 %y %lJPB %x BBS '%g%l%(^bbs append%)%x' '%g%l{@?date_to_string}%x' corrected to '%g%l{%(@?realtime%)}%x'.
 %9%9%c%l24/07/2001 %y %lJPB %x '%g%lhere%x' returns location of user executing command.
 %9%9%c%l24/07/2001 %y %lJPB %x Crash when removing aliases fixed.
-
-%PAGE
 %9%9%c%l24/07/2001 %y %lJPB %x Infinite loop problem fixed in '%g%l{%(@?filter%)}%x'.
 <-SEPARATOR->
 Also, see '%g%l%<features%>%x', '%g%l%<version%>%x', '%g%l%<version info%>%x', '%g%l%<history%>%x', '%g%l%<acknowledgements%>%x', '%g%l%<modules%>%x' and '%g%l%<authors%>%x'.
