@@ -25,7 +25,7 @@
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
-                     Manual release date:  03/12/2003.
+                     Manual release date:  17/12/2004.
 
 
  TCZ (The Chatting Zone) is an advanced, user-friendly multi-user environment,
@@ -17628,7 +17628,7 @@ Zone (TCZ) source code in each version since version 2.0...
   for helping make the TCZ project possible...
 
   *  The authors of TinyMUD (1989) and UglyMUG (1990-1991) for the codebases
-     on which the first version of TCZ (1.0) was originally based:
+     on which TCZ is based:
 
         For TinyMUD, our thanks go to:  David Applegate, James Aspnes and
                                         Bennet Yee. 
@@ -17656,6 +17656,11 @@ Zone (TCZ) source code in each version since version 2.0...
 
   *  AngliaNet Ltd., UK (Now owned by NetCIB) for providing the original TCZ
      MUD with its second permanent site on the Internet.
+
+  *  The Information, Media and Communication (IMC) Research Group in the
+     Department of Computer Science, Queen Mary, University of London for
+     hosting the original TCZ MUD between 2001 and 2004 as part of an
+     official research project.
 
   *  The users of the original TCZ MUD, for contributing to the friendly
      atmosphere and helping make it the friendly and enjoyable place it is.

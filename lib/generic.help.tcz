@@ -1945,7 +1945,7 @@ Also, see '%g%l%<version info%>%x', '%g%l%<bug fixes%>%x', '%g%l%<history%>%x', 
 %TITLE Credits and Acknowledgements
 We would like to thank the following people, companies and organisations for helping make the TCZ project possible...
 
-  %6%y%l*  %xThe authors of %c%lTinyMUD%x (%c%l1989%x) and %c%lUglyMUG%x (%c%l1990-1991%x) for the codebases on which the first version of TCZ (v1.0) was originally based:
+  %6%y%l*  %xThe authors of %c%lTinyMUD%x (%c%l1989%x) and %c%lUglyMUG%x (%c%l1990-1991%x) for the codebases on which TCZ is based:
 
         %9%3For %c%lTinyMUD%x, our thanks go to:  %y%lDavid Applegate%x, %y%lJames Aspnes%x and %y%lBennet Yee%x. 
 
@@ -1963,9 +1963,11 @@ We would like to thank the following people, companies and organisations for hel
   %6%r%l*  %y%lAngliaNet Ltd.%x, UK (Now owned by NetCIB) for providing the original TCZ MUD with its second permanent site on the Internet.
 
 %PAGE
-  %6%y%l*  %xThe users of the original TCZ MUD, for contributing to the friendly atmosphere and helping make it the friendly and enjoyable place it is.
+  %6%y%l*  %xThe %y%lInformation, Media and Communication (IMC) Research Group%x in the %c%lDepartment of Computer Science, Queen Mary, University of London%x for hosting the original TCZ MUD between %m%l2001%x and %m%l2004%x as part of an official research project.
 
-  %6%r%l*  %xThe administrators of the original TCZ MUD for all of the hard work and dedication that they have put into making it what it is.
+  %6%r%l*  %xThe users of the original TCZ MUD, for contributing to the friendly atmosphere and helping make it the friendly and enjoyable place it is.
+
+  %6%y%l*  %xThe administrators of the original TCZ MUD for all of the hard work and dedication that they have put into making it what it is.
 <-SEPARATOR->
 Also, see '%g%l%<version info%>%x', '%g%l%<bug fixes%>%x', '%g%l%<authors%>%x', '%g%l%<history%>%x' and '%g%l%<features%>%x'.
 
