@@ -594,15 +594,15 @@ void prompt_interactive(CONTEXT)
 void prompt_user_free(struct descriptor_data *d)
 {
      if(d->cmdprompt) {
-        FREENULL((char *) d->cmdprompt->defaultval);
-        FREENULL((char *) d->cmdprompt->blankmsg);
-        FREENULL((char *) d->cmdprompt->command);
-        FREENULL((char *) d->cmdprompt->setarg);
-        FREENULL((char *) d->cmdprompt->params);
-        FREENULL((char *) d->cmdprompt->arg1);
-        FREENULL((char *) d->cmdprompt->arg2);
-        FREENULL((char *) d->cmdprompt->arg3);
-        FREENULL((char *) d->cmdprompt->prompt);
+        FREENULL(d->cmdprompt->defaultval);
+        FREENULL(d->cmdprompt->blankmsg);
+        FREENULL(d->cmdprompt->command);
+        /* FREENULL(d->cmdprompt->setarg); - Don't free an integer */
+        FREENULL(d->cmdprompt->params);
+        FREENULL(d->cmdprompt->arg1);
+        FREENULL(d->cmdprompt->arg2);
+        FREENULL(d->cmdprompt->arg3);
+        FREENULL(d->cmdprompt->prompt);
      }
 }
 
