@@ -51,9 +51,12 @@
 #define module_admin_c_date "21/12/1993"
 #define module_admin_c_desc "Admin commands and utilities"
 #define module_admin_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -91,9 +94,12 @@
 #define module_boolexp_c_date "21/12/1993"
 #define module_boolexp_c_desc "Boolean expressions"
 #define module_boolexp_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -118,9 +124,12 @@
 #define module_character_c_date "21/12/1993"
 #define module_character_c_desc "Character creation, lookup, etc."
 #define module_character_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -138,9 +147,9 @@
 #define module_command_c_date "21/12/1993"
 #define module_command_c_desc "Compound command processing"
 #define module_command_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -151,9 +160,12 @@
 #define module_communication_c_date "21/12/1993"
 #define module_communication_c_desc "Communication commands"
 #define module_communication_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -171,9 +183,9 @@
 #define module_container_c_date "21/12/1993"
 #define module_container_c_desc "Container manipulation"
 #define module_container_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -184,9 +196,12 @@
 #define module_create_c_date "21/12/1993"
 #define module_create_c_desc "Object creation"
 #define module_create_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -197,9 +212,12 @@
 #define module_db_c_date "21/12/1993"
 #define module_db_c_desc "Database manipulation/loading/saving"
 #define module_db_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -224,9 +242,9 @@
 #define module_event_c_date "21/12/1993"
 #define module_event_c_desc "Queued/timed events (Alarms/Fuses)"
 #define module_event_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -286,9 +304,12 @@
 #define module_interface_c_date "21/12/1993"
 #define module_interface_c_desc "Command pre-processing"
 #define module_interface_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -313,9 +334,12 @@
 #define module_look_c_date "21/12/1993"
 #define module_look_c_desc "Examining rooms/objects/characters"
 #define module_look_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -353,9 +377,12 @@
 #define module_move_c_date "21/12/1993"
 #define module_move_c_desc "Object movement"
 #define module_move_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -394,9 +421,12 @@
 #define module_predicates_c_date "21/12/1993"
 #define module_predicates_c_desc "Utility functions & conditional tests"
 #define module_predicates_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -428,9 +458,9 @@
 #define module_query_c_date "21/12/1993"
 #define module_query_c_desc "'{@?query}' commands"
 #define module_query_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -469,9 +499,12 @@
 #define module_server_c_date "21/12/1993"
 #define module_server_c_desc "Handling of Telnet/HTML sockets"
 #define module_server_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -489,9 +522,12 @@
 #define module_set_c_date "21/12/1993"
 #define module_set_c_desc "Setting object fields, flags, etc."
 #define module_set_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -516,9 +552,12 @@
 #define module_stringutils_c_date "21/12/1993"
 #define module_stringutils_c_desc "String matching/formatting"
 #define module_stringutils_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -536,7 +575,16 @@
 #define module_tcz_c_date "21/12/1993"
 #define module_tcz_c_desc "TCZ server (Start-up/shutdown)"
 #define module_tcz_c_authors \
-        "JPB | 21/12/1993 | NULL >>>"
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
+        "DP  | 01/01/1990 | 21/12/1993 >>>" \
+        "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
+        "MJH | 01/01/1990 | 21/12/1993 >>>" \
+        "NH  | 01/01/1990 | 21/12/1993 >>>" \
+        "PC  | 01/01/1990 | 21/12/1993 >>>" \
+        "RH  | 01/01/1990 | 21/12/1993 >>>"
 
 
 /* ---->  From temp.c  <---- */
@@ -557,9 +605,12 @@
 #define module_unparse_c_date "21/12/1993"
 #define module_unparse_c_desc "Unparsing of object names, etc."
 #define module_unparse_c_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+        "BY  | 01/01/1989 | 21/12/1993 >>>" \
+        "DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \

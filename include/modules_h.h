@@ -86,9 +86,9 @@
 #define module_command_h_date "21/12/1993"
 #define module_command_h_desc "Compound command specific definitions"
 #define module_command_h_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -99,9 +99,12 @@
 #define module_config_h_date "21/12/1993"
 #define module_config_h_desc "Configuration and parameters"
 #define module_config_h_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+	"BY  | 01/01/1989 | 21/12/1993 >>>" \
+	"DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+	"JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -112,9 +115,12 @@
 #define module_db_h_date "21/12/1993"
 #define module_db_h_desc "Global, database and flag definitions"
 #define module_db_h_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+	"BY  | 01/01/1989 | 21/12/1993 >>>" \
+	"DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+	"JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
@@ -146,9 +152,12 @@
 #define module_externs_h_date "21/12/1993"
 #define module_externs_h_desc "External declarations"
 #define module_externs_h_authors \
-        "JPB | 21/12/1993 | NULL >>>" \
+	"BY  | 01/01/1989 | 21/12/1993 >>>" \
+	"DA  | 01/01/1989 | 21/12/1993 >>>" \
         "DP  | 01/01/1990 | 21/12/1993 >>>" \
         "GDW | 01/01/1990 | 21/12/1993 >>>" \
+	"JA  | 01/01/1989 | 21/12/1993 >>>" \
+        "JPB | 21/12/1993 | NULL >>>" \
         "MJH | 01/01/1990 | 21/12/1993 >>>" \
         "NH  | 01/01/1990 | 21/12/1993 >>>" \
         "PC  | 01/01/1990 | 21/12/1993 >>>" \
