@@ -118,9 +118,9 @@ int modules_sort_authors(void)
 void modules_modules_view(dbref player,const char *module)
 {
      struct module_details *current,*exact = NULL,*prefix = NULL,*closest = NULL,*desc = NULL;
+     const  char *initials,*original,*datefrom,*dateto;
      int    twidth = output_terminal_width(player);
      struct descriptor_data *d = getdsc(player);
-     const  char *initials,*datefrom,*dateto;
      char   authorbuffer[BUFFER_LEN];
      struct author_details *cauthor;
      int    cached_scrheight;
@@ -167,10 +167,10 @@ void modules_modules_view(dbref player,const char *module)
 	if(IsHtml(d)) {
 	   html_anti_reverse(d,1);
 	   output(d,player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
-	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH COLSPAN=2><FONT COLOR="HTML_LCYAN" SIZE=4><I>Information about the module '"ANSI_LWHITE"%s"ANSI_LCYAN"'...</I></FONT></TH></TR>\016",exact->name);
+	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH COLSPAN=2><FONT COLOR="HTML_LCYAN" SIZE=4><I>Information about the module '"ANSI_LWHITE"%s"ANSI_LCYAN"' ("ANSI_LWHITE"*"ANSI_LCYAN" = Original author(s))...</I></FONT></TH></TR>\016",exact->name);
 	} else {
 	   if(!in_command && d && !d->pager && More(player)) pager_init(d);
-	   output(d,d->player,0,1,0,"\n "ANSI_LCYAN"Information about the module '"ANSI_LWHITE"%s"ANSI_LCYAN"'...",exact->name);
+	   output(d,d->player,0,1,0,"\n "ANSI_LCYAN"Information about the module '"ANSI_LWHITE"%s"ANSI_LCYAN"' ("ANSI_LWHITE"*"ANSI_LCYAN" = Original author(s))...",exact->name);
 	   output(d,d->player,0,1,0,separator(d->terminal_width,0,'-','='));
 	}
 
@@ -197,6 +197,13 @@ void modules_modules_view(dbref player,const char *module)
                        for(cauthor = authors; cauthor && (cauthor->initials && strcasecmp(cauthor->initials,initials)); cauthor = cauthor->next);
                        if(cauthor) {
 
+			  /* ---->  Original author of module?  <---- */
+                          for(; *ptr && ((*ptr == ' ') || (*ptr == '|')); ptr++);
+                          if((*ptr != '\n') && (*ptr != '>')) {
+                             for(original = ptr++; *ptr && !((*ptr == ' ') || (*ptr == '\n') || (*ptr == '>')); ptr++);
+                             if(*ptr) *ptr++ = '\0';
+			  }
+
                           /* ---->  Get date from  <---- */
                           for(; *ptr && ((*ptr == ' ') || (*ptr == '|')); ptr++);
                           if((*ptr != '\n') && (*ptr != '>')) {
@@ -215,6 +222,7 @@ void modules_modules_view(dbref player,const char *module)
                           cauthor->datefrom = !strcasecmp(datefrom,"NULL") ? NULL:datefrom;
                           cauthor->dateto   = !strcasecmp(dateto,"NULL")   ? NULL:dateto;
                           cauthor->author   = 1;
+			  cauthor->original = (original && ((*original == 'y') || (*original == 'Y')));
 		       }
 		    }
 		 }
@@ -223,7 +231,7 @@ void modules_modules_view(dbref player,const char *module)
 	   }
 	}
 
-        /* ---->  Current date (Used where author->dateto = NULL)  <---- */
+        /* ---->  Current date (Used where author->dateto == NULL)  <---- */
         gettime(stamp);
         now = localtime(&stamp);
         sprintf(cdate,"%02d/%02d/%04d",now->tm_mday,now->tm_mon + 1,now->tm_year + 1900);
@@ -232,7 +240,7 @@ void modules_modules_view(dbref player,const char *module)
         if(IsHtml(d)) {
 	   html_anti_reverse(d,1);
 	   output(d,player,1,2,0,"<TR><TD ALIGN=CENTER COLSPAN=2 BGCOLOR="HTML_TABLE_DGREY"><TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">");
-	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date From:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date To:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Initials:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Name:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Nickname:</I></FONT></TH></TR>\016");
+	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date From:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date To:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Initials:</I></FONT></TH><TH COLSPAN=2><FONT COLOR="HTML_LCYAN" SIZE=4><I>Name:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Nickname:</I></FONT></TH></TR>\016");
 	} else {
 	   output(d,d->player,0,1,0,separator(d->terminal_width,0,'=','='));
 	   output(d,d->player,0,1,0," Date From:  Date To:    Init:  Name:                Nickname:");
@@ -249,22 +257,23 @@ void modules_modules_view(dbref player,const char *module)
 
 	if(grp->distance > 0) {
 	   while(union_grouprange())
-		 output(d,player,2,1,0,IsHtml(d) ? "\016<TR><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016%s%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016"ANSI_LYELLOW"%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREEN"><%sA HREF=\"%sNAME=%s&\"%s TITLE=\"Click to view further information about this author...\">\016%s%s\016<%s/A></TD><TD BGCOLOR="HTML_TABLE_YELLOW">\016%s%s\016</TD><TD BGCOLOR="HTML_TABLE_MAGENTA">\016%s%s\016</TD></TR>\016":" %s%-12s"ANSI_LYELLOW"%-12s%s%s%s%s%s%-7s%s%s%-21s%s%s\n",
+		 output(d,player,2,1,0,IsHtml(d) ? "\016<TR><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016%s%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016"ANSI_LYELLOW"%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREEN"><%sA HREF=\"%sNAME=%s&\"%s TITLE=\"Click to view further information about this author...\">\016%s%s\016<%s/A></TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY" WIDTH=10>\016%s%s\016</TD><TD BGCOLOR="HTML_TABLE_YELLOW">\016%s%s\016</TD><TD BGCOLOR="HTML_TABLE_MAGENTA">\016%s%s\016</TD></TR>\016":" %s%-12s"ANSI_LYELLOW"%-12s%s%s%s%s%s%-5s%s%s%-2s%s%-21s%s%s\n",
                         !Blank(grp->cunion->author.datefrom) ? ANSI_LYELLOW:ANSI_DYELLOW,!Blank(grp->cunion->author.datefrom) ? grp->cunion->author.datefrom:"N/A",
                         !Blank(grp->cunion->author.dateto) ? grp->cunion->author.dateto:cdate,
 			(Blank(grp->cunion->author.initials) && IsHtml(d)) ? "!":"",IsHtml(d) ? html_server_url(d,0,1,"author"):"",IsHtml(d) ? String(grp->cunion->author.initials):"",(Valid(player) && IsHtml(d)) ? " TARGET=_blank":"",!Blank(grp->cunion->author.initials) ? ANSI_LGREEN:ANSI_DGREEN,!Blank(grp->cunion->author.initials) ? grp->cunion->author.initials:"N/A",(Blank(grp->cunion->author.initials) && IsHtml(d)) ? "!":"",
+			(grp->cunion->author.original) ? ANSI_LWHITE:"",(grp->cunion->author.original) ? "*":(IsHtml(d) ? " ":""),
                         !Blank(grp->cunion->author.name) ? ANSI_LYELLOW:ANSI_DYELLOW,!Blank(grp->cunion->author.name) ? grp->cunion->author.name:"N/A",
 			!Blank(grp->cunion->author.nickname) ? ANSI_LMAGENTA:ANSI_DMAGENTA,!Blank(grp->cunion->author.nickname) ? grp->cunion->author.nickname:"N/A");
 
 	   if(!in_command) {
 	      if(!IsHtml(d)) output(d,player,0,1,0,separator(twidth,0,'-','='));
-	      output(d,player,2,1,1,"%sAuthors listed: \016&nbsp;\016 "ANSI_DWHITE"%s%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_MGREY"><TD COLSPAN=5>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",listed_items(scratch_return_string,1),IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
+	      output(d,player,2,1,1,"%sAuthors listed: \016&nbsp;\016 "ANSI_DWHITE"%s%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_MGREY"><TD COLSPAN=6>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",listed_items(scratch_return_string,1),IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
 	   }
 	} else {
-	   output(d,player,2,1,0,"\016<TR ALIGN=CENTER><TD COLSPAN=5>"ANSI_LCYAN"<I> *** &nbsp; THIS MODULE HAS NO AUTHOR INFORMATION &nbsp; ***</I></TD></TR>\016");
+	   output(d,player,2,1,0,"\016<TR ALIGN=CENTER><TD COLSPAN=6>"ANSI_LCYAN"<I> *** &nbsp; THIS MODULE HAS NO AUTHOR INFORMATION &nbsp; ***</I></TD></TR>\016");
 	   if(!in_command) {
 	      if(!IsHtml(d)) output(d,player,0,1,0,separator(twidth,0,'-','='));
-	      output(d,player,2,1,1,"%sAuthors listed: \016&nbsp;\016 "ANSI_DWHITE"None.%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY"><TD COLSPAN=5>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
+	      output(d,player,2,1,1,"%sAuthors listed: \016&nbsp;\016 "ANSI_DWHITE"None.%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY"><TD COLSPAN=6>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
 	   }
 	}
 
@@ -364,8 +373,8 @@ void modules_authors_view(dbref player,const char *author)
      struct author_details *nickexact = NULL,*nickprefix = NULL,*nickclosest = NULL;
      struct author_details *current,*exact = NULL,*prefix = NULL,*closest = NULL;
      int    twidth = output_terminal_width(player),adjust;
+     const  char *initials,*datefrom,*dateto,*original;
      struct descriptor_data *d = getdsc(player);
-     const  char *initials,*datefrom,*dateto;
      char   authorbuffer[BUFFER_LEN];
      struct author_details *cauthor;
      struct module_details *cmodule;
@@ -435,10 +444,10 @@ void modules_authors_view(dbref player,const char *author)
 	if(IsHtml(d)) {
 	   html_anti_reverse(d,1);
 	   output(d,player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
-	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH COLSPAN=2><FONT COLOR="HTML_LCYAN" SIZE=4><I>Author information about "ANSI_LWHITE"%s"ANSI_LCYAN" ("ANSI_LYELLOW"%s"ANSI_LCYAN")...</I></FONT></TH></TR>\016",exact->name,!Blank(exact->nickname) ? exact->nickname:ANSI_DCYAN"N/A");
+	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH COLSPAN=2><FONT COLOR="HTML_LCYAN" SIZE=4><I>Author information about "ANSI_LWHITE"%s"ANSI_LCYAN" ("ANSI_LYELLOW"%s"ANSI_LCYAN") ("ANSI_LWHITE"*"ANSI_LCYAN" = Original author)...</I></FONT></TH></TR>\016",exact->name,!Blank(exact->nickname) ? exact->nickname:ANSI_DCYAN"N/A");
 	} else {
 	   if(!in_command && d && !d->pager && More(player)) pager_init(d);
-	   output(d,d->player,0,1,0,"\n "ANSI_LCYAN"Author information about "ANSI_LWHITE"%s"ANSI_LCYAN" ("ANSI_LYELLOW"%s"ANSI_LCYAN")...",exact->name,!Blank(exact->nickname) ? exact->nickname:ANSI_DCYAN"N/A");
+	   output(d,d->player,0,1,0,"\n "ANSI_LCYAN"Author information about "ANSI_LWHITE"%s"ANSI_LCYAN" ("ANSI_LYELLOW"%s"ANSI_LCYAN") ("ANSI_LWHITE"*"ANSI_LCYAN" = Original author)...",exact->name,!Blank(exact->nickname) ? exact->nickname:ANSI_DCYAN"N/A");
 	   output(d,d->player,0,1,0,separator(d->terminal_width,0,'-','='));
 	}
 
@@ -467,6 +476,13 @@ void modules_authors_view(dbref player,const char *author)
 			   for(cauthor = authors; cauthor && (cauthor->initials && strcasecmp(cauthor->initials,initials)); cauthor = cauthor->next);
 			   if(cauthor) {
 
+			      /* ---->  Original author of module?  <---- */
+                              for(; *ptr && ((*ptr == ' ') || (*ptr == '|')); ptr++);
+                              if((*ptr != '\n') && (*ptr != '>')) {
+                                 for(original = ptr++; *ptr && !((*ptr == ' ') || (*ptr == '\n') || (*ptr == '>')); ptr++);
+                                 if(*ptr) *ptr++ = '\0';
+			      }
+
 			      /* ---->  Get date from  <---- */
 			      for(; *ptr && ((*ptr == ' ') || (*ptr == '|')); ptr++);
 			      if((*ptr != '\n') && (*ptr != '>')) {
@@ -486,7 +502,8 @@ void modules_authors_view(dbref player,const char *author)
                                  cmodule->datefrom = (char *) alloc_string(datefrom);
                               if(strcasecmp(dateto,"NULL"))
                                  cmodule->dateto   = (char *) alloc_string(dateto);
-			      cmodule->module      = 1;
+			      cmodule->module   = 1;
+			      cmodule->original = (original && ((*original == 'y') || (*original == 'Y')));
 			   }
 			}
 		     }
@@ -495,7 +512,7 @@ void modules_authors_view(dbref player,const char *author)
 	       }
 	    }
 
-        /* ---->  Current date (Used where module->dateto = NULL)  <---- */
+        /* ---->  Current date (Used where module->dateto == NULL)  <---- */
         gettime(stamp);
         now = localtime(&stamp);
         sprintf(cdate,"%02d/%02d/%04d",now->tm_mday,now->tm_mon + 1,now->tm_year + 1900);
@@ -504,10 +521,10 @@ void modules_authors_view(dbref player,const char *author)
         if(IsHtml(d)) {
 	   html_anti_reverse(d,1);
 	   output(d,player,1,2,0,"<TR><TD ALIGN=CENTER COLSPAN=2 BGCOLOR="HTML_TABLE_DGREY"><TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">");
-	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date From:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date To:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Module:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Description:</I></FONT></TH></TR>\016");
+	   output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date From:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date To:</I></FONT></TH><TH COLSPAN=2><FONT COLOR="HTML_LCYAN" SIZE=4><I>Module:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Description:</I></FONT></TH></TR>\016");
 	} else {
 	   output(d,d->player,0,1,0,separator(d->terminal_width,0,'=','='));
-	   output(d,d->player,0,1,0," Date From:  Date To:    Module:               Description:");
+	   output(d,d->player,0,1,0," Date From:  Date To:     Module:               Description:");
 	   output(d,d->player,0,1,0,separator(d->terminal_width,0,'-','-'));
 	}
 
@@ -525,32 +542,33 @@ void modules_authors_view(dbref player,const char *author)
 		 /* ---->  Truncate description to fit screen width  <---- */
 		 if(!Blank(grp->cunion->module.desc)) {
 		    if(!IsHtml(d)) {
-		       strncpy(buffer,grp->cunion->module.desc,(twidth - 47));
-		       if(strlen(grp->cunion->module.desc) >= (twidth - 47)) {
-			  for(adjust = 3; ((twidth - 47 - adjust) > 0) && (*(buffer + twidth - 47 - adjust - 1) == ' '); adjust++);
-			  strcpy(buffer + twidth - 47 - adjust,"...");
+		       strncpy(buffer,grp->cunion->module.desc,(twidth - 48));
+		       if(strlen(grp->cunion->module.desc) >= (twidth - 48)) {
+			  for(adjust = 3; ((twidth - 48 - adjust) > 0) && (*(buffer + twidth - 48 - adjust - 1) == ' '); adjust++);
+			  strcpy(buffer + twidth - 48 - adjust,"...");
 		       }
 		    } else strcpy(buffer,grp->cunion->module.desc);
 		    if(*(buffer + strlen(buffer) - 1) != '.')
 		       strcat(buffer,".");
 		 } else strcpy(buffer,"No description.");
 
-		 output(d,player,2,1,0,IsHtml(d) ? "\016<TR><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016%s%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016"ANSI_LYELLOW"%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREEN"><%sA HREF=\"%sNAME=%s&\"%s TITLE=\"Click to view further information about this source code module...\">\016%s%s\016<%s/A></TD><TD>\016"ANSI_LWHITE"%s\016</TD></TR>\016":" %s%-12s"ANSI_LYELLOW"%-12s%s%s%s%s%s%-22s%s"ANSI_LWHITE"%s\n",
+		 output(d,player,2,1,0,IsHtml(d) ? "\016<TR><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016%s%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW">\016"ANSI_LYELLOW"%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY" WIDTH=10>\016%s%s\016</TD><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREEN"><%sA HREF=\"%sNAME=%s&\"%s TITLE=\"Click to view further information about this source code module...\">\016%s%s\016<%s/A></TD><TD>\016"ANSI_LWHITE"%s\016</TD></TR>\016":" %s%-12s"ANSI_LYELLOW"%-11s%s%-2s%s%s%s%s%s%-22s%s"ANSI_LWHITE"%s\n",
                         !Blank(grp->cunion->module.datefrom) ? ANSI_LYELLOW:ANSI_DYELLOW,!Blank(grp->cunion->module.datefrom) ? grp->cunion->module.datefrom:"N/A",
                         !Blank(grp->cunion->module.dateto) ? grp->cunion->module.dateto:cdate,
+			(grp->cunion->module.original) ? ANSI_LWHITE:"",(grp->cunion->module.original) ? "*":(IsHtml(d) ? " ":""),
 			(Blank(grp->cunion->module.name) && IsHtml(d)) ? "!":"",IsHtml(d) ? html_server_url(d,0,1,"module"):"",IsHtml(d) ? String(grp->cunion->module.name):"",(Valid(player) && IsHtml(d)) ? " TARGET=_blank":"",!Blank(grp->cunion->module.name) ? ANSI_LGREEN:ANSI_DGREEN,!Blank(grp->cunion->module.name) ? grp->cunion->module.name:"N/A",(Blank(grp->cunion->module.name) && IsHtml(d)) ? "!":"",
                         buffer);
 	   }
 
 	   if(!in_command) {
 	      if(!IsHtml(d)) output(d,player,0,1,0,separator(twidth,0,'-','='));
-	      output(d,player,2,1,1,"%sModules listed: \016&nbsp;\016 "ANSI_DWHITE"%s%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_MGREY"><TD COLSPAN=4>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",listed_items(buffer,1),IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
+	      output(d,player,2,1,1,"%sModules listed: \016&nbsp;\016 "ANSI_DWHITE"%s%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_MGREY"><TD COLSPAN=5>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",listed_items(buffer,1),IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
 	   }
 	} else {
-	   output(d,player,2,1,0,"\016<TR ALIGN=CENTER><TD COLSPAN=4>"ANSI_LCYAN"<I> *** &nbsp; THIS AUTHOR HAS NOT WORKED ON ANY SOURCE CODE MODULES &nbsp; ***</I></TD></TR>\016");
+	   output(d,player,2,1,0,"\016<TR ALIGN=CENTER><TD COLSPAN=5>"ANSI_LCYAN"<I> *** &nbsp; THIS AUTHOR HAS NOT WORKED ON ANY SOURCE CODE MODULES &nbsp; ***</I></TD></TR>\016");
 	   if(!in_command) {
 	      if(!IsHtml(d)) output(d,player,0,1,0,separator(twidth,0,'-','='));
-	      output(d,player,2,1,1,"%sModules listed: \016&nbsp;\016 "ANSI_DWHITE"None.%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY"><TD COLSPAN=4>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
+	      output(d,player,2,1,1,"%sModules listed: \016&nbsp;\016 "ANSI_DWHITE"None.%s",IsHtml(d) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY"><TD COLSPAN=5>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",IsHtml(d) ? "\016</B></TD></TR>\016":"\n\n");
 	   }
 	}
 
