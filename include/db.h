@@ -58,7 +58,7 @@
         } while(0)
 
 #define FREENULL(x) if(x) {\
-                 free(x); \
+                 free((void *) x); \
                  x = NULL; \
         }
 
