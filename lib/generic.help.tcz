@@ -1145,9 +1145,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %TOPIC bugfixes
 %TOPIC codefixes
 %TITLE Brief summary of latest %w%l%@%M v%{@?version version}%x source code bug fixes
-%9%9%c%l14/12/2004 %y %lSM  %x Corrected formatting of the @shutdown command.
-%9%9%c%l14/12/2004 %y %lSM  %x Fixed crash when Guest types @password <OLD> = <NEW>.
-%9%9%c%l09/12/2004 %y %lSM  %x Fixed crash when player types 'authors' or 'modules' at the login prompt under certain situations.
+%9%9%c%l14/12/2004 %y %lSM  %x Corrected formatting of the '%g%l%(@shutdown%)%x' command.
+%9%9%c%l14/12/2004 %y %lSM  %x Fixed crash when Guest types '%g%l%u@password <OLD> = <NEW>%x'.
+%9%9%c%l09/12/2004 %y %lSM  %x Fixed crash when player types '%g%l%(authors%)%x' or '%g%l%(modules%0%x' at the login prompt under certain situations.
 %9%9%c%l01/12/2004 %y %lSM  %x Fixed crash when player types a string which begins with a digit at the username of the login prompt.
 %9%9%c%l26/08/2001 %y %lJPB %x Brief/full '%g%l%(scan%)%x' implemented ('%g%l%(scanbrief%)%x'/'%g%l%(scanfull%)%x'.)
 %9%9%c%l24/08/2001 %y %lJPB %x Fixed problem with simple '%g%l%(more%)%x' pager used by '%g%l%(disclaimer%)%x'.
