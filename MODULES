@@ -1,0 +1,128 @@
+The Chatting Zone (TCZ)  -  Source code module authors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                     Original    Creation    
+ Source file:        Author:     Date:       Description:
+------------------------------------------------------------------------------
+ Makefile            S.A.Boggis  14/07/2000  Source code Makefile.
+ Makefile.rules      S.A.Boggis  14/07/2000  Source code Makefile rules.
+ admin.c             Various     21/12/1993  Admin commands and utilities.
+ alias.c             J.P.Boggis  21/02/1995  Custom command aliases.
+ array.c             J.P.Boggis  16/05/1995  Dynamic arrays.
+ banish.c            J.P.Boggis  12/04/1997  Banished character names.
+ bbs.c               J.P.Boggis  16/07/1995  Topic-based Bulletin Board System.
+ boolexp.c           Various     21/12/1993  Boolean expressions.
+ calculate.c         J.P.Boggis  18/10/1994  Integer, floating point and string-based calculations ('@eval'/'@calc'.)
+ channels.c          J.P.Boggis  18/04/1997  Channel communication (BETA).
+ character.c         Various     21/12/1993  Character creation, lookup, etc.
+ combat.c            J.P.Boggis  01/06/1995  Combat commands.
+ command.c           Various     21/12/1993  Compound command processing.
+ communication.c     Various     21/12/1993  Communication commands.
+ compression.c       J.P.Boggis  19/02/1996  Compression of text fields.
+ container.c         Various     21/12/1993  Container manipulation.
+ create.c            Various     21/12/1993  Object creation.
+ db.c                Various     21/12/1993  Database manipulation/loading/saving.
+ destroy.c           J.P.Boggis  24/03/1995  Object destruction/recovery.
+ edit.c              J.P.Boggis  09/10/1994  Line-based text editor.
+ event.c             Various     21/12/1993  Queued/timed events (Alarms/Fuses.)
+ feelings.c          J.P.Boggis  07/07/2000  Feeling commands.
+ finance.c           J.P.Boggis  03/01/1997  Monetry system (Credits.)
+ friends.c           J.P.Boggis  20/03/1994  Friends lists & chatting channel.
+ global.c            J.P.Boggis  14/05/1996  Global compound command lookup.
+ group.c             J.P.Boggis  17/11/1994  Grouping/range operators.
+ help.c              J.P.Boggis  06/07/1994  On-line help & tutorials.
+ html.c              J.P.Boggis  21/06/1996  World Wide Web Interface & HTML support.
+ interface.c         Various     21/12/1993  Command pre-processing.
+ lists.c             J.P.Boggis  31/08/1998  Character name list processing (BETA).
+ logfiles.c          J.P.Boggis  11/03/2000  System and user log files.
+ look.c              Various     21/12/1993  Examining rooms/objects/characters.
+ mail.c              J.P.Boggis  01/11/1995  Internal mail system (BETA).
+ map.c               J.P.Boggis  27/01/2000  Map of TCZ.
+ match.c             J.P.Boggis  12/12/1997  Hierarchical object matching.
+ modules.c           J.P.Boggis  20/05/2000  Description and author information for all TCZ source code modules
+ move.c              Various     21/12/1993  Object movement.
+ options.c	     J.P.Boggis  24/12/1999  Command-line arguments.
+ output.c            J.P.Boggis  28/12/1994  Output to users/descriptors.
+ pager.c             J.P.Boggis  02/05/1996  'more' pager for output.
+ pagetell.c          J.P.Boggis  17/04/1995  'page'/'tell' commands.
+ predicates.c        Various     21/12/1993  Utility functions & conditional tests.
+ preferences.c       J.P.Boggis  24/09/2000  'set' preferences command.
+ prompt.c            J.P.Boggis  02/10/2000  Interactive user prompts.
+ query.c             Various     21/12/1993  '{@?query}' commands.
+ request.c           J.P.Boggis  18/11/1996  Request queue for new characters.
+ sanity.c            J.P.Boggis  23/03/1995  Database integrity checks.
+ search.c            J.P.Boggis  29/12/1994  Object searching and listing.
+ selection.c         J.P.Boggis  15/06/1994  Selection & iteration commands.
+ server.c            Various     21/12/1993  Handling of Telnet/HTML sockets.
+ serverinfo.c        S.A.Boggis  27/02/2000  Automatic lookup of server information.
+ set.c               Various     21/12/1993  Setting object fields, flags, etc.
+ sites.c             J.P.Boggis  28/12/1994  Database of registered Internet sites.
+ statistics.c        J.P.Boggis  29/12/1994  Database statistics.
+ stringutils.c       Various     21/12/1993  String matching/formatting.
+ substitute.c        J.P.Boggis  13/10/1994  Command/variable/query/%-type substitutions.
+ tcz.c               J.P.Boggis  21/12/1993  TCZ server (Start-up/shutdown.)
+ temp.c              J.P.Boggis  18/10/1994  Temporary variables.
+ termcap.c           J.P.Boggis  26/11/1995  Database of terminal definitions.
+ unparse.c           Various     21/12/1993  Unparsing of object names, etc.
+ userlist.c          J.P.Boggis  10/03/1994  User lists in various formats.
+ yearlyevents.c      J.P.Boggis  24/11/1997  Yearly event notification.
+------------------------------------------------------------------------------
+                     Original    Creation    
+ Header file:        Author:     Date:       Description:
+------------------------------------------------------------------------------
+ at_cmdtable.h       J.P.Boggis  03/06/1999  '@' command table.
+ bank_cmdtable.h     J.P.Boggis  03/06/1999  Bank command table.
+ bbs_cmdtable.h      J.P.Boggis  03/06/1999  BBS command table.
+ boolean_flags.h     J.P.Boggis  04/12/2003  Boolean (Object lock) flags.
+ colourmap.h         J.P.Boggis  04/02/2000  Colour map table.
+ command.h           Various     21/12/1993  Compound command specific definitions.
+ config.h            Various     21/12/1993  Configuration and parameters.
+ db.h                Various     21/12/1993  Global, database and flag definitions.
+ descriptor_flags.h  J.P.Boggis  04/12/2003  Flags used by descriptor of character's connection (Telnet/HTML.)
+ edit_cmdtable	     J.P.Boggis  09/10/1994  Editor command table.
+ emailforward.h      J.P.Boggis  03/06/1999  Invalid E-mail forwarding names.
+ externs.h           Various     21/12/1993  External declarations.
+ fields.h            J.P.Boggis  03/06/1999  Definitions of fields each object has.
+ flagset.h           J.P.Boggis  03/06/1999  Table of which flags can be set on which objects.
+ friend_flags.h      J.P.Boggis  20/05/2000  Table of friend flags.
+ general_cmdtable.h  J.P.Boggis  03/06/1999  General command table.
+ html_entities.h     J.P.Boggis  21/06/1996  Table of HTML entities recognised by the HTML Interface.
+ html_tags.h         J.P.Boggis  21/06/1996  Table of HTML tags recognised by the HTML Interface.
+ logfile_table.h     J.P.Boggis  11/03/2000  Table of system log files.
+ logfiles.h          J.P.Boggis  03/06/1999  Constants for TCZ system log files.
+ match.h             J.P.Boggis  03/06/1999  Definitions for hierarchical object matching.
+ modules.h           J.P.Boggis  21/05/2000  Table of source code modules and pointers to author information.
+ modules_authors.h   J.P.Boggis  21/05/2000  Table of source code module authors.
+ modules_c.h         J.P.Boggis  21/05/2000  Module author information definitions for '*.c' source files.
+ modules_h.h         J.P.Boggis  21/05/2000  Module author information definitions for '*.h' header files.
+ object_types.h	     J.P.Boggis  04/12/2003  Definitions of object type flags and related macros.
+ objectlists.h       J.P.Boggis  03/06/1999  Definitions of lists each object has, and which objects can be moved into them.
+ primary_flags.h     J.P.Boggis  15/03/2000  Primary object/character flags.
+ prompts.h           J.P.Boggis  18/06/2001  Standard prompts displayed to users.
+ query_cmdtable.h    J.P.Boggis  03/06/1999  '@?' query command table.
+ quota.h             J.P.Boggis  03/06/1999  Cost in Building Quota per object.
+ search.h            J.P.Boggis  03/06/1999  Definitions for object searching/listing commands.
+ secondary_flags.h   J.P.Boggis  15/03/2000  Secondary object/character flags.
+ short_cmdtable.h    J.P.Boggis  03/06/1999  Short command table (" for 'say', etc.)
+ signallist.h        J.P.Boggis  26/08/2000  List of signal names/descriptions.
+ smileys.h           J.P.Boggis  03/03/2000  Table of graphical smileys for use in HTML Interface.
+ structures.h        J.P.Boggis  30/07/2000  Data structures used throughout TCZ.
+ teleport.h          J.P.Boggis  03/06/1999  Object teleportation restrictions.
+ yearlyevents.h      J.P.Boggis  03/06/2000  Table of yearly events.
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+  New Modules:
+  ~~~~~~~~~~~~
+  *  Add HEADER to beginning of source file and make appropriate changes.
+
+  *  If *.c source file, add to 'Master source file list' section of Makefile.
+
+  *  Add function headers to externs.h (Create new section.)
+
+  *  Add author information to MODULES (This file.)
+
+  *  Add author information to include/modules_c.h or include/modules_h.h
+     (Depending on whether file is *.c or *.h appropriately.)  Add entry
+     to author details table in include/modules.h)
