@@ -2174,7 +2174,7 @@ void query_set(CONTEXT)
 {
      dbref         thing = query_find_object(player,arg1,SEARCH_PREFERED,0,0);
      unsigned char negate,flag_set,found,skip,fothers = 0;
-     int           count = 0,flags,dummy;
+     int           count = 0,flags = 0,dummy;
      char          *ptr,*flaglist,*list;
      short         i;
 
