@@ -398,8 +398,8 @@ void html_init_smileys(void)
          if(!Blank(smileys[loop].icon)) {
             snprintf(buffer,sizeof(buffer),"<IMG SRC=\"%s\" ALT=\"%s\">",html_image_url(smileys[loop].icon),smileys[loop].smiley);
             for(count = 0, ptr = buffer; *ptr; ptr++, count++);
-            FREENULL((char *) smileys[loop].img);
-            (char *) smileys[loop].img = alloc_string(buffer);
+            FREENULL(smileys[loop].img);
+            smileys[loop].img = (char *) alloc_string(buffer);
             smileys[loop].imglength    = count;
 	 }
      }
@@ -533,7 +533,7 @@ void html_free_images(void)
 
      for(; html_images; html_images = next) {
          next = html_images->next;
-         FREENULL((char *) html_images->filename);
+         FREENULL(html_images->filename);
          FREENULL(html_images->data);
          FREENULL(html_images);
      }
@@ -3080,7 +3080,7 @@ void html_preferences_lookup(struct descriptor_data *d)
 /* ---->  Process received HTML data  <---- */
 unsigned char html_process_data(struct descriptor_data *d)
 {
-	 char           *resource = NULL,*resource_params = NULL,*referer = NULL;
+	 char           *resource = NULL,*resource_params = NULL;
 	 unsigned char  *getstart = NULL,*poststart = NULL;
 	 unsigned char  header = 1,error = 0,temp,post;
 	 const    char  *contents,*data;
