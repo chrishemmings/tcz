@@ -180,7 +180,7 @@ Running:
 ~~~~~~~~
 To start TCZ and generate an empty database, simply type:
 
-   bin/tcz --generate &
+   bin/tcz --generate <DATABASE NAME> &
 
 To start TCZ with a previously dumped database (Stored in the 'lib'
 directory), type:
