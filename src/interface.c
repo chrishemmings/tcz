@@ -394,7 +394,7 @@ void process_basic_command(dbref player,char *original_command,unsigned char con
         char     *hptr;
 
         if(in_command || (nesting_level > 1)) {
-           if(Valid(current_command) && (Apprentice(current_command) || Level4(Owner(current_command))))
+           if(Valid(current_command) && (Typeof(current_command) != TYPE_FREE) && (Apprentice(current_command) || Level4(Owner(current_command))))
               alias_substitute((in_command) ? Owner(current_command):player,original_command,command);
                  else strcpy(command,original_command);
 	
