@@ -1145,19 +1145,22 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %TOPIC bugfixes
 %TOPIC codefixes
 %TITLE Brief summary of latest %w%l%@%M v%{@?version version}%x source code bug fixes
+%9%9%c%l24/01/2005 %y %lSM  %x HTML users receiving output from '%g%l%(@notify%)%x' now get correctly formatted output if the %g%l%%%%[%%%%]%x substitutions are used.
+%9%9%c%l24/01/2005 %y %lSM  %x The '%g%l%(@delay%)%x' command has been fixed so it adds only the amount specified and doesn't double the current delay.
+%9%9%c%l24/01/2005 %y %lSM  %x The '%g%l%(@destall%)%x' command can no longer destroy ashcanned Assistants.  Also, it produces the correct message when trying to destroy Retired Admin.
 %9%9%c%l29/12/2004 %y %lJV  %x New feelings added to the '%g%l%(@feeling%)%x' command and redundant ones removed.
 %9%9%c%l20/12/2004 %y %lSM  %x The query '%g%l%u{@?set *<NAME> = <FRIEND FLAG> = flist/fothers%x' now works correctly.
 %9%9%c%l19/12/2004 %y %lSM  %x '%g%l%(@character%)%x' command now creates a Home Room for the created character instead of the Administrator who ran the command.
 %9%9%c%l14/12/2004 %y %lSM  %x Corrected formatting of the '%g%l%(@shutdown%)%x' command.
 %9%9%c%l14/12/2004 %y %lSM  %x Fixed crash when Guest types '%g%l%u@password <OLD> = <NEW>%x'.
-%9%9%c%l09/12/2004 %y %lSM  %x Fixed crash when player types '%g%l%(authors%)%x' or '%g%l%(modules%0%x' at the login prompt under certain situations.
+%9%9%c%l09/12/2004 %y %lSM  %x Fixed crash when player types '%g%l%(authors%)%x' or '%g%l%(modules%)%x' at the login prompt under certain situations.
 %9%9%c%l01/12/2004 %y %lSM  %x Fixed crash when player types a string which begins with a digit at the username of the login prompt.
 %9%9%c%l26/08/2001 %y %lJPB %x Brief/full '%g%l%(scan%)%x' implemented ('%g%l%(scanbrief%)%x'/'%g%l%(scanfull%)%x'.)
+
+%PAGE
 %9%9%c%l24/08/2001 %y %lJPB %x Fixed problem with simple '%g%l%(more%)%x' pager used by '%g%l%(disclaimer%)%x'.
 %9%9%c%l22/08/2001 %y %lJPB %x '%y%lCommand%x' log file is now %m%lSupreme Being%x only.
 %9%9%c%l15/08/2001 %y %lJPB %x Pointer bug in '%g%l%(afk%)%x' fixed (Caused crash.)
-
-%PAGE
 %9%9%c%l06/08/2001 %y %lJPB %x Infinite loop bug in %(matching%) code fixed.
 %9%9%c%l01/08/2001 %y %lJPB %x Binary tree bug in '%g%l%(@sort%)%x' fixed (Caused %(Dynamic Array%) elements to be lost.)
 %9%9%c%l30/07/2001 %y %lJPB %x DNS lookup is now disabled in config file (Still causes hang with unresolvable address.)
@@ -1166,11 +1169,11 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l26/07/2001 %y %lJPB %x '%g%l%(lastcommand%)%x' no-longer logs unnecesary hack warning in '%y%lHack%x' log file.
 %9%9%c%l26/07/2001 %y %lJPB %x '%y%lCommand%x' log restricted to %m%lDeity%x only.
 %9%9%c%l26/07/2001 %y %lJPB %x Guardian alarm implemented (Shuts %@%m down if it gets stuck in an infinite loop.)
+
+%PAGE
 %9%9%c%l25/07/2001 %y %lJPB %x Problem with alias binary tree fixed (Add/change alias.)  %r%lPlease check your aliases list for duplicate/corrupt aliases.
 %9%9%c%l25/07/2001 %y %lJPB %x '%g%l%(emergency%)%x' can no-longer be used on an administrator.
 %9%9%c%l25/07/2001 %y %lJPB %x Write permission rules to self within Mortal-owned compound command have been changed  -  See '%g%l%<@chpid%>%x', 2nd page.
-
-%PAGE
 %9%9%c%l25/07/2001 %y %lJPB %x Permission check on '%g%l{%(@?lastsite%)}%x' fixed.
 %9%9%c%l25/07/2001 %y %lJPB %x Problem with write permission to self in '%g%l%(@chpid%)%x' command fixed.
 %9%9%c%l24/07/2001 %y %lJPB %x Check for unopenable user log file added (Caused crash.)
@@ -2754,7 +2757,7 @@ To guard against malicious users charging too much for using commands, etc. in t
 
 The default restriction is %c%l10 credits%x.  To change this restriction, simply type '%g%lrestrict%x' follwed by your prefered restriction, e.g:  '%g%lrestrict 5%x' will restrict the maximum amount you can pay from within a compound command to %y%l5 credits%x.
 
-%c%l%8NOTE:  %xThe above restriction does not apply to payments to other users performed on the command-line or payments made within compound commands which have been set %y%l%(WIZARD%)%x (See '%g%l%<wizard flag%>%x') by administrators of %@%m.
+%c%l%8NOTE:  %xThe above restriction does not apply to payments to other users performed on the command-line or payments made within compound commands which have been set %y%l%(APPRENTICE%)%x (See '%g%l%<apprentice flag%>%x') by administrators of %@%m.
 
        %8The restriction also does not apply to the owner of the compound command (I.e:  When they are using '%g%l%(@force%)%x' (See '%g%l%<@force%>%x') to pay out credits to other users.)
 
@@ -14340,6 +14343,8 @@ As well as giving characters %y%lApprentice Wizard/%yDruid%x status (See '%g%l%<
 %4%r%l*  %xAllows use of '%g%l%(@with%) connected...%x' (See '%g%l%<@with%>%x') within a Mortal owned compound command.
 
 %4%y%l*  %xAllows use of '%g%l%(@censor%)%x' (See '%g%l%<@censor%>%x') within a Mortal owned compound command.
+
+%4%y%l*  %xAllows use of unrestricted credit payments in the '%g%l%(@pay%)%x' command.
 <-SEPARATOR->
 Also, see '%g%l%<apprentice%>%x', '%g%l%<wizard flag%>%x', '%g%l%<elder flag%>%x' and '%g%l%<ranks%>%x'.
 
