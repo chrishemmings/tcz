@@ -321,7 +321,7 @@
     to v4.3.1 with the first minor bugfixes in a while.
 
  *  The TCZ source code was released publicly under the GNU General Public
-    License (GPL) on 01/12/2004.  For further information, please visit:
+    License (GPL) on 02/12/2004.  For further information, please visit:
     
     http://www.sourceforge.net/projects/tcz
 
