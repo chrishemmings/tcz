@@ -125,6 +125,11 @@ The Chatting Zone (TCZ)  -  Changes log for TCZ v4.3.1
  	     related macros from db.h to flagset.h
  09/12/2003  (J.P.Boggis:  db.h,match.h)  Moved matching related flags from
              db.h to match.h
+ 07/12/2004  (J.P.Boggis:  yearlyevents.h)  Updated list of yearly events.
+ 07/12/2004  (J.P.Boggis:  modules_authors.h,modules_c.h,modules_h.h)  Updated
+             list of authors and modules.
+ 07/12/2004  (J.P.Boggis:  modules.c)  Fixed bug in modules/authors sorting
+ 	     functions.
 -------------------------------------------------------------------------------
  KEY:  '**' = Document to users (I.e:  On BBS.)
        '##' = Document to Admin only.
