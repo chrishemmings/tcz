@@ -383,7 +383,7 @@ int tcz_get_timezone(int log,int restart)
 
     now = server_gettime(NULL,0);
     tmnow = localtime(&now);
-    FREENULL((char *) tcz_timezone);
+    FREENULL(tcz_timezone);
 
     if((strftime(buffer,TEXT_SIZE,"%Z",tmnow) > 0)  && !Blank(buffer)) {
        tcz_timezone = (char *) alloc_string(buffer);

@@ -658,16 +658,16 @@ unsigned char parse_sitedetails(const char *str,short *revision)
 
 	    if(!Blank(site_date) && !Blank(serial_no)) {
 	       writelog(SERVER_LOG,0,"RESTART","Site database serial number %s, dumped on %s.",serial_no,site_date);
-               FREENULL((char *) site_date);
-               FREENULL((char *) serial_no);
+               FREENULL(site_date);
+               FREENULL(serial_no);
 	    }
             return(0);
 	 }
 
 	 if(!*str || (*str && (*str == '#'))) return(0);
          if(site_date || serial_no) {
-            FREENULL((char *) site_date);
-            FREENULL((char *) serial_no);
+            FREENULL(site_date);
+            FREENULL(serial_no);
 	 }
 
 	 temp.max_connections = NOTHING;

@@ -220,7 +220,7 @@ const char *option_adminemail(OPTCONTEXT)
                writelog(ADMIN_LOG,0,title,"%s(#%d) changed the Admin E-mail address option to '%s'.",getname(player),player,value);
 	    }
 
-	    FREENULL((char *) tcz_admin_email);
+	    FREENULL(tcz_admin_email);
 	    tcz_admin_email = alloc_string(value);
             return(tcz_admin_email);
 	 } else if(Validchar(player)) {
@@ -244,7 +244,7 @@ const char *option_backdoor(OPTCONTEXT)
       if(Blank(value) || (strlen(value) >= 6)) {
          if(Blank(value) || (strlen(value) <= 32)) {
             writelog(OPTIONS_LOG,1,title,"Backdoor password is %sabled.",(value) ? "en":"dis");
-            FREENULL((char *) backdoor);
+            FREENULL(backdoor);
             backdoor = alloc_string(value);
             return(backdoor);
 	 } else writelog(OPTIONS_LOG,1,title,"Sorry, backdoor password is too long (Limit is 32 characters.)"), (*error)++;
@@ -407,7 +407,7 @@ const char *option_database(OPTCONTEXT)
       if(strlen(value) <= 64) {
          if(!database || strcasecmp(value,database))
             writelog(OPTIONS_LOG,0,title,"Using database name '%s'.",value);
-         FREENULL((char *) database);
+         FREENULL(database);
          database = alloc_string(value);
          return(database);
       } else writelog(OPTIONS_LOG,0,title,"Sorry, database name is too long (Limit is 64 characters.)");
@@ -436,7 +436,7 @@ const char *option_dataurl(OPTCONTEXT)
                writelog(ADMIN_LOG,0,title,"%s(#%d) changed the HTML Interface data URL option to '%s'.",getname(player),player,scratch_return_string);
 	    }
       
-	    FREENULL((char *) html_data_url);
+	    FREENULL(html_data_url);
 	    html_data_url = alloc_string(scratch_return_string);
             return(html_data_url);
 	 } else if(Validchar(player)) {
@@ -656,7 +656,7 @@ const char *option_fullname(OPTCONTEXT)
                writelog(ADMIN_LOG,0,title,"%s(#%d) changed the server full name option to '%s'.",getname(player),player,buffer);
 	    }
 
-	    FREENULL((char *) tcz_full_name);
+	    FREENULL(tcz_full_name);
 	    tcz_full_name = alloc_string(buffer);
             return(tcz_full_name);
 	 } else if(Validchar(player)) {
@@ -723,7 +723,7 @@ const char *option_generate(OPTCONTEXT)
       if(strlen(value) <= 64) {
          if(!generate || strcasecmp(value,generate))
             writelog(OPTIONS_LOG,0,title,"New database will be generated with the name '%s'.",value);
-         FREENULL((char *) generate);
+         FREENULL(generate);
          generate = alloc_string(value);
          newdb    = 1;
          return(generate);
@@ -820,9 +820,9 @@ int option_local(OPTCONTEXT)
 
        /* ---->  Change local settings  <---- */
        runlocal = new;
-       FREENULL((char *) tcz_server_name);
-       FREENULL((char *) html_data_url);
-       FREENULL((char *) html_home_url);
+       FREENULL(tcz_server_name);
+       FREENULL(html_data_url);
+       FREENULL(html_home_url);
 
        html_internal_images = 1;
        tcz_server_netmask   = IPADDR(255,0,0,0);
@@ -859,7 +859,7 @@ const char *option_location(OPTCONTEXT)
                writelog(ADMIN_LOG,0,title,"%s(#%d) changed the location of server option to '%s'.",getname(player),player,buffer);
 	    }
 
-	    FREENULL((char *) tcz_location);
+	    FREENULL(tcz_location);
 	    tcz_location = alloc_string(buffer);
             return(tcz_location);
 	 } else if(Validchar(player)) {
@@ -977,7 +977,7 @@ const char *option_motd(OPTCONTEXT)
                   else writelog(ADMIN_LOG,0,title,"%s(#%d) reset the MOTD login message option.",getname(player),player);
 	 }
 
-	 FREENULL((char *) motd);
+	 FREENULL(motd);
 	 motd = alloc_string(result);
 	 return(motd);
       } else if(Validchar(player)) {
@@ -1060,7 +1060,7 @@ const char *option_server(OPTCONTEXT)
                writelog(ADMIN_LOG,0,title,"%s(#%d) changed the server address option to '%s'.",getname(player),player,value);
 	    }
 
-	    FREENULL((char *) tcz_server_name);
+	    FREENULL(tcz_server_name);
 	    tcz_server_name = alloc_string(value);
             return(tcz_server_name);
 	 } else if(Validchar(player)) {
@@ -1116,7 +1116,7 @@ const char *option_shortname(OPTCONTEXT)
 	    }
 
             /* ---->  Change short abbreviated name of server  <---- */ 
-	    FREENULL((char *) tcz_short_name);
+	    FREENULL(tcz_short_name);
 	    tcz_short_name = alloc_string(buffer);
 
             /* ---->  Change default prompt  <---- */
@@ -1246,7 +1246,7 @@ const char *option_website(OPTCONTEXT)
                writelog(ADMIN_LOG,0,title,"%s(#%d) changed the web site URL option to '%s'.",getname(player),player,value);
 	    }
 
-	    FREENULL((char *) html_home_url);
+	    FREENULL(html_home_url);
 	    html_home_url = alloc_string(value);
             return(html_home_url);
 	 } else if(Validchar(player)) {
@@ -1456,8 +1456,8 @@ void option_free_list(void)
      if(!option_list) return;
      for(; option_list; option_list = next) {
          next = option_list->next;
-         FREENULL((char *) option_list->longopt);
-         FREENULL((char *) option_list->optarg);
+         FREENULL(option_list->longopt);
+         FREENULL(option_list->optarg);
          FREENULL(option_list);
      }
 }

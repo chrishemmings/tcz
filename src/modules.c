@@ -576,8 +576,8 @@ void modules_authors_view(dbref player,const char *author)
 	if(IsHtml(d)) output(d,player,1,2,0,"</TABLE></TD></TR>");
 
         for(cmodule = modules; cmodule; cmodule->module = 0, cmodule = cmodule->next) {
-            if(cmodule->datefrom) FREENULL((char *) cmodule->datefrom);
-            if(cmodule->dateto)   FREENULL((char *) cmodule->dateto);
+            if(cmodule->datefrom) FREENULL(cmodule->datefrom);
+            if(cmodule->dateto)   FREENULL(cmodule->dateto);
 	}
 
 	if(IsHtml(d)) {

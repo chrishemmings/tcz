@@ -156,7 +156,7 @@ void serverinfo(void)
   }
 
   if (strcasecmp(tcz_server_name,TCZ_SERVER_NAME) == 0) {
-     FREENULL((char *) tcz_server_name);
+     FREENULL(tcz_server_name);
      tcz_server_name = alloc_string(returnedname);
      writelog(SERVER_LOG,0,"SET SERVER INFO","Setting %s server name to '%s'.",tcz_short_name,tcz_server_name);
   }
@@ -176,20 +176,20 @@ void serverinfo(void)
   }
 
   if (!Blank(email_forward_name) && (strcasecmp(email_forward_name,EMAIL_FORWARD_NAME) == 0)) {
-     FREENULL((char *) email_forward_name);
+     FREENULL(email_forward_name);
      email_forward_name = alloc_string(domainname);
      writelog(SERVER_LOG,0,"SET SERVER INFO","Setting E-mail forwarding domain name to '%s' (user.name@%s)",email_forward_name,email_forward_name);
   }
 
   if (strcasecmp(html_home_url,HTML_HOME_URL) == 0) {
-     FREENULL((char *) html_home_url);
+     FREENULL(html_home_url);
      snprintf(buf,TEXT_SIZE,"http://%s/",tcz_server_name);
      html_home_url = alloc_string(buf);
      writelog(SERVER_LOG,0,"SET SERVER INFO","Setting %s Web Site URL to '%s'.",tcz_short_name,html_home_url);
   }
 
   if (strcasecmp(html_data_url,HTML_DATA_URL) == 0) {
-     FREENULL((char *) html_data_url);
+     FREENULL(html_data_url);
      snprintf(buf,TEXT_SIZE,"http://%s/tczhtml/",tcz_server_name);
      html_data_url = alloc_string(buf);
      writelog(SERVER_LOG,0,"SET SERVER INFO","Setting HTML Interface data URL to '%s'.",html_data_url);
