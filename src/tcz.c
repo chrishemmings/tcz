@@ -107,9 +107,11 @@ void tcz_version(struct descriptor_data *d,int console)
 
         if(IsHtml(d)) output(d,d->player,1,1,0,"<TR><TD ALIGN=LEFT COLSPAN=2>");
         output(d,d->player,0,1,0,ANSI_LYELLOW"The Chatting Zone"ANSI_LWHITE" ("ANSI_LYELLOW"TCZ"ANSI_LWHITE") is a user-friendly, advanced multi-user environment for "ANSI_LCYAN"social"ANSI_LWHITE" ("ANSI_LCYAN"Chat"ANSI_LWHITE") or "ANSI_LCYAN"gaming"ANSI_LWHITE" ("ANSI_LCYAN"Adventure"ANSI_LWHITE") purposes either privately over any network supporting TCP/IP, or publicly over the Internet.  It supports both "ANSI_LYELLOW"Telnet"ANSI_LWHITE" ("ANSI_LCYAN"Text-only"ANSI_LWHITE") and "ANSI_LYELLOW"HTML"ANSI_LWHITE" ("ANSI_LCYAN"World Wide Web"ANSI_LWHITE") connections.\n");
-        output(d,d->player,0,1,0,ANSI_LMAGENTA"Originally designed and developed by "ANSI_LYELLOW"J.P.Boggis "ANSI_LWHITE"21/12/1993"ANSI_LMAGENTA".\n");
-        output(d,d->player,0,1,0,ANSI_LYELLOW"Parts originally based on "ANSI_LWHITE"TinyMUD v1.5 "ANSI_LYELLOW"("ANSI_LWHITE"1989"ANSI_LYELLOW") and "ANSI_LWHITE"UglyMUG"ANSI_LYELLOW" ("ANSI_LWHITE"1990"ANSI_LYELLOW"-"ANSI_LWHITE"1991"ANSI_LYELLOW".)\n");
+	
+        output(d,d->player,0,1,0,ANSI_LYELLOW"TCZ"ANSI_LMAGENTA" is based on "ANSI_LYELLOW"TinyMUD "ANSI_LMAGENTA"("ANSI_LWHITE"1989"ANSI_LMAGENTA") and "ANSI_LYELLOW"UglyMUG"ANSI_LMAGENTA" ("ANSI_LWHITE"1990"ANSI_LMAGENTA"-"ANSI_LWHITE"1991"ANSI_LMAGENTA".)  It was designed and developed by "ANSI_LYELLOW"J.P.Boggis"ANSI_LMAGENTA" from "ANSI_LWHITE"21/12/1993"ANSI_LMAGENTA" before release under the GPL license on "ANSI_LWHITE"02/12/2004"ANSI_LMAGENTA".\n");
+	
         output(d,d->player,2,1,0,ANSI_LCYAN"Please read the file "ANSI_LWHITE"MODULES"ANSI_LCYAN" or type '"ANSI_LYELLOW"\016<A HREF=\"%s\" TARGET=_blank TITLE=\"Click to view list of modules...\">\016modules\016</A>\016"ANSI_LCYAN"' on TCZ for detailed author information.%s",html_server_url(d,0,0,"modules"),IsHtml(d) ? "":"\n\n");
+	
 #ifdef DEMO
         output(d,d->player,0,1,0,ANSI_LRED"This is a "ANSI_LYELLOW""ANSI_UNDERLINE"demonstration"ANSI_LRED" version of TCZ.\n");
 #endif
@@ -118,9 +120,11 @@ void tcz_version(struct descriptor_data *d,int console)
            else output(d,d->player,0,1,0,"");
      } else {
         fputs("\nDescription:\n~~~~~~~~~~~~\n",stderr);
+	
         fputs("The Chatting Zone (TCZ) is a user-friendly, advanced multi-user\nenvironment for social (Chat) or gaming (Adventure) purposes\neither privately over any network supporting TCP/IP, or\npublicly over the Internet.  It supports both Telnet\n(Text-only) and HTML (World Wide Web) connections.\n\n",stderr);
-        fputs("Originally designed and developed by J.P.Boggis 21/12/1993.\n\n",stderr);
-        fputs("Parts originally based on TinyMUD v1.5 (1989) and UglyMUG (1990-1991.)\n\n",stderr);
+	
+        fputs("TCZ is based on TinyMUD (1989) and UglyMUG (1990-1991.)  It was\ndesigned and developed by J.P.Boggis from 21/12/1993 before\nrelease under the GPL license on 02/12/2004.\n\n",stderr);
+	
         fputs("Please see the file MODULES or type 'modules' on TCZ for\ndetailed author information.\n\n",stderr);
         fputs("For more information about TCZ, please visit:\n\n   http://www.sourceforge.net/projects/tcz\n\n\n",stderr);
      }
