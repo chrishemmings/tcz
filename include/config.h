@@ -61,7 +61,7 @@
 
 
 /* ---->  Compile options  <---- */
-#undef BETA                  /*  Enables unfinished beta code which is
+#undef  BETA                 /*  Enables unfinished beta code which is
 
                                  currently being worked on.  Only recommended
                                  for a TCZ compiled for testing purposes only.
@@ -138,7 +138,7 @@
                                  upto 10 minutes (Default) for the dumping
                                  process to complete.  */
 
-#define EMAIL_FORWARDING     /*  When enabled, TCZ will write forwarding
+#undef EMAIL_FORWARDING     /*  When enabled, TCZ will write forwarding
                                  E-mail addresses for all characters on TCZ
                                  who have set their E-mail address.  This can
                                  then be placed in '/etc/aliases', allowing
@@ -456,7 +456,7 @@
 
 
 /* ---->  Friends/enemies list constraints  <---- */
-#define MAX_FRIENDS_MORTAL             200       /*  Maximum friends a Mortal can have in their friends/enemies list (Each friend/enemy uses 9 bytes)  */
+#define MAX_FRIENDS_MORTAL             300       /*  Maximum friends a Mortal can have in their friends/enemies list (Each friend/enemy uses 9 bytes)  */
 #define MAX_FRIENDS_ADMIN              500       /*  Maximum friends Apprentice Wizard or above can have in their friends/enemies list                 */
 
 
@@ -587,7 +587,7 @@
 #define SESSION_TIME                   15        /*  Time (In minutes) between session title changes (Admin may forcefully change or reset the session title using 'session reset [<TITLE>]'.)  */
 #define WHISPER_TIME                   1         /*  Amount of time (In seconds) a user must wait between whispers to a particular user  */
 #define COMMENT_TIME                   60        /*  Amount of time (In seconds) a user must wait before they can make another complaint/comment/suggestion/bug report  */
-#define NEWBIE_TIME                    7200         /*  Amount of total connect time (In seconds) a user is still considered a 'Newbie'.  */
+#define NEWBIE_TIME                    7200      /*  Amount of total connect time (In seconds) a user is still considered a 'Newbie'.  */
 #define IDLE_TIME                      5         /*  Allowed idle time (In minutes) before character's time spent idle is updated  */
 #define MAIL_TIME                      15        /*  Amount of time (In seconds) a user must wait between sending mail to a particular user  */
 #define NAME_TIME                      900       /*  Time before characters can change their name again  */
