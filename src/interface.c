@@ -1226,7 +1226,7 @@ void tcz_time_sync(unsigned char init)
                  FREENULL(shutdown_reason);
                  return;
 	      } else if(!shutdown_timing || (shutdown_counter <= 10))
-                 output_all(1,1,0,0,"\007\n\x05\x09\x05\x03"ANSI_LRED"["ANSI_BLINK""ANSI_UNDERLINE"SHUTDOWN"ANSI_LRED"] \016&nbsp;\016 "ANSI_LWHITE"%s will be going down in "ANSI_LYELLOW"%d minutes"ANSI_LWHITE" time %s\n",tcz_full_name,shutdown_counter,!Blank(shutdown_reason) ? shutdown_reason:"");
+                 output_all(1,1,0,0,"\007\n\x05\x09\x05\x03"ANSI_LRED"["ANSI_BLINK""ANSI_UNDERLINE"SHUTDOWN"ANSI_LRED"] \016&nbsp;\016 "ANSI_LWHITE"%s will be going down in "ANSI_LYELLOW"%d minute%s"ANSI_LWHITE" %s\n", tcz_full_name, shutdown_counter, Plural(shutdown_counter), !Blank(shutdown_reason) ? shutdown_reason : "");
               shutdown_timing = now;
 	   }
 	} else shutdown_timing = -1;
