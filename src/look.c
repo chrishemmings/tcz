@@ -162,6 +162,9 @@ const char *look_name_status(dbref player,dbref object,char *buffer,unsigned cha
 
       if(Typeof(object) == TYPE_CHARACTER) {
 
+	 /* ---->  Set 'now'  <---- */
+	 gettime(now);
+
 	 /* ---->  Newbie  <---- */
 	 total = db[object].data->player.totaltime + (now - db[object].data->player.lasttime);
 	 if((total <= NEWBIE_TIME) && !Level4(object) && !Experienced(object) && !Assistant(object) && !Retired(object))
@@ -172,7 +175,6 @@ const char *look_name_status(dbref player,dbref object,char *buffer,unsigned cha
 	    strcat(buffer,(flags & FRIEND_ENEMY) ? " \016&nbsp;\016(Enemy)":" \016&nbsp;\016(Friend)");
 
 	 /* ---->  Birthday?  <---- */
-	 gettime(now);
 	 longdate = epoch_to_longdate(now);
 	 if(hasprofile(db[object].data->player.profile) && ((db[object].data->player.profile->dob & 0xFFFF) == (longdate & 0xFFFF)))
 	    sprintf(buffer + strlen(buffer)," \016&nbsp;\016(%ld today!)",longdate_difference(db[object].data->player.profile->dob,longdate) / 12);
