@@ -1279,7 +1279,7 @@ void option_options(struct descriptor_data *d,unsigned char options)
 	} else return;
      } else fputs("\n          Current Option Settings:\n          ~~~~~~~~~~~~~~~~~~~~~~~~\n",stderr);
 
-     if(d) output(d,d->player,2,1,37,"%s"ANSI_LGREEN"Admin. "ANSI_LYELLOW""ANSI_UNDERLINE"E-mail"ANSI_LGREEN" address:%s"ANSI_LWHITE"%s%s",IsHtml(d) ? "\016<TR><TH ALIGN=RIGHT WIDTH=40% BGCOLOR="HTML_TABLE_GREEN">\016":"             ",IsHtml(d) ? "\016</TH><TD ALIGN=LEFT>\016":"  ",option_adminemail(OPTSTATUS),IsHtml(d) ? "\016</TD></TR>\016":"\n");
+     if(d) output(d,d->player,2,1,37,"%s"ANSI_LYELLOW""ANSI_UNDERLINE"Admin. "ANSI_LGREEN"E-mail address:%s"ANSI_LWHITE"%s%s",IsHtml(d) ? "\016<TR><TH ALIGN=RIGHT WIDTH=40% BGCOLOR="HTML_TABLE_GREEN">\016":"             ",IsHtml(d) ? "\016</TH><TD ALIGN=LEFT>\016":"  ",option_adminemail(OPTSTATUS),IsHtml(d) ? "\016</TD></TR>\016":"\n");
         else fprintf(stderr,"            Admin. E-mail address (E):  %s\n",option_adminemail(OPTSTATUS));
 
 #ifdef SERVERINFO
