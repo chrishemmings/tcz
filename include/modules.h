@@ -358,7 +358,7 @@ struct module_details modules[] = {
 	  module_db_h_date,
 	  module_db_h_desc,
 	  module_db_h_authors},
-       {NULL, NULL, NULL, 0, 0, "db.h",
+       {NULL, NULL, NULL, 0, 0, "descriptor_flags.h",
 	  module_descriptor_flags_h_date,
 	  module_descriptor_flags_h_desc,
 	  module_descriptor_flags_h_authors},
