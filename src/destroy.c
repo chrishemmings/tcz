@@ -577,7 +577,7 @@ void destroy_destroyall(CONTEXT)
            if(player != subject) {
               if(Ashcan(subject)) {
                  if(!Level4(subject)) {
-                    if(!Experienced(subject)) {
+                    if(!(Experienced(subject) || Assistant(subject))) {
                        if(can_write_to(player,subject,0)) {
 
                           /* ---->  Reason given?  <---- */
@@ -773,7 +773,7 @@ void destroy_destroyall(CONTEXT)
                           writelog(DESTROY_LOG,1,"DESTROY ALL","%s(#%d) destroyed all objects owned by %s(#%d)  -  %d object%s destroyed (%d alarm%s, %d character%s, %d compound command%s, %d dynamic array%s, %d exit%s, %d fuse%s, %d propert%s, %d room%s, %d thing%s, %d variable%s), %d couldn't be destroyed  -  REASON:  %s",getname(player),player,getname(subject),subject,count - after,Plural(count - after),alarms,Plural(alarms),characters,Plural(characters),commands,Plural(commands),arrays,Plural(arrays),exits,Plural(exits),fuses,Plural(fuses),properties,(properties == 1) ? "y":"ies",rooms,Plural(rooms),things,Plural(things),variables,Plural(variables),after,verify);
                           setreturn(OK,COMMAND_SUCC);
 		       } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, you can only destroy all the objects owned by someone of a lower level than yourself.");
-		    } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, you can't destroy everything owned by an Experienced Builder.");
+		    } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, you can't destroy everything owned by an Experienced Builder, Assistant or a Retired Admin.");
 		 } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, you can't destroy everything owned by an Apprentice Wizard/Druid or above.");
 	      } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, you can only destroy all the objects of a character who's set "ANSI_LYELLOW"ASHCAN"ANSI_LGREEN".");
 	   } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, you can't destroy everything YOU own.");
