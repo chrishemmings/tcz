@@ -752,7 +752,7 @@ Each rule may be preceeded by a rating (E.g:  '%m%l<<<%y%l1%m%l>>>%x'.)  The num
 
 %9%6%c%lPLEASE NOTE:  %xIf a rule has a low rating, this does not mean that it is acceptable to purposely break it or ignore the fact that it has been broken.  If a rule is broken, suitable punishment must be issued promptly.
 
-              %9%6These rules apply to the date at the top of the help page for '%g%l%<rules%>%x'.  The administrators of %@%m reserve the right to change, ammend or add to these rules at any time without prior notice.  Any significant additions or ammendments will be announced on %@%n BBS in the %y%lNEWS%x topic (See '%g%l%<bbs%>%x'.)
+              %9%6These rules apply to the date at the top of the help page for '%g%l%<rules%>%x'.  The administrators of %@%m reserve the right to change, amend or add to these rules at any time without prior notice.  Any significant additions or amendments will be announced on %@%n BBS in the %y%lNEWS%x topic (See '%g%l%<bbs%>%x'.)
 <-SEPARATOR->
 Also, see '%g%l%<terms%>%x', '%g%l%<disclaimer%>%x', '%g%l%<safety guidelines%>%x', '%g%l%<behaviour guidelines%>%x' and '%g%l%<rules%>%x'.
 
@@ -843,7 +843,7 @@ Also, see '%g%l%<general rules%>%x', '%g%l%<safety guidelines%>%x', '%g%l%<terms
 
 %4%y%l*  %xIf any complaints are received from other users about you, they will be %c%lfully investigated%x and %c%lappropriate action%x will be taken if you refuse to stop (Depending on the severity, this could involve imposing a %y%lban%x on your site and/or sending a complaint to your system Adminstrator(s) (Which could result in you losing your access to the Internet.))
 
-%4%r%l*  %m%l<<<%y%l4%m%l>>>  %xYou must not '%c%lspam%x' (Send large quanities of output), %c%labuse%x, %c%lharrass%x, %c%loffend%x or %c%linvade the privacy%x of other users.
+%4%r%l*  %m%l<<<%y%l4%m%l>>>  %xYou must not '%c%lspam%x' (Send large quantities of output), %c%labuse%x, %c%lharrass%x, %c%loffend%x or %c%linvade the privacy%x of other users.
 
 %PAGE
 %4%y%l*  %m%l<<<%y%l5%m%l>>>  %xThe distribution/sharing of %c%lillegal%x or %c%lpornographic material%x is %r%l%f%uSTRICTLY%x prohibited.  This includes the use of %@%m's World Wide Web Interface (See '%g%l%<html%>%x') to provide links to or display %c%lmaterial%x, %c%lresources%x or %c%larchives%x which contain %y%lillegal%x, %y%loffensive%x or %y%lpornographic%x material.
@@ -864,10 +864,10 @@ As a Builder, the rules for General Users (See '%g%l%<general rules%>%x') apply 
 
 %4%r%l*  %xBefore you can be given building privileges, you must at least set your %c%lPRIVATE%x E-mail address to your %r%l%fREAL%x E-mail address, by typing '%g%l%(@email%) private <EMAIL ADDRESS>%x' (See '%g%l%<@email%>%x'.)  An anonymous or forwarding E-mail address can't be accepted.  Your private E-mail address is only visible to yourself and the administrators of %@%m, and will be kept %m%lSTRICTLY CONFIDENTIAL%x.
 
-%4%y%l*  %xAs a Builder, you may have upto a maximum of %y%lONE%x permanent puppet, providing you can fully justify the need for it.  Temporary puppets can be obtained by Builders for the purpose of testing building work from the point of view of another user (Please ask Admin for details of the %c%lPuppet Bank%x.)
+%4%y%l*  %xAs a Builder, you may have up to a maximum of %y%lONE%x permanent puppet, providing you can fully justify the need for it.  Temporary puppets can be obtained by Builders for the purpose of testing building work from the point of view of another user (Please ask Admin for details of the %c%lPuppet Bank%x.)
 
 %PAGE
-%4%r%l*  %m%l<<<%y%l4%m%l>>>  %xYou must not use your building privileges to purposely annoy, spam (Send large quanities of output), abuse, offend or invade the privacy of other users.
+%4%r%l*  %m%l<<<%y%l4%m%l>>>  %xYou must not use your building privileges to purposely annoy, spam (Send large quantities of output), abuse, offend or invade the privacy of other users.
 
 %4%y%l*  %m%l<<<%y%l4%m%l>>>  %xYou must not use your building privileges to hack or purposely 'lag' %@%m.
 
@@ -974,7 +974,7 @@ These rules are designed as basic guidelines to what you should and shouldn't do
 
 %PAGE
 %9%9%8   %y%lBoot:                 %x'%g%l%(@boot%) *<NAME> = <REASON> [= <BAN TIME>]%x'.
-%9%9%8                         (See '%g%l%<@boot%>%x'.)  They will be booted (Forcefully disconnected) from %@%m, and a public message will be displayed showing the boot and the reason.  It's also logged to the '%c%lBoot%x' log file (See '%g%l%<@log%>%x'.)  %y%l<BAN TIME>%x is an optional time in minutes (Upto %c%l60 minutes%x) to ban the user, so that they can't reconnect again almost immediately.
+%9%9%8                         (See '%g%l%<@boot%>%x'.)  They will be booted (Forcefully disconnected) from %@%m, and a public message will be displayed showing the boot and the reason.  It's also logged to the '%c%lBoot%x' log file (See '%g%l%<@log%>%x'.)  %y%l<BAN TIME>%x is an optional time in minutes (Up to %c%l60 minutes%x) to ban the user, so that they can't reconnect again almost immediately.
 
 %9%9%8   %y%lBan:                  %x'%g%l%(@ban%) *<NAME> = <TIME>|permanently = <REASON>%x'.
 %9%9%8                         (See '%g%l%<@ban%>%x'.)  Bans the user for the time specified or permanently.  Users can only be banned by %c%lWizard/%cDruids%x and above.  If you're an %y%lApprentice Wizard/%yDruid%x and can't set a necessary ban, ask a higher level character to do so for you.  (Use '%g%l%(@ban%) *<NAME> = lift = <REASON>%x' to lift a ban.)  Be sure to send E-mail to the banned user explaining why they have been banned.
@@ -1009,7 +1009,7 @@ These rules are designed as basic guidelines to what you should and shouldn't do
 %PAGE
 %4%y%l*  %m%l<<<%y%l1%m%l>>>  %xDo not use '%g%l%(page%)%x', '%g%l%(tell%)%x' or '%g%l%(@notify%)%x' in conjunction with '%g%l%(@with%) friends%x' or '%g%l%(@with%) connected%x' (See '%g%l%<@with%>%x') as an alternative or substitute for the '%g%l%(page%) friends%x', '%g%l%(tell%) friends%x' or '%g%l%(shout%)%x' command ('%g%l%<page%>%x', '%g%l%<tell%>%x' and '%g%l%<shout%>%x'.)  This rule is for two simple reasons...
 
-   %9%g%l(1)  %xIt causes extra and unnecessary work for the server, especially if you have a large friends list or there are a good number of users connected.  '%g%l%(page%) friends%x', '%g%l%(tell%) friends%x' or '%g%l%(shout%)%x' will only take a few milliseconds to execute, whereas '%g%l%(@with%) friends%x' or '%g%l%(@with%) connected%x' can take upto several seconds, causing unnecessary 'lag'.
+   %9%g%l(1)  %xIt causes extra and unnecessary work for the server, especially if you have a large friends list or there are a good number of users connected.  '%g%l%(page%) friends%x', '%g%l%(tell%) friends%x' or '%g%l%(shout%)%x' will only take a few milliseconds to execute, whereas '%g%l%(@with%) friends%x' or '%g%l%(@with%) connected%x' can take up to several seconds, causing unnecessary 'lag'.
 
 %PAGE
    %9%g%l(2)  %xIf '%g%l%(@notify%)%x' (See '%g%l%<@notify%>%x') is used with these commands, the recipients have no easy means of selectively blocking the messages if they do not wish to receive them.  With '%g%l%(page%) friends%x' and '%g%l%(tell%) friends%x' they can simply reset the %y%l%(^friend PAGETELLFRIENDS%)%x friend flag (See '%g%l%<pagetellfriends%>%x') on you if they do not wish to receive the messages.  If '%g%l%(page%)%x'/'%g%l%(tell%)%x' is used (I.e:  '%g%l%(@with%) friends me do %g%l%(tell%) $6 = hello%x'), this can be extremely confusing for the recipients, as to them it appears as though you have specifically and individually sent the message to them, rather than your entire list of friends.
@@ -1049,7 +1049,7 @@ These rules are designed as basic guidelines to what you should and shouldn't do
 %4%r%l*  %m%l<<<%y%l4%m%l>>>  %xDo not destroy or modify objects which belong to other users (Both Mortal and Admin owned), unless you have the permission from the owner to do so (An exeception to this rule is if the object is being used to 'spam' users/areas, is abusive/offensive in some way, or is being used to lag/hack %@%m.)
 
 %PAGE
-%4%y%l*  %m%l<<<%y%l3%m%l>>>  %xDo not adjust the bank account or credit in pocket of a user without good reason (I.e:  The user has obtained credit by unfair means or is in severe debt.)  This is important, because improper use of the '%g%l%(@credit%)%x' (See '%g%l%<@credit%>%x') command (I.e:  Injecting excessive money into the system or taking it out) could ruin the entire monetry system and make it worthless.
+%4%y%l*  %m%l<<<%y%l3%m%l>>>  %xDo not adjust the bank account or credit in pocket of a user without good reason (I.e:  The user has obtained credit by unfair means or is in severe debt.)  This is important, because improper use of the '%g%l%(@credit%)%x' (See '%g%l%<@credit%>%x') command (I.e:  Injecting excessive money into the system or taking it out) could ruin the entire monetary system and make it worthless.
 
 
 %c%l%$Rules for building and Building Quota limits...
@@ -1057,7 +1057,7 @@ These rules are designed as basic guidelines to what you should and shouldn't do
 %4%y%l*  %m%l<<<%y%l1%m%l>>>  %xTo obtain a %y%l%(BUILDER%)%x flag (See '%g%l%<builder flag%>%x'), a character must have a valid and unique E-mail address.  This ensures that they are not duplicates.  To see if anyone else on %@%m has the same E-mail address, use the '%g%lcheckb%x' command.  If so, enquire as to why their address is not unique.  To see if the address is valid and not fake, the easiest way is to send an E-mail to it, and get them to reply.  Do not set a %y%l%(BUILDER%)%x flag until you are sure that the E-mail address is valid and the character isn't a duplicate.
 
 %PAGE
-%4%r%l*  %m%l<<<%y%l2%m%l>>> %xDo not raise a characters Building Quota limit above %c%l200%x, unless they really need it, and they are building something of good quality that is beneficial to users of %@%m other than themselves and just a few friends.  This is %r%lIMPORTANT%x  -  'Good quality' means good, well written descriptions, fields of exits are set ('%g%l%(@osucc%)%x', '%g%l%(@odrop%)%x' and '%g%l%(@drop%)%x'  -  See '%g%l%<@osucc%>%x', '%g%l%<@odrop%>%x' and '%g%l%<@drop%>%x'), compound commands are well used and written, no objects are used that could be placed in a description instead.  Be very stringent about giving out Building Quota limits greater than %c%l200%x.  It's irrelevant that many other users may already have more than 200  -  That's the limit for Builders unless they are building something exceptional.
+%4%r%l*  %m%l<<<%y%l2%m%l>>> %xDo not raise a characters Building Quota limit above %c%l500%x, unless they really need it, and they are building something of good quality that is beneficial to users of %@%m other than themselves and just a few friends.  This is %r%lIMPORTANT%x  -  'Good quality' means good, well written descriptions, fields of exits are set ('%g%l%(@osucc%)%x', '%g%l%(@odrop%)%x' and '%g%l%(@drop%)%x'  -  See '%g%l%<@osucc%>%x', '%g%l%<@odrop%>%x' and '%g%l%<@drop%>%x'), compound commands are well used and written, no objects are used that could be placed in a description instead.  Be very stringent about giving out Building Quota limits greater than %c%l500%x.  It's irrelevant that many other users may already have more than 500  -  That's the limit for Builders unless they are building something exceptional.
 
 %PAGE
 
@@ -1145,6 +1145,7 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %TOPIC bugfixes
 %TOPIC codefixes
 %TITLE Brief summary of latest %w%l%@%M v%{@?version version}%x source code bug fixes
+%9%9%c%l29/12/2004 %y %lJV  %x New feelings added to the '%g%l%(@feeling%)%x' command and redundant ones removed.
 %9%9%c%l20/12/2004 %y %lSM  %x The query '%g%l%u{@?set *<NAME> = <FRIEND FLAG> = flist/fothers%x' now works correctly.
 %9%9%c%l19/12/2004 %y %lSM  %x '%g%l%(@character%)%x' command now creates a Home Room for the created character instead of the Administrator who ran the command.
 %9%9%c%l14/12/2004 %y %lSM  %x Corrected formatting of the '%g%l%(@shutdown%)%x' command.
@@ -1155,9 +1156,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l24/08/2001 %y %lJPB %x Fixed problem with simple '%g%l%(more%)%x' pager used by '%g%l%(disclaimer%)%x'.
 %9%9%c%l22/08/2001 %y %lJPB %x '%y%lCommand%x' log file is now %m%lSupreme Being%x only.
 %9%9%c%l15/08/2001 %y %lJPB %x Pointer bug in '%g%l%(afk%)%x' fixed (Caused crash.)
-%9%9%c%l06/08/2001 %y %lJPB %x Infinite loop bug in %(matching%) code fixed.
 
 %PAGE
+%9%9%c%l06/08/2001 %y %lJPB %x Infinite loop bug in %(matching%) code fixed.
 %9%9%c%l01/08/2001 %y %lJPB %x Binary tree bug in '%g%l%(@sort%)%x' fixed (Caused %(Dynamic Array%) elements to be lost.)
 %9%9%c%l30/07/2001 %y %lJPB %x DNS lookup is now disabled in config file (Still causes hang with unresolvable address.)
 %9%9%c%l30/07/2001 %y %lJPB %x Fixed crash in connect/create character code.
@@ -1168,9 +1169,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l25/07/2001 %y %lJPB %x Problem with alias binary tree fixed (Add/change alias.)  %r%lPlease check your aliases list for duplicate/corrupt aliases.
 %9%9%c%l25/07/2001 %y %lJPB %x '%g%l%(emergency%)%x' can no-longer be used on an administrator.
 %9%9%c%l25/07/2001 %y %lJPB %x Write permission rules to self within Mortal-owned compound command have been changed  -  See '%g%l%<@chpid%>%x', 2nd page.
-%9%9%c%l25/07/2001 %y %lJPB %x Permission check on '%g%l{%(@?lastsite%)}%x' fixed.
 
 %PAGE
+%9%9%c%l25/07/2001 %y %lJPB %x Permission check on '%g%l{%(@?lastsite%)}%x' fixed.
 %9%9%c%l25/07/2001 %y %lJPB %x Problem with write permission to self in '%g%l%(@chpid%)%x' command fixed.
 %9%9%c%l24/07/2001 %y %lJPB %x Check for unopenable user log file added (Caused crash.)
 %9%9%c%l24/07/2001 %y %lJPB %x BBS '%g%l%(^bbs append%)%x' '%g%l{@?date_to_string}%x' corrected to '%g%l{%(@?realtime%)}%x'.
@@ -1664,7 +1665,7 @@ On the %y%l21st December, 1993%x I downloaded the source to %c%lTinyMUD v1.5%x a
 The game was ran locally on one of the servers at the university, where it picked up its first ever regular users (%y%lRatty%x, %y%lDiceman%x, %y%lThe Captain%x and %y%lUK1%x  -  Most of these users are still with us today.)
 
 %PAGE
-After the Christmas 1993 holidays, I obtained an early version of the %c%lUglyMUG%x source code (%c%l1990-1991 version%x)  -  Both this and the %c%lTinyMUD%x code (Which I was still working on) were both very primitive and unstable.  Over the next few weeks, I intergrated the %c%lTinyMUD%x code and most of the features I had added to it into the %c%lUglyMUG%x code to produce the basics of %y%lTCZ v1.0%x (%c%l10th March 1994%x.)
+After the Christmas 1993 holidays, I obtained an early version of the %c%lUglyMUG%x source code (%c%l1990-1991 version%x)  -  Both this and the %c%lTinyMUD%x code (Which I was still working on) were both very primitive and unstable.  Over the next few weeks, I integrated the %c%lTinyMUD%x code and most of the features I had added to it into the %c%lUglyMUG%x code to produce the basics of %y%lTCZ v1.0%x (%c%l10th March 1994%x.)
 
 
 %c%l%$TCZ goes 'live' at the University of Plymouth...
@@ -1918,7 +1919,7 @@ Also, see '%g%l%<features%>%x', '%g%l%<version info%>%x', '%g%l%<bug fixes%>%x',
 %PAGE
 %4%y%l*  %xAutomatic maintenance of unused characters and objects in the database, helping keep the database free of redundant objects.  Redundant characters and objects are destroyed on a weekly basis  -  See '%g%l%<expiry%>%x', '%g%l%<@expiry%>%x', '%g%l%<junked objects%>%x', '%g%l%<date stamps%>%x', '%g%l%<@admin%>%x' and '%g%l%<@maintenance%>%x'.
 
-%4%r%l*  %xUser creatable vehicles, which can be driven/riden around the world of %@%n (In locations which allow transport, such as streets, etc.)  -  See '%g%l%<transport%>%x'.
+%4%r%l*  %xUser creatable vehicles, which can be driven/ridden around the world of %@%n (In locations which allow transport, such as streets, etc.)  -  See '%g%l%<transport%>%x'.
 
 %4%y%l*  %xE-mail forwarding facility for users of %@%m  -  See '%g%l%<@email%>%x'.
 
@@ -2680,7 +2681,7 @@ Also, see '%g%l%<bank%>%x' and '%g%l%<bankcmd%>%x'.
 %TOPIC bankbalance
 %TOPIC bankaccounts
 %TOPIC bankstatement
-%TOPIC monetrysystem
+%TOPIC monetarysystem
 %TOPIC depositingmoney
 %TOPIC depositingcredit
 %TOPIC withdrawingmoney
@@ -2896,7 +2897,7 @@ Also, see '%g%l%<bbs topics%>%x', '%g%l%<bbs read%>%x', '%g%l%<bbs summary%>%x',
 
 The '%g%llatest%x' BBS command lists the most recent messages posted to the BBS, along with the topic/sub-topic they're located in.
 
-By default, the 12 most recent messages are shown, but any number upto a maximum of 60 can be shown by specifying %y%l<COUNT>%x, e.g:  '%g%llatest = 30%x' will show the 30 most recent messages posted to the BBS.
+By default, the 12 most recent messages are shown, but any number up to a maximum of 60 can be shown by specifying %y%l<COUNT>%x, e.g:  '%g%llatest = 30%x' will show the 30 most recent messages posted to the BBS.
 
 You can list the most recent messages posted in a particular topic/sub-topic by typing '%g%llatest <TOPIC>[/<SUBTOPIC>]%x', where %y%l<TOPIC>%x is the name of the topic and (Optionally) %y%l<SUBTOPIC>%x is the name of a sub-topic within that topic, e.g:  '%g%llatest news%x', '%g%llatest code updates/building%x', etc.
 
@@ -2948,7 +2949,7 @@ Also, see '%g%l%<bbs topic%>%x', '%g%l%<bbs topics%>%x', '%g%l%<bbs ignore%>%x',
 
 The '%g%lreplies%x' BBS command lists all replies to the message %y%l<NUMBER>%x in your current selected topic/sub-topic (Including the original message, if it still exists.)
 
-This allows you to easily find the replies to a given message, all the way back to the original message which involked response from other users (If it still exists.)  This allows you to follow the thread right from its start, and read/find all of the replies which it generated.
+This allows you to easily find the replies to a given message, all the way back to the original message which invoked response from other users (If it still exists.)  This allows you to follow the thread right from its start, and read/find all of the replies which it generated.
 <-SEPARATOR->
 Also, see '%g%l%<bbs reply%>%x', '%g%l%<bbs messages%>%x' and '%g%l%<bbscmds%>%x'.
 
@@ -3134,7 +3135,7 @@ Voting on a message can also be made subject to the %(majority factor%).  This w
 
 An expiry time can be set for voting on a message.  Once set, voting on the message will remain open for that period of time, after which it will automatically close.  If the vote has been made subject to a secret ballot, the results of the vote will be made public when it closes.
 
-To set an expiry time for voting on a message, simply type '%g%lvote <NUMBER> expiry <DAYS>%x', where %y%l<DAYS>%x is the time in days (Upto a maximum of %c%l7%x), after which voting on the message will close.
+To set an expiry time for voting on a message, simply type '%g%lvote <NUMBER> expiry <DAYS>%x', where %y%l<DAYS>%x is the time in days (Up to a maximum of %c%l7%x), after which voting on the message will close.
 
 Once an expiry time has been set, it cannot be reduced or removed.  Voting on the message cannot be turned on/off, and the votes on the message cannot be reset.  The voting can be made subject to a secret ballot, but cannot be made public again.  These restrictions apply until the expiry time for voting on the message has passed.
 
@@ -3449,7 +3450,7 @@ The '%g%lmessagelimit%x' BBS command can be used to change the maximum number of
 
 The default message limit of a new topic/sub-topic is %y%l100%x messages.
 
-Unless a lower message limit is required in a particular topic/sub-topic, changing the message limit of a topic/sub-topic is not usually neccessary.  Most topics should be subject to cyclic message deletion (See '%g%l%<bbs cyclic%>%x'), and %y%l100%x messages should be ample to support several days (If not weeks in some topics) worth of posting.
+Unless a lower message limit is required in a particular topic/sub-topic, changing the message limit of a topic/sub-topic is not usually necessary.  Most topics should be subject to cyclic message deletion (See '%g%l%<bbs cyclic%>%x'), and %y%l100%x messages should be ample to support several days (If not weeks in some topics) worth of posting.
 
 %[%c%lExample:  %g%lmessagelimit clubs/builder club = 50%]%x
 <-SEPARATOR->
@@ -4048,7 +4049,7 @@ For a full list of links to resources of %@%m's World Wide Web Interface, please
 %PAGE
 %6%g%l(1)  %xDon't leave your computer/browser unattended at %r%l%f%uany time%x (Even in %g%l%(AFK%)%x mode (See '%g%l%<afk%>%x')), unless your computer is somewhere where nobody else will be able to get access to it and play around with it.  If you need to leave your computer unattended, you should disconnnect from %@%m (Click %y%lLOGOUT%x or type '%g%l%(QUIT%)%x') and exit your browser altogether (See %g%l(2)%x and %g%l(3)%x.)
 
-%6%g%l(2)  %xMake sure you disconnect from %@%m by clicking on the %y%lLOGOUT%x button or typing '%g%l%(QUIT%)%x', otherwise your character will remain connected for upto %c%l5 minutes%x (This is to give you the opportunity to resume your connection if you lose it for some reason, such as visiting a link to another page which hasn't been set to open a new web browser window.)
+%6%g%l(2)  %xMake sure you disconnect from %@%m by clicking on the %y%lLOGOUT%x button or typing '%g%l%(QUIT%)%x', otherwise your character will remain connected for up to %c%l5 minutes%x (This is to give you the opportunity to resume your connection if you lose it for some reason, such as visiting a link to another page which hasn't been set to open a new web browser window.)
 
 %PAGE
 %6%g%l(3)  %xOnce you have finished using %@%m, clear the disk cache (If you know how to  -  This option is usually in the %y%lPREFERENCES%x menu of the browser) and then completely exit the browser altogether.  If you fail to at least exit the browser, another person could come along and click the %y%lBACK%x button to get back to the connect form (Still complete with the character name and password you entered to connect to %@%m) and connect as your character.
@@ -4157,7 +4158,7 @@ Administrators (%y%lApprentice Wizards/%yDruids%x and above) are there to help y
 %r%lExperienced Builders%x are ordinary users with exceptional building and compound command writing skills, who are a good choice if you have any building questions (Especially related to advanced building) and no %c%lWizard%x administrators are available.
 
 %PAGE
-%rAssistants%x are also ordinary users, who are prepared to give help to any user who needs it (Especially new users), however they may not neccessarily have exceptional building skills (They are a good choice if you have any general questions or basic building questions and no %cDruid%x administrators are available.)
+%rAssistants%x are also ordinary users, who are prepared to give help to any user who needs it (Especially new users), however they may not necessarily have exceptional building skills (They are a good choice if you have any general questions or basic building questions and no %cDruid%x administrators are available.)
 
 Retired administrators are past administrators who have retired from administrative duties.  Most will have good knowledge of %@%m, and will be more than willing to help you, if you ask.
 
@@ -4275,7 +4276,7 @@ All Builders start off with a Building Quota of %y%l100%x.  If you reach or exce
 %6%g%l(2)  %xIf you can't find anything you can destroy, get in touch with an %y%lApprentice Wizard/%yDruid%x or above and ask them to raise your Building Quota limit.
 
 %PAGE
-To obtain a Building Quota limit of more than %c%l200%x, you need to be building something which is beneficial to users other than just yourself and perhaps a few friends (E.g:  Spending all your Building Quota on a house for yourself (And possibly a few of your friends) doesn't warrant a Building Quota greater than 200.)
+To obtain a Building Quota limit of more than %c%l500%x, you need to be building something which is beneficial to users other than just yourself and perhaps a few friends (E.g:  Spending all your Building Quota on a house for yourself (And possibly a few of your friends) doesn't warrant a Building Quota greater than 500.)
 
 All rooms and objects should be well described with no spelling/typing mistakes (Use a dictionary to check), the area must consist of more than just rooms, things and exits (I.e:  A good number of useful and fully working compound commands which bring the area and objects in it to life) and all exits in the area should have success ('%g%l%(@succ%)%x'), drop ('%g%l%(@drop%)%x') and others drop ('%g%l%(@odrop%)%x') messages set.  Ideally, the exits should also be set %y%l%(OPAQUE%)%x (So you don't get the default '%c%lleads to <DESTINATION>%x' added to the name of the exit.)  Every room should also have at least one exit with the names '%g%lout;exit;back;leave%x' in it's name(s) (These are the standard commands for leaving a room.)
 
@@ -4822,7 +4823,7 @@ Also, see '%g%l%<@?upper%>%x', '%g%l%<@?lower%>%x', '%g%l%<@?format%>%x' and '%g
 
 Applies a string of colour codes (Similar to %c%l%(substitutions%)%x (See '%g%l%<substitutions%>%x')) to a string of text.  This is especially useful for ASCII art or complex colour sequences which can make the text to which they add colour too difficult to edit.  The same code used for '%g%l{@?colourmap}%x' is used to add colour to %@%m's map (See '%g%l%<map%>%x'.)
 
-%y%l<MAP>%x is the list of colour map codes, which will be applied to their respective characters in the string %y%l<TEXT>%x in order.  If %y%l<MAP>%x is shorter than %y%l<TEXT>%x, the sequence in %y%l<MAP>%x will be repeated from the start as many times as neccessary.  To prevent repetition, include a '%g%l!%x' in %y%l<MAP>%x.
+%y%l<MAP>%x is the list of colour map codes, which will be applied to their respective characters in the string %y%l<TEXT>%x in order.  If %y%l<MAP>%x is shorter than %y%l<TEXT>%x, the sequence in %y%l<MAP>%x will be repeated from the start as many times as necessary.  To prevent repetition, include a '%g%l!%x' in %y%l<MAP>%x.
 
 %y%l<TEXT>%x is the string which the colour map codes in %y%l<MAP>%x will be applied to, in order.
 
@@ -8032,7 +8033,7 @@ This option is the maximum number of users which can be simultaneously connected
 %~%c~~~~~~~~~~~~~~~~~~~~
 %[%c%lUSAGE:  %g%l@admin homes [=] #<ID>%]%x
 
-This option is the #ID of the room which the %c%lhome rooms%x (See '%g%l%<home%>%x' and '%g%l%<@homeroom%>%x') of users will be stored in.  It can not be accessed publicly (However, administrators can teleport (See '%g%l%<@teleport%>%x' and '%g%l%<to%>%x') there of course, if neccessary.)
+This option is the #ID of the room which the %c%lhome rooms%x (See '%g%l%<home%>%x' and '%g%l%<@homeroom%>%x') of users will be stored in.  It can not be accessed publicly (However, administrators can teleport (See '%g%l%<@teleport%>%x' and '%g%l%<to%>%x') there of course, if necessary.)
 
 %PAGE
 
@@ -9100,7 +9101,7 @@ Text formatting substitutions allow you to set a hanging indent on a single line
 %c------------------------------------------------------------------------------
 %g%l%%#NF#          %xPrevents the following text from being subject to automatic
                formatting and punctuation.
-%g%l%%$             %xMarks the following text (Upto next colour change or '%c%l%%x%x') as
+%g%l%%$             %xMarks the following text (Up to next colour change or '%c%l%%x%x') as
                a title/heading, which will be underlined if the user's
                '%g%l%(set underline%)%x' preference is '%y%lon%x'.
 %g%l%%~             %xMarks rest of line as a '%c~~~~~%x' or similar-style underline,
@@ -9759,7 +9760,7 @@ Only %c%lWizards/%cDruids%x and above may reduce the bank account or credit in p
 
 A %y%l<REASON>%x in all cases must be given to use this command.  The bank account or credit in pocket of a user %r%l%fMUST NOT%x be altered unless you have %m%l%ugood reason%x (I.e:  User has obtained credit by unfair means.)
 
-This is important, because improper use of this command (I.e:  Injecting excessive money into the system or taking it out) could ruin the entire monetry system and make it worthless.
+This is important, because improper use of this command (I.e:  Injecting excessive money into the system or taking it out) could ruin the entire monetary system and make it worthless.
 <-SEPARATOR->
 Also, see '%g%l%<bank%>%x', '%g%l%<pay%>%x' and '%g%l%<transfer%>%x'.
 
@@ -10299,7 +10300,7 @@ If your private E-mail address is already set, you will not be able to change or
 
 %c%l%$Your public E-mail addresses
 %~%c~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%xIn addition to your private E-mail address, you may set upto four public E-mail addresses, which other users will be able to see and use to contact you if they wish to do so.  Your public E-mail addresses will appear on your '%g%l%(scan%)%x' and '%g%l%(profile%)%x' (See '%g%l%<scan%>%x' and '%g%l%<profile%>%x'.)
+%xIn addition to your private E-mail address, you may set up to four public E-mail addresses, which other users will be able to see and use to contact you if they wish to do so.  Your public E-mail addresses will appear on your '%g%l%(scan%)%x' and '%g%l%(profile%)%x' (See '%g%l%<scan%>%x' and '%g%l%<profile%>%x'.)
 
 %PAGE
 Unlike your private E-mail address, you may freely use anonymous or forwarding E-mail addresses for any of your public E-mail addresses.  You may also change or reset any of your public E-mail addresses as often as you wish.
@@ -10732,7 +10733,7 @@ After '%y%l<%x', '%y%l>%x', '%y%l<=%x' and '%y%l>=%x', a time interval must be g
 %[%g%l&c<1w        %xLists objects created %c%lBEFORE%x 1 week ago.
 %g%l&c>=1w       %xLists objects created between now and 1 week ago.
 %g%l&c>=1y<=6m   %xLists objects created between 1 year and 6 months ago.
-%g%l&l>=1d       %xLists objects last used upto 1 day ago.%]
+%g%l&l>=1d       %xLists objects last used up to 1 day ago.%]
 <-SEPARATOR->
 Also, see '%g%l%<wildcards%>%x', '%g%l%<@list%>%x', '%g%l%<junked objects%>%x' and '%g%l%<date stamps%>%x'.
 
@@ -10827,7 +10828,7 @@ A fuse starts off %c%lattached to you%x (When you create it), but it can be atta
 
 %9%4%y%lCHARACTER:%x  The fuse 'triggers' each time the character types a command or moves.
 
-  %9%4%y%lVEHICLE:%x  The fuse 'triggers' each time the vehicle is driven/riden.  If the vehicle can be entered and a character is inside it, the same conditions that apply to a room also apply to the vehicle.
+  %9%4%y%lVEHICLE:%x  The fuse 'triggers' each time the vehicle is driven/ridden.  If the vehicle can be entered and a character is inside it, the same conditions that apply to a room also apply to the vehicle.
 
 %PAGE
     %9%4%y%lTHING:%x  The fuse 'triggers' each time the thing is picked up, dropped or successfully opened, closed, locked or unlocked.  If the thing is a container, which can be entered, and a character is inside it, the same conditions that apply to a room also apply to the container.
@@ -11174,7 +11175,7 @@ After '%y%l<%x', '%y%l>%x', '%y%l<=%x' and '%y%l>=%x', a time interval must be g
 %[%g%l&c<1w        %xLists objects created %c%lBEFORE%x 1 week ago.
 %g%l&c>=1w       %xLists objects created between now and 1 week ago.
 %g%l&c>=1y<=6m   %xLists objects created between 1 year and 6 months ago.
-%g%l&l>=1d       %xLists objects last used upto 1 day ago.%]
+%g%l&l>=1d       %xLists objects last used up to 1 day ago.%]
 <-SEPARATOR->
 Also, see '%g%l%<@find%>%x', '%g%l%<junked objects%>%x' and '%g%l%<date stamps%>%x'.
 
@@ -11597,7 +11598,7 @@ Also, see '%g%l%<profile%>%x', '%g%l%<scan%>%x', '%g%l%<@?profile%>%x' and '%g%l
 
 '%g%l@sanity%x' is used to perform integrity checks on the database, to check for (And optionally attempt to correct) possible corruption.
 
-%c%l%8NOTE:  %xA general sanity check is always performed automatically when %@%m starts up, and a full sanity check ('%y%lfixlists%x') is also performed if %@%m was not shutdown 'cleanly' (I.e:  Using the '%g%l%(@shutdown%)%x' command  -  See '%g%l%<@shutdown%>%x'.)  Because of this, manual use of the '%g%l@sanity%x' command should be unneccessary.
+%c%l%8NOTE:  %xA general sanity check is always performed automatically when %@%m starts up, and a full sanity check ('%y%lfixlists%x') is also performed if %@%m was not shutdown 'cleanly' (I.e:  Using the '%g%l%(@shutdown%)%x' command  -  See '%g%l%<@shutdown%>%x'.)  Because of this, manual use of the '%g%l@sanity%x' command should be unnecessary.
 
 '%g%l@sanity checklists%x' (Which can only be used by %g%lElder Wizards/%gDruids%x and above) checks for corrupted linked lists attached to objects and '%g%l@sanity fixlists%x' (Which can only be used by %m%lDeities%x and the %m%lSupreme Being%x) attempts to fix any corruption.
 
@@ -13009,7 +13010,7 @@ The %y%lOPEN%x and %y%lOPENABLE%x flags can only be set on %c%lrooms%x, %c%lthin
 
 When the %y%lOPEN%x flag is set on a thing, it becomes a container, which can be entered by characters (Using the '%g%l%(enter%)%x' command (See '%g%l%<enter%>%x')) and objects can be placed inside (Providing it's large enough.)
 
-When the %y%lOPEN%x flag is set on a vehicle, the vehicle can be entered by characters and driven (Using the '%g%l%(drive%)%x' command (See '%g%l%<drive%>%x')) through exits into other locations.  A vehicle which doesn't have its %y%lOPEN%x flag set can't be entered, and must be riden (Using the '%g%l%(ride%)%x' command (See '%g%l%<ride%>%x'.))
+When the %y%lOPEN%x flag is set on a vehicle, the vehicle can be entered by characters and driven (Using the '%g%l%(drive%)%x' command (See '%g%l%<drive%>%x')) through exits into other locations.  A vehicle which doesn't have its %y%lOPEN%x flag set can't be entered, and must be ridden (Using the '%g%l%(ride%)%x' command (See '%g%l%<ride%>%x'.))
 
 %PAGE
 When a thing or vehicle has its %y%lOPENABLE%x flag set, it can be %c%lopened%x, %c%lclosed%x, %c%llocked%x and %c%lunlocked%x (Using the '%g%l%(open%)%x', '%g%l%(close%)%x', '%g%l%(lock%)%x' and '%g%l%(unlock%)%x' commands respectively (See '%g%l%<open%>%x', '%g%l%<close%>%x', '%g%l%<lock%>%x' and '%g%l%<unlock%>%x'.))  If it's closed, characters outside it will not be able to enter it, place objects inside it or gain access to its contents.
@@ -13265,7 +13266,7 @@ A vehicle is a thing which has its %y%l%(TRANSPORT%)%x flag set (See '%g%l%<tran
 
 If the thing is a container, it becomes a vehicle which can be entered (I.e:  A %c%lcar%x, %c%llorry%x (%c%lTruck%x), etc.) and then driven through exits in its current location (Using the '%g%l%(drive%)%x' command (See '%g%l%<drive%>%x'), e.g:  '%g%l%(drive%) south%x'.)  You can also look at the vehicle's present location by typing '%g%l%(look%) outside%x'.
 
-If the thing is not a container, it becomes a vehicle which can be riden (I.e:  A %c%lmotorcycle%x, %c%lhorse%x, etc.) through exits in its current location (Using the '%g%l%(ride%)%x' command (See '%g%l%<ride%>%x'), e.g:  '%g%l%(ride%) horse = south%x'.)
+If the thing is not a container, it becomes a vehicle which can be ridden (I.e:  A %c%lmotorcycle%x, %c%lhorse%x, etc.) through exits in its current location (Using the '%g%l%(ride%)%x' command (See '%g%l%<ride%>%x'), e.g:  '%g%l%(ride%) horse = south%x'.)
 
 %PAGE
 The %y%l%(TRANSPORT%)%x flag also determines where vehicles can be driven/ridden.  When driving/riding a vehicle using the '%g%l%(drive%)%x' and '%g%l%(ride%)%x' commands, you must specify a destination, which can either be an %c%lexit name%x (In the vehicle's current location) or a %c%lroom #<ID>%x (I.e:  %y%l%(ABODE%)%x room  -  See '%g%l%<abode flag%>%x'.)
@@ -14224,7 +14225,7 @@ The %gElder Druid%x status is reserved for long standing %cDruids%x who have exp
 %4%y%l*  %xDealing with abusive, offensive and problem users.
 %4%r%l*  %xDealing with and resolving desputes between users and/or Admin.
 %4%y%l*  %xChecking for and dealing with offensive or abusive material built or posted to the BBS (See '%g%l%<bbs%>%x') by users.
-%4%r%l*  %xDealing with any building problems which are within scope of knowledge, refering to %c%lWizard%x administration (See '%g%l%<wizards%>%x') where neccessary.
+%4%r%l*  %xDealing with any building problems which are within scope of knowledge, refering to %c%lWizard%x administration (See '%g%l%<wizards%>%x') where necessary.
 %4%y%l*  %xChecking for and dealing with any Admin. power abuse.
 <-SEPARATOR->
 Also, see '%g%l%<admin rules%>%x', '%g%l%<admin duties%>%x', '%g%l%<promotion%>%x', '%g%l%<wizards%>%x' and '%g%l%<ranks%>%x'.
@@ -14300,7 +14301,7 @@ Also, see '%g%l%<admin rules%>%x', '%g%l%<admin duties%>%x', '%g%l%<promotion%>%
 
 The %m%lDeity%x rank is the highest rank that can be achieved by Administrators of %@%m.  It is awarded to administrators with extensive knowledge of %@%m, building/coding and administration.  It is also commonly used for ownership of building/coding projects with Compound Commands which require the low restrictions of the %m%lDeity%x rank.
 
-%m%lDeities%x have '%c%lread%x' and '%c%lwrite%x' privileges to all characters below their level and objects owned by them.  This includes all users and administrators upto the level of %g%lElder Wizard/%gDruid%x.  They do not have '%c%lread%x' or '%c%lwrite%x' permission to each other or %m%lThe Supreme Being%x.
+%m%lDeities%x have '%c%lread%x' and '%c%lwrite%x' privileges to all characters below their level and objects owned by them.  This includes all users and administrators up to the level of %g%lElder Wizard/%gDruid%x.  They do not have '%c%lread%x' or '%c%lwrite%x' permission to each other or %m%lThe Supreme Being%x.
 <-SEPARATOR->
 Also, see '%g%l%<admin rules%>%x', '%g%l%<admin duties%>%x', '%g%l%<promotion%>%x' and '%g%l%<ranks%>%x'.
 
@@ -14483,7 +14484,7 @@ If new administrators are required, current administrators will vote on suitable
 %PAGE
 The following credentials of each suitable candidate are considered by administrators voting in the Admin Review (In no particular order of importance):
 
-   %4%y%lResponsibility%x, %y%lknowledge%x, %y%lexperience%x, %y%lfairness%x, %y%lmaturity%x, %y%lbuilding skill%x (%y%lApprentice Wizard%x), %y%linterpersonal skills%x, %y%lintergrity%x, %y%ltrustworthiness%x and %y%lstability%x.
+   %4%y%lResponsibility%x, %y%lknowledge%x, %y%lexperience%x, %y%lfairness%x, %y%lmaturity%x, %y%lbuilding skill%x (%y%lApprentice Wizard%x), %y%linterpersonal skills%x, %y%lintegrity%x, %y%ltrustworthiness%x and %y%lstability%x.
 
 Before considering applying for either %y%lApprentice Wizard%x or %yApprentice Druid%x status, please ensure you both read and fully understand the basic guidelines, rules and duties for administrators (See '%g%l%<admin rules%>%x' and '%g%l%<admin duties%>%x'.)
 <-SEPARATOR->
@@ -15210,7 +15211,7 @@ Also, see '%g%l%<open%>%x', '%g%l%<lock%>%x', '%g%l%<unlock%>%x', '%g%l%<take%>%
 
 The '%g%ldrive%x' command is used to drive a vehicle which can be entered (Using the '%g%l%(enter%)%x' command (See '%g%l%<enter%>%x')), such as a %c%lcar%x, %c%llorry%x, %c%lbus%x, etc.
 
-In order to drive a vehicle, you must first be inside it (Type '%g%l%(enter%) <VEHICLE>%x' to attempt to enter it.)  If the vehicle can't be entered, it must be riden, using the '%g%l%(ride%)%x' command (See '%g%l%<ride%>%x'.)
+In order to drive a vehicle, you must first be inside it (Type '%g%l%(enter%) <VEHICLE>%x' to attempt to enter it.)  If the vehicle can't be entered, it must be ridden, using the '%g%l%(ride%)%x' command (See '%g%l%<ride%>%x'.)
 
 Once inside the vehicle, you can look out of it (At it's current location) by typing '%g%l%(look%) outside%x'.  You can then drive the vehicle, using '%g%ldrive <DIRECTION>%x'.  %y%l<DIRECTION>%x is the name of the %c%l%(exit%)%x to drive it through, the %c%l#ID number%x of an %y%l%(ABODE%)%x room (See '%g%l%<abode flag%>%x') or the name of a %c%lconnected character%x, e.g:  '%g%ldrive east%x'.
 
@@ -15698,9 +15699,9 @@ Also, see '%g%l%<enter%>%x', '%g%l%<open%>%x', '%g%l%<close%>%x' and '%g%l%<cont
 
 The '%g%lsession%x' command allows you to set the current session, give your comment on it and list everyone else's comments.
 
-To set the current session, simply type '%g%lsession title <TITLE>%x', where %y%l<TITLE>%x is the title of session (Upto %c%l155 characters%x in length.)  The session may only be changed once every %c%l15 minutes%x (However, if you make a mistake when setting the session title, you may correct it upto %c%l1 minute%x after you've set it.)
+To set the current session, simply type '%g%lsession title <TITLE>%x', where %y%l<TITLE>%x is the title of session (Up to %c%l155 characters%x in length.)  The session may only be changed once every %c%l15 minutes%x (However, if you make a mistake when setting the session title, you may correct it up to %c%l1 minute%x after you've set it.)
 
-Once the session has been set, you can leave your comment on it by typing '%g%lsession comment <COMMENT>%x' (Upto %c%l55 characters%x in length.)  You can reset your session comment by typing '%g%lsession comment%x'.
+Once the session has been set, you can leave your comment on it by typing '%g%lsession comment <COMMENT>%x' (Up to %c%l55 characters%x in length.)  You can reset your session comment by typing '%g%lsession comment%x'.
 
 %PAGE
 You can list everyone's comments on the current session by typing '%g%lsession%x'.  This displays a list of everyone who has set a comment, along with the title of the session.
@@ -16078,7 +16079,7 @@ Also, see '%g%l%<map%>%x', '', '%g%l%<home%>%x', '%g%l%<homeroom%>%x', '%g%l%<bb
 
 The '%g%llock%x' command locks the %c%lcontainer%x, %c%lvehicle%x or %c%lexit %y%l<OBJECT>%x, so that it can't be opened or closed (Using the '%g%l%(open%)%x' and '%g%l%(close%)%x' commands (See '%g%l%<open%>%x' and '%g%l%<close%>%x'.))
 
-A container or vehicle can only be locked if its %c%llock key%x ('%g%l%(@key%)%x'  -  See '%g%l%<@key%>%x') is satified.
+A container or vehicle can only be locked if its %c%llock key%x ('%g%l%(@key%)%x'  -  See '%g%l%<@key%>%x') is satisfied.
 <-SEPARATOR->
 Also, see '%g%l%<unlock%>%x', '%g%l%<open%>%x', '%g%l%<close%>%x', '%g%l%<@key%>%x', '%g%l%<@lock%>%x' and '%g%l%<containers%>%x'.
 
@@ -16223,7 +16224,7 @@ Also, see '%g%l%<authors%>%x', '%g%l%<version info%>%x', '%g%l%<bug fixes%>%x', 
 
 %@%n features a 'more' paging facility, which can be used to page the subsequent output of any command, so you can read it a page at a time rather than it uselessly scrolling past continuously.
 
-You can turn the 'more' paging facility on (The default for new characters) by typing '%g%lmore on%x' or '%g%l%(set%) more on%x' (See '%g%l%<set more%>%x'.)  This will automatically page the output of the following commands (Which usually produce a lot of output):  '%g%l%(look%)%x', '%g%l%(scan%)%x', '%g%l%(inventory%)%x', '%g%l%(examine%)%x', the BBS '%g%lread%x' command (See '%g%l%<BBS%>%x'), the mail '%g%lread%x' command (See '%g%l%<mail%>%x'), '%g%l%(@list%)%x', '%g%l%(@find%)%x', '%g%l%(@entrances%)%x' and the various user lists (I.e:  '%g%l%(who%)%x', '%g%l%(swho%)%x', etc.)
+You can turn the 'more' paging facility on by typing '%g%lmore on%x' or '%g%l%(set%) more on%x' (See '%g%l%<set more%>%x'.)  This will automatically page the output of the following commands (Which usually produce a lot of output):  '%g%l%(look%)%x', '%g%l%(scan%)%x', '%g%l%(inventory%)%x', '%g%l%(examine%)%x', the BBS '%g%lread%x' command (See '%g%l%<BBS%>%x'), the mail '%g%lread%x' command (See '%g%l%<mail%>%x'), '%g%l%(@list%)%x', '%g%l%(@find%)%x', '%g%l%(@entrances%)%x' and the various user lists (I.e:  '%g%l%(who%)%x', '%g%l%(swho%)%x', etc.)
 
 However, some Telnet clients have a 'more' paging or scroll-back facility built into them ('%g%l/more on%x' in %c%lTinyFugue%x for example), in which case you may like to disable 'more' paging in %@%m, by typing '%g%lmore off%x' or '%g%l%(set%) more off%x'.
 
@@ -16439,7 +16440,7 @@ The '%g%lride%x' command is used to ride a vehicle which can't be entered and dr
 
 %y%l<VEHICLE>%x is the name of the vehicle, which must be in the same location as you.  %y%l<DIRECTION>%x is the name of the %c%l%(exit%)%x to ride it through, the %c%l#ID number%x of an %y%l%(ABODE%)%x room (See '%g%l%<abode flag%>%x') or the name of a %c%lconnected character%x, e.g:  '%g%ldrive east%x'.
 
-%8%c%lNOTE:  %xA vehicle can only be riden into locations which have their %y%l%(TRANSPORT%)%x flag set (See '%g%l%<transport flag%>%x'.)  A vehicle can't be riden through an exit which doesn't have its %y%l%(TRANSPORT%)%x flag set.
+%8%c%lNOTE:  %xA vehicle can only be ridden into locations which have their %y%l%(TRANSPORT%)%x flag set (See '%g%l%<transport flag%>%x'.)  A vehicle can't be ridden through an exit which doesn't have its %y%l%(TRANSPORT%)%x flag set.
 <-SEPARATOR->
 Also, see '%g%l%<drive%>%x', '%g%l%<transport%>%x', '%g%l%<transport flag%>%x' and '%g%l%<abode flag%>%x'.
 
@@ -16527,7 +16528,7 @@ Also, see '%g%l%<tell%>%x', '%g%l%<recall%>%x', '%g%l%<.page%>%x' and '%g%l%<.me
 
 Lists your privileges in the room you're currently in (Or %y%l<NAME>%x's privileges in the room they're currently in, if %y%l<NAME>%x is specified and you're an %y%lApprentice Wizard/%yDruid%x or above.)
 
-You can use this command to find out what you can and can't not do in the room you're currently in (E.g:  Whether you can %c%ltalk%x, %c%lyell%x (A localised version of '%g%l%(shout%)%x' for Mortals), %c%lfight%x and use %c%lbad language%x (Even though you shouldn't anyway.))
+You can use this command to find out what you can and can't do in the room you're currently in (E.g:  Whether you can %c%ltalk%x, %c%lyell%x (A localised version of '%g%l%(shout%)%x' for Mortals), %c%lfight%x and use %c%lbad language%x (Even though you shouldn't anyway.))
 
 %9%6%c%lPLEASE NOTE:  %xYou can %y%lALWAYS%x yell in your own rooms, regardless of %g%l%(YELL%)%x flag settings (I.e:  You shouldn't use '%g%lprivileges%x' to see if a flag is set on a particular object  -  You should use '%g%l%(settings%) <OBJECT>%x' instead.)
 <-SEPARATOR->
@@ -16741,7 +16742,7 @@ Allows you to use the specified object (If it can be used), where %y%l<OBJECT>%x
 %y%l<PARAMETERS>%x are optional parameters that can be given when using the object, for example, if the object was a weapon, its parameters could be the name of the character to use it on, e.g:  '%g%luse sword on fred bloggs%x', '%g%luse armour on me%x', etc.
 
 %PAGE
-%y%l<OBJECT>%x can be any type of object (I.e:  It doesn't neccessarily have to be a thing.)
+%y%l<OBJECT>%x can be any type of object (I.e:  It doesn't necessarily have to be a thing.)
 
 The following types of objects have a default use (If they do not have a '%g%l.use%x' compound command attached):
 
@@ -16876,7 +16877,7 @@ Also, see '%g%l%<to%>%x', '%g%l%<summon%>%x', '%g%l%<warp%>%x', '%g%l%<@tel%>%x'
 
 The '%g%lunlock%x' command unlocks the %c%lcontainer%x, %c%lvehicle%x or %c%lexit %y%l<OBJECT>%x, so that it can be opened and closed (Using the '%g%l%(open%)%x' and '%g%l%(close%)%x' commands (See '%g%l%<open%>%x' and '%g%l%<close%>%x'.))
 
-A container or vehicle can only be unlocked if its %c%llock key%x ('%g%l%(@key%)%x'  -  See '%g%l%<@key%>%x') is satified.
+A container or vehicle can only be unlocked if its %c%llock key%x ('%g%l%(@key%)%x'  -  See '%g%l%<@key%>%x') is satisfied.
 <-SEPARATOR->
 Also, see '%g%l%<lock%>%x', '%g%l%<open%>%x', '%g%l%<close%>%x', '%g%l%<@key%>%x', '%g%l%<@lock%>%x' and '%g%l%<containers%>%x'.
 
@@ -17069,8 +17070,8 @@ The functionality of some action compound commands can also be replicated with f
 %g%l%(close%)       .closed    %y%lET  %xAfter container/exit is closed.
 %g%l%(drop%)%c/%g%l%(throw%)  .drop      %y%lT   %xBefore object is dropped.
 %g%l%(drop%)%c/%g%l%(throw%)  .dropped   %y%lT   %xAfter object is dropped.
-%g%l%(drive%)%c/%g%l%(ride%)  .drive     %y%lT   %xBefore vehicle is driven/riden.
-%g%l%(drive%)%c/%g%l%(ride%)  .driven    %y%lT   %xAfter vehicle has been driven/riden.
+%g%l%(drive%)%c/%g%l%(ride%)  .drive     %y%lT   %xBefore vehicle is driven/ridden.
+%g%l%(drive%)%c/%g%l%(ride%)  .driven    %y%lT   %xAfter vehicle has been driven/ridden.
             %g%l.exit      %y%lE   %xBefore going through an exit.
             %g%l.exited    %y%lE   %xAfter going through an exit.
 %g%l%(give%)        .give      %y%lT   %xBefore object is given to someone else.
@@ -17108,7 +17109,7 @@ These restrictions are for security and to prevent abuse of action compound comm
 %PAGE
 %c%l%8NOTE:  %xAction compound commands (And other compound commands starting with '%g%l.%x') cannot be directly executed from the command-line by typing their name.  However, they can be executed by #ID or directly by name from within another compound command.
 
-%c%l%8HINT:  %xTo save Quota, try combining multiple action compound commands on the same object into one, by naming just one compound command with all the names you require, separated by '%g%l;%x', e.g:  '%g%l.look;.lookdesc;.looked%x'.  You can then use the '%g%l{%(@?cmdname%)%g%l}%x' query command (See '%g%l%<@?cmdname%>%x') to test which action compound command has been involked.
+%c%l%8HINT:  %xTo save Quota, try combining multiple action compound commands on the same object into one, by naming just one compound command with all the names you require, separated by '%g%l;%x', e.g:  '%g%l.look;.lookdesc;.looked%x'.  You can then use the '%g%l{%(@?cmdname%)%g%l}%x' query command (See '%g%l%<@?cmdname%>%x') to test which action compound command has been invoked.
 
 
 %c%l%$Other Action Compound Commands
@@ -17245,7 +17246,7 @@ Also, see '%g%l%<page%>%x', '%g%l%<tell%>%x', '%g%l%<fset%>%x' and '%g%l%<@lock%
 %TITLE Help on the '%w%l.startup%x' compound command
 This command (When owned by %m%lRoot%x and placed in %y%l#4%x) is executed when %@%n is %c%l(re)started%x.
 
-%8%c%lNOTE:  %xThe '%g%l.startup%x' compound command has a maximum execution time limit of %c%l1 minute%x (This can be increased or decreased if neccessary using '%g%l%(@executionlimit%)%x' command (See '%g%l%<@executionlimit%>%x'.))
+%8%c%lNOTE:  %xThe '%g%l.startup%x' compound command has a maximum execution time limit of %c%l1 minute%x (This can be increased or decreased if necessary using '%g%l%(@executionlimit%)%x' command (See '%g%l%<@executionlimit%>%x'.))
 <-SEPARATOR->
 Also, see '%g%l%<.shutdown%>%x', '%g%l%<.login%>%x', '%g%l%<.logout%>%x', '%g%l%<.enter%>%x' and '%g%l%<.leave%>%x'.
 
@@ -17256,7 +17257,7 @@ Also, see '%g%l%<.shutdown%>%x', '%g%l%<.login%>%x', '%g%l%<.logout%>%x', '%g%l%
 %TITLE Help on the '%w%l.shutdown%x' compound command
 This command (When owned by %m%lRoot%x and placed in %y%l#4%x) is executed when %@%n is shutdown using the '%g%l%(@shutdown%)%x' command (See '%g%l%<@shutdown%>%x'.)
 
-%8%c%lNOTE:  %xThe '%g%l.shutdown%x' compound command has a maximum execution time limit of %c%l1 minute%x (This can be increased or decreased if neccessary using '%g%l%(@executionlimit%)%x' command (See '%g%l%<@executionlimit%>%x'.))
+%8%c%lNOTE:  %xThe '%g%l.shutdown%x' compound command has a maximum execution time limit of %c%l1 minute%x (This can be increased or decreased if necessary using '%g%l%(@executionlimit%)%x' command (See '%g%l%<@executionlimit%>%x'.))
 
 %8%c%lNOTE:  %xThe '%g%l.shutdown%x' command %r%lWILL NOT%x be executed if %@%n crashes and/or starts an emergency database dump.  It is only executed before %c%lnormal shutdown%x.
 <-SEPARATOR->
