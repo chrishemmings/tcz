@@ -6,10 +6,11 @@
 
 
 # Path to TCZ files:
-tczpath=/home/tcz
+tczpath=/home/tcz/tcz
 
 # CVS command (Excluding user-supplied arguments):
 cvscommand="cvs -z6"
+export CVS_RSH=ssh
 
 echo
 echo "The CVS command..."
