@@ -1903,7 +1903,8 @@ void set_password(CONTEXT)
 
      p->flags |= SPOKEN_TEXT;
      if(!in_command) {
-        if(!Blank(arg1)) {
+       if (!instring("guest", getname(player))) {
+	 if(!Blank(arg1)) {
 
 #ifdef CYGWIN32
            if(!strcmp(arg1,db[player].data->player.password)) failed = 0;
@@ -1917,45 +1918,46 @@ void set_password(CONTEXT)
            if(!failed) {
 
               /* ---->  Password OK - Change password  <---- */
-              if(!Blank(arg2)) {
-                 filter_spaces(scratch_buffer,arg2,0);
-                 if(!Blank(arg2)) {
-	            switch(ok_password(scratch_buffer)) {
-                           case 1:
-                           case 2:
-                           case 4:
-                                output(p,player,0,1,0,ANSI_LGREEN"Sorry, that password is invalid.");
-                                return;
-                           case 3:
-                                output(p,player,0,1,0,ANSI_LGREEN"Sorry, your password must be at least 6 characters in length.");
-                                return;
-		    }
+	     if(!Blank(arg2)) {
+	       filter_spaces(scratch_buffer,arg2,0);
+	       if(!Blank(arg2)) {
+		 switch(ok_password(scratch_buffer)) {
+		     case 1:
+		     case 2:
+		     case 4:
+		       output(p,player,0,1,0,ANSI_LGREEN"Sorry, that password is invalid.");
+		       return;
+		     case 3:
+		       output(p,player,0,1,0,ANSI_LGREEN"Sorry, your password must be at least 6 characters in length.");
+		       return;
+		 }
 
-                    if(strcasecmp(db[player].name,scratch_buffer)) {
-                       gettime(db[player].data->player.pwexpiry);
-                       FREENULL(db[player].data->player.password);
+		 if(strcasecmp(db[player].name,scratch_buffer)) {
+		   gettime(db[player].data->player.pwexpiry);
+		   FREENULL(db[player].data->player.password);
 #ifdef CYGWIN32
-                       db[player].data->player.password = (char *) alloc_string(scratch_buffer);
+		   db[player].data->player.password = (char *) alloc_string(scratch_buffer);
 #else
-                       db[player].data->player.password = (char *) alloc_string((char *) (crypt(scratch_buffer,scratch_buffer) + 2));
+		   db[player].data->player.password = (char *) alloc_string((char *) (crypt(scratch_buffer,scratch_buffer) + 2));
 #endif
-                       output(p,player,0,1,0,ANSI_LGREEN"Your password has been changed.");
-                       setreturn(OK,COMMAND_SUCC);
-		    } else output(p,player,0,1,0,ANSI_LGREEN"Sorry, your password can't be the same as your name.");
-		 } else output(p,player,0,1,0,ANSI_LGREEN"Please specify your new password.");
-	      } else {
-                 setreturn(OK,COMMAND_SUCC);
-                 output(p,player,0,1,0,"");
-                 gettime(db[player].data->player.pwexpiry);
-                 p->clevel = 12;
-	      }
+		   output(p,player,0,1,0,ANSI_LGREEN"Your password has been changed.");
+		   setreturn(OK,COMMAND_SUCC);
+		 } else output(p,player,0,1,0,ANSI_LGREEN"Sorry, your password can't be the same as your name.");
+	       } else output(p,player,0,1,0,ANSI_LGREEN"Please specify your new password.");
+	     } else {
+	       setreturn(OK,COMMAND_SUCC);
+	       output(p,player,0,1,0,"");
+	       gettime(db[player].data->player.pwexpiry);
+	       p->clevel = 12;
+	     }
 	   } else output(p,player,0,1,0,ANSI_LGREEN"Sorry, your old password is incorrect.");
-	} else {
+	 } else {
            setreturn(OK,COMMAND_SUCC);
            output(p,player,0,1,0,"");
            gettime(db[player].data->player.pwexpiry);
            p->clevel = 11;
-	}
+	 }
+       } else output(getdsc(player), player, 0, 1, 0, ANSI_LGREEN"Sorry, Guest characters can't change their password.");
      } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, the password of a character can't be changed from within a compound command.");
 }
 
