@@ -1794,7 +1794,7 @@ With the move, several other changes took place, including a hardware upgrade to
 
 %4%y%l*  %xOn %y%lThursday 20th November 2003%x, TCZ was moved to a new dedicated machine in the Department of Computer Science, Queen Mary, University of London.
 
-%4%r%l*  %xThe %y%lTCZ source code%x was released to the publicly under the %c%lGNU General Public License%x (%c%lGPL%x) on %y%l02/12/2004%x (See '%g%l%<gpl%>%x' and visit %b%l%u%{@?link "" "http://www.sourceforge.net/projects/tcz" "Click to visit the TCZ project web site..."}%x)
+%4%r%l*  %xThe %y%lTCZ source code%x was released publicly under the %c%lGNU General Public License%x (%c%lGPL%x) on %y%l02/12/2004%x (See '%g%l%<gpl%>%x' and visit %b%l%u%{@?link "" "http://www.sourceforge.net/projects/tcz" "Click to visit the TCZ project web site..."}%x)
 
 %PAGE
 
