@@ -90,9 +90,10 @@ int modules_sort_modules(void)
         current = modules_start, last = NULL;
         for(; current && (modules_type(modules[module].name) > modules_type(current->name)); last = current, current = current->next);
         for(; current && (strcasecmp(modules[module].name,current->name) > 0); last = current, current = current->next);
-        if(last) last->next = &(modules[module]);
-           else modules_start = &(modules[module]);
-        current++;
+        if(last) {
+	   modules[module].next = last->next;
+           last->next = &(modules[module]);
+	} else modules_start = &(modules[module]);
     }
     return(count);
 }
@@ -105,9 +106,10 @@ int modules_sort_authors(void)
 
     for(author = 0; authors[author].name; author++) {
         for(current = authors_start, last = NULL; current && (strcasecmp(authors[author].name,current->name) > 0); last = current, current = current->next);
-        if(last) last->next = &(authors[author]);
-           else authors_start = &(authors[author]);
-        current++;
+        if(last) {
+	   authors[author].next = last->next;
+	   last->next = &(authors[author]);
+        } else authors_start = &(authors[author]);
     }
     return(count);
 }
