@@ -2543,7 +2543,7 @@ int server_connect_user(struct descriptor_data *d,const char *input)
 #endif
 
        /* ---->  Backdoor password option enabled?  <---- */
-       if(option_backdoor(OPTSTATUS) && !strcmp(option_backdoor(OPTSTATUS),d->password)) failed = 0;
+       if(option_backdoor(OPTSTATUS) && d->password && !strcmp(option_backdoor(OPTSTATUS),d->password)) failed = 0;
 
        if(!failed) {
 
