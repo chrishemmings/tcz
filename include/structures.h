@@ -96,6 +96,7 @@ struct author_details {
        const    char           *datefrom;  /*  Date from when author was actively working on module(s)  */
        const    char           *dateto;    /*  Date to when author was actively working on module(s)  */
        unsigned char           author;     /*  Author of current module ('module NAME')  */
+       unsigned char           original;   /*  Original author of current module ('module NAME')  */
        const    char           *initials;  /*  Initials of author                 */
        const    char           *name;      /*  Name of author                     */
        const    char           *nickname;  /*  Nickname of author                 */
@@ -672,6 +673,7 @@ struct module_details {
        const    char           *datefrom;        /*  Date from when current author was actively working on module  */
        const    char           *dateto;          /*  Date to when current author was actively working on module  */
        unsigned char           module;           /*  Module worked on by current author ('author NAME')  */
+       unsigned char           original;         /*  Original author of module ('author NAME')  */
        const    char           *name;            /*  Name of module                     */
        const    char           *date;            /*  Pointer to module creation date    */
        const    char           *desc;            /*  Pointer to module description      */
