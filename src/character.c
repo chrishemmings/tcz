@@ -60,7 +60,7 @@
 
 
 /* ---->  Available 'feelings' ('@feeling' command)  <---- */
-/*        (HIGHEST:  109  (Ecstatic))                      */
+/*        (HIGHEST:  182  (Musical))                       */
 struct feeling_data feelinglist[] = {
        {NULL, "Affectionate", 138},
        {NULL, "Alert",        110},
@@ -182,6 +182,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Merry",        35},
        {NULL, "Miserable",    155},
        {NULL, "Morbid",       127},
+       {NULL, "Musical",      181},
        {NULL, "Naughty",      97},
        {NULL, "Neglected",    175},
        {NULL, "Nervous",      59},
