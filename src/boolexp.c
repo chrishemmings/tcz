@@ -330,7 +330,7 @@ static struct boolexp *parse_boolexp_F()
                    b->sub1   = parse_boolexp_F();
                    b->sub2   = NULL;
                    if(b->sub1 == TRUE_BOOLEXP) {
-                      FREENULL((void *) b);
+                      FREENULL(b);
                       return(TRUE_BOOLEXP);
                    } else return(b);
               case COMMAND_TOKEN:
@@ -394,7 +394,7 @@ static struct boolexp *parse_boolexp_F()
                                   return(b);
                              default:
                                   output(getdsc(parse_character),parse_character,0,1,0,ANSI_LGREEN"Sorry, '"ANSI_LWHITE"%s"ANSI_LGREEN"' can't be part of a lock.",boolexp_buf);
-                                  FREENULL((void *) b);
+                                  FREENULL(b);
                                   return(TRUE_BOOLEXP);
                       }
        }

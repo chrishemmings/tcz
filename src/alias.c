@@ -406,7 +406,7 @@ void alias_alias(CONTEXT)
 		       }
 		 }
 
-                 if(command && !used) FREENULL((char *) command);
+                 if(command && !used) FREENULL(command);
                  if(!processed) {
                     output(getdsc(player),player,0,1,0,(val1) ? ANSI_LGREEN"Please specify which alias (Or a list of aliases) you'd like to remove.":ANSI_LGREEN"Please specify which alias (Or a list of aliases) you'd like to add, change or remove.");
                     return;
