@@ -244,7 +244,7 @@ dbref create_character(CONTEXT)
 					     writelog(CREATE_LOG,1,"CREATED","%s(#%d) by %s(#%d) (Using '@character'.)",getname(character),character,getname(player),player);
 					     output(getdsc(player),player,0,1,0,ANSI_LGREEN"Character '"ANSI_LWHITE"%s"ANSI_LGREEN"' created with ID "ANSI_LYELLOW"#%d"ANSI_LGREEN" and password '"ANSI_LYELLOW"%s"ANSI_LGREEN"'.",getname(character),character,arg2);
 #ifdef HOME_ROOMS
-                                             create_homeroom(player,0,1,0);
+                                             create_homeroom(character,0,1,0);
 #endif
 					     setreturn(getnameid(player,character,NULL),COMMAND_SUCC);
                                              return(character);
