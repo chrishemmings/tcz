@@ -300,7 +300,7 @@ void modules_modules_list(dbref player)
         output(d,player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
         output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Date:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Module:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Description:</I></FONT></TH></TR>\016");
      } else {
-        if(!in_command && d && !d->pager && More(player)) pager_init(d);
+        if(!in_command && d && player != NOTHING && !d->pager && More(player)) pager_init(d);
         output(d,d->player,0,1,0,"\n Date:       Module:               Description:");
         output(d,d->player,0,1,0,separator(d->terminal_width,0,'-','='));
      }
@@ -591,7 +591,7 @@ void modules_authors_list(dbref player)
         output(d,player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
         output(d,d->player,2,1,0,"\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_CYAN"><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Initials:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Name:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>Nickname:</I></FONT></TH><TH><FONT COLOR="HTML_LCYAN" SIZE=4><I>E-mail:</I></FONT></TH></TR>\016");
      } else {
-        if(!in_command && d && !d->pager && More(player)) pager_init(d);
+        if(!in_command && d && player != NOTHING && !d->pager && More(player)) pager_init(d);
         output(d,d->player,0,1,0,"\n Init:  Name:                Nickname:            E-mail:");
         output(d,d->player,0,1,0,separator(d->terminal_width,0,'-','='));
      }
