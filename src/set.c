@@ -632,7 +632,7 @@ void set_feeling(CONTEXT)
 
         if(!in_command) {
            if(!IsHtml(p)) output(p,player,0,1,0,separator(twidth,0,'-','-'));
-           output(p,player,2,1,1,"%sTo use one of the above feelings, simply type '"ANSI_LGREEN"@feeling <FEELING>"ANSI_LWHITE"', e.g:  '"ANSI_LGREEN"@feeling happy"ANSI_LWHITE"'.  You can reset your feeling by typing '"ANSI_LGREEN"@feeling reset"ANSI_LWHITE"'.%s",IsHtml(p) ? "\016<TR BGCOLOR="HTML_TABLE_GREY"><TD ALIGN=CENTER>"ANSI_LWHITE"<I>\016":ANSI_LWHITE" ",IsHtml(p) ? "\016</TD></TR>\016":"\n");
+           output(p,player,2,1,1,"%sTo use one of the above feelings, simply type '"ANSI_LGREEN"@feeling <FEELING>"ANSI_LWHITE"', e.g:  '"ANSI_LGREEN"@feeling happy"ANSI_LWHITE"'.  You can reset your feeling by typing '"ANSI_LGREEN"@feeling reset"ANSI_LWHITE"'.  Type '"ANSI_LGREEN"@feeling list <PAGE>"ANSI_LWHITE"' to show other pages.%s",IsHtml(p) ? "\016<TR BGCOLOR="HTML_TABLE_GREY"><TD ALIGN=CENTER>"ANSI_LWHITE"<I>\016":ANSI_LWHITE" ",IsHtml(p) ? "\016</TD></TR>\016":"\n");
            if(!IsHtml(p)) output(p,player,0,1,0,separator(twidth,0,'-','='));
            output(p,player,2,1,0,"%sFeelings listed: \016&nbsp;\016 "ANSI_DWHITE"%s%s",IsHtml(p) ? "\016<TR ALIGN=CENTER BGCOLOR="HTML_TABLE_DGREY"><TD>"ANSI_LWHITE"<B>\016":ANSI_LWHITE" ",listed_items(scratch_return_string,1),IsHtml(p) ? "\016</B></TD></TR>\016":"\n\n");
 	}
