@@ -444,7 +444,7 @@ void substitute_query(dbref player,struct str_ops *str_data)
 }
 
 /* ---->  Substitute %-type substitutions (For pronouns, colour, formatting, etc.) in given string  <---- */
-const char *substitute(dbref player,char *dest,char *src,unsigned char addname,const char *def_ansi,struct substitution_data *subst)
+const char *substitute(dbref player,char *dest,char *src,unsigned char addname,const char *def_ansi,struct substitution_data *subst,dbref sender)
 {
       unsigned char            striptelnet = (subst) ? ((subst->flags & SUBST_STRIP_TELNET) != 0):0;
       unsigned char            striphtml   = (subst) ? ((subst->flags & SUBST_STRIP_HTML) != 0):0;
@@ -461,6 +461,7 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
       char                     *p1,*p2;
       int                      copied;
 
+      if (!sender) sender = player;
       *dest = '\0';
       if(player == NOBODY) {
          for(p = descriptor_list; p && !(IsHtml(p) && (p->player == NOBODY)); p = p->next);
@@ -495,7 +496,7 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
                str_data.src++;
 	    }
             if(!*str_data.src) return("");
-	 } else if(!IsHtml(p)) {
+	 } /* else if(!IsHtml(p)) {
             if(*str_data.src && !strncmp(str_data.src,"%|",2)) {
                subst->flags |= SUBST_STRIP_TELNET;
                return("");
@@ -503,7 +504,11 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
 	 } else if(*str_data.src && !strncmp(str_data.src,"%^",2)) {
             subst->flags |= SUBST_STRIP_HTML;
             return("");
-	 }
+	    } */
+	 /* the above code was commented out because while it appears to be
+	    a quick optimisation to make things faster, it ends up printing
+	    absolutely no output if you're on telnet and the first two
+	    characters are %| */
 
          strcpy(cur_ansi,subst->cur_ansi);
          if(html) strcat_limits_char(&str_data,'\016');
@@ -600,11 +605,11 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
                                        break;
                                   case 'a':  /* ---->  Absolute pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Absolute(player,LOWER));
+				       strcat_limits(&str_data,Absolute(sender,LOWER));
                                        break;
                                   case 'A':  /* ---->  Absolute pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Absolute(player,UPPER));
+				       strcat_limits(&str_data,Absolute(sender,UPPER));
                                        break;
                                   case 'b':
                                   case 'B':  /* ---->  Blue text  <---- */
@@ -744,7 +749,7 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
                                        if(textflags & TXT_BLINK)     strcat_limits_exact(&str_data,ANSI_BLINK);
                                        if(textflags & TXT_UNDERLINE) strcat_limits_exact(&str_data,ANSI_UNDERLINE);
                                        if(textflags & TXT_INVERSE)   strcat_limits_exact(&str_data,cur_bg);
-                                       strcat_limits(&str_data,getcname(NOTHING,player,0,0));
+                                       strcat_limits(&str_data,getcname(NOTHING,sender,0,0));
                                        strcat_limits_exact(&str_data,cur_ansi);
                                        if(textflags & TXT_BOLD)      strcat_limits_exact(&str_data,ANSI_LIGHT);
                                        if(textflags & TXT_BLINK)     strcat_limits_exact(&str_data,ANSI_BLINK);
@@ -753,19 +758,19 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
                                        break;
                                   case 'o':  /* ---->  Objective pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Objective(player,LOWER));
+				       strcat_limits(&str_data,Objective(sender,LOWER));
                                        break;
                                   case 'O':  /* ---->  Objective pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Objective(player,UPPER));
+				       strcat_limits(&str_data,Objective(sender,UPPER));
                                        break;
                                   case 'p':  /* ---->  Possessive pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Possessive(player,LOWER));
+				       strcat_limits(&str_data,Possessive(sender,LOWER));
                                        break;
                                   case 'P':  /* ---->  Possessive pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Possessive(player,UPPER));
+				       strcat_limits(&str_data,Possessive(sender,UPPER));
                                        break;
                                   case 'r':
                                   case 'R':  /* ---->  Red text  <---- */
@@ -776,11 +781,11 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
                                        break;
                                   case 's':  /* ---->  Subjective pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Subjective(player,LOWER));
+				       strcat_limits(&str_data,Subjective(sender,LOWER));
                                        break;
                                   case 'S':  /* ---->  Subjective pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Subjective(player,UPPER));
+				       strcat_limits(&str_data,Subjective(sender,UPPER));
                                        break;
                                   case 'u':
                                   case 'U':  /* ---->  Underlined text  <---- */
@@ -789,11 +794,11 @@ const char *substitute(dbref player,char *dest,char *src,unsigned char addname,c
                                        break;
                                   case 'v':  /* ---->  Reflexive pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Reflexive(player,LOWER));
+				       strcat_limits(&str_data,Reflexive(sender,LOWER));
                                        break;
                                   case 'V':  /* ---->  Reflexive pronoun  <---- */
                                        p1 = str_data.dest;
-				       strcat_limits(&str_data,Reflexive(player,UPPER));
+				       strcat_limits(&str_data,Reflexive(sender,UPPER));
                                        break;
                                   case 'w':
                                   case 'W':  /* ---->  White text  <---- */
@@ -1169,7 +1174,7 @@ void substitute_large(dbref player,dbref who,const char *str,const char *def_ans
               if(*str) for(str++; *str && (*str == '\n'); *ptr++ = *str++);
               *ptr = '\0';
 
-              substitute(player,substbuf,buffer,0,def_ansi,&subst);
+              substitute(player,substbuf,buffer,0,def_ansi,&subst,0);
               if(!Blank(substbuf) && !((ptr = (char *) strchr(substbuf,'\x06')) && !((ptr > substbuf) && (*(ptr - 1) == '\x05')))) {
                  if(censor) bad_language_filter(substbuf,substbuf);
                  output(p,who,0,1,0,"%s",substbuf);
