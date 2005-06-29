@@ -1780,6 +1780,7 @@ static void db_write_long(FILE *f,long value)
 }
 
 /* ---->  Write double value (Floating point) to database file  <---- */
+/*
 static void db_write_double(FILE *f,double value)
 {
 #ifdef DATABASE_DUMP
@@ -1795,6 +1796,7 @@ static void db_write_double(FILE *f,double value)
        return;
 #endif
 }
+*/
 
 /* ---->  Write currency value (struct currency_data) to database file  <---- */
 static void db_write_currency(FILE *f,struct currency_data currency)
@@ -1915,6 +1917,7 @@ static void db_write_aliases(FILE *f,struct alias_data *alias)
 }
 
 /* ---->  Write list of character names (struct list_data) to database file  <---- */
+/*
 static void db_write_list(FILE *f,struct list_data *list)
 {
 #ifdef DATABASE_DUMP
@@ -1929,6 +1932,7 @@ static void db_write_list(FILE *f,struct list_data *list)
        return;
 #endif
 }
+*/
 
 /* ---->  Write BBS topic to database file  <---- */
 static void db_write_bbs(FILE *f,struct bbs_topic_data *topic)
@@ -3057,6 +3061,7 @@ static struct alias_data *db_read_aliases(FILE *f,dbref player,int version)
 }
 
 /* ---->  Read list of character names from database file  <---- */
+/*
 static struct list_data *db_read_list(FILE *f)
 {
        struct list_data *new,*list = NULL,*current = NULL;
@@ -3076,6 +3081,7 @@ static struct list_data *db_read_list(FILE *f)
 	  }
        return(list);
 }
+*/
 
 /* ---->  Read BBS topics, sub-topics and messages from database file  <---- */
 static struct bbs_topic_data *read_bbs(FILE *f,int version)
