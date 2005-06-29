@@ -237,7 +237,7 @@ void prefs_prompt(dbref player,struct descriptor_data *d,const char *params)
                  if(Validchar(d->player) && !Validchar(player)) player = d->player;
                  d->user_prompt = (char *) alloc_string(scratch_return_string);
                  if(!in_command) {
-                    substitute(player,scratch_buffer,scratch_return_string,0,ANSI_LWHITE,NULL);
+                    substitute(player,scratch_buffer,scratch_return_string,0,ANSI_LWHITE,NULL,0);
                     output(d,player,0,1,0,ANSI_LGREEN"Your prompt is now '%s"ANSI_LGREEN"'.",scratch_buffer);
 		 }
                  setreturn(OK,COMMAND_SUCC);
@@ -358,7 +358,7 @@ void prefs_wrap(dbref player,struct descriptor_data *d,char *width)
 
      if(!Blank(width)) {
         if((i = atol(width)) >= 0) {
-           if(!((i > 0) && (i < 20))) {
+           if(!((i > 0) && (i < 44))) {
               if(!string_prefix("on",width)) {
                  if((i == 0) && !Blank(width) && !string_prefix("off",width)) {
                     output(d,player,0,1,0,ANSI_LGREEN"Please specify the width of your screen.");
@@ -366,7 +366,7 @@ void prefs_wrap(dbref player,struct descriptor_data *d,char *width)
 		 }
 	      } else i = 80;
 
-              if(i) i = MIN(MAX(i,20),256);
+              if(i) i = MIN(MAX(i,44),256);
               if(i > 0) d->terminal_width = i - 1;
  	         else d->terminal_width = 0;
 
@@ -375,7 +375,7 @@ void prefs_wrap(dbref player,struct descriptor_data *d,char *width)
 		    else output(d,player,0,1,0,ANSI_LGREEN"Word wrap turned "ANSI_LWHITE"off"ANSI_LGREEN".");
 	      }
               setreturn(OK,COMMAND_SUCC);
-	   } else if(!in_command) output(d,player,0,1,0,ANSI_LGREEN"Sorry, the minimum screen width supported is "ANSI_LWHITE"20"ANSI_LGREEN" characters.");
+	   } else if(!in_command) output(d,player,0,1,0,ANSI_LGREEN"Sorry, the minimum screen width supported is "ANSI_LWHITE"44"ANSI_LGREEN" characters.");
 	} else if(!in_command) output(d,player,0,1,0,ANSI_LGREEN"Sorry, you can't set your screen width to a negative value.");
      } else {
         if(!in_command) {
