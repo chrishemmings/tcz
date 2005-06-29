@@ -1096,7 +1096,7 @@ void server_mainloop(void)
            server_process_commands();
 
            if(!shutdown_counter) break;
-           timeout.tv_sec  = 2;
+           timeout.tv_sec  = 1;
            timeout.tv_usec = 0;
            FD_ZERO(&input_set);
            FD_ZERO(&output_set);
@@ -2293,7 +2293,7 @@ int server_connect_user(struct descriptor_data *d,const char *input)
                 d->clevel = 1;
                 return(0);
 	     } else {
-                output(d,d->player,2,0,0,ANSI_LRED"\nSorry, incorrect password.\n\n");
+                output(d,d->player,2,0,0,ANSI_LRED"\nSorry, incorrect password.  To request a new password, please type Guest at the prompt below and contact an Admin.\n\n");
                 FREENULL(d->name);
                 d->channel++;
                 d->clevel = 1;
@@ -2342,7 +2342,7 @@ int server_connect_user(struct descriptor_data *d,const char *input)
              writelog(UserLog(d->player),1,"CONNECTED","%s (%s) from %s.",unparse_object(ROOT,d->player,0),IsHtml(d) ? "HTML":"Telnet",d->hostname);
 
              /* ---->  User must re-accept terms and conditions of disclaimer  <---- */
-             if((d->clevel == 0) && Validchar(d->player) && !option_debug(OPTSTATUS) && (now > (db[d->player].data->player.disclaimertime + (DISCLAIMER_TIME * DAY)))) d->clevel = 29;
+             /* if((d->clevel == 0) && Validchar(d->player) && !option_debug(OPTSTATUS) && (now > (db[d->player].data->player.disclaimertime + (DISCLAIMER_TIME * DAY)))) d->clevel = 29; */
 
              FREENULL(d->name);
              if(taken != 2) {
