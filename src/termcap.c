@@ -73,7 +73,7 @@ unsigned char set_terminal_type(struct descriptor_data *d,char *termtype,unsigne
 	 /* ---->  Look up in database of terminal definitions  <---- */
 	 for(current = termcap; current && !string_matched_list(buffer,current->name,'|',0); current = current->next);
 	 if(!current) {
-	    if(log) writelog(TERMCAP_LOG,1,"TERMCAP","Terminal type '%s' isn't in the terminal database.",buffer);
+	     /* if(log) writelog(TERMCAP_LOG,1,"TERMCAP","Terminal type '%s' isn't in the terminal database.",buffer); */
 	    return(0);
 	 }
 
