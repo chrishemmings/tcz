@@ -439,11 +439,11 @@ unsigned char move_character(CONTEXT)
 				 if(!Invisible(db[exit].location)) {
 				    sprintf(scratch_buffer,ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN" closes%s ",Article(player,UPPER,DEFINITE),getcname(NOTHING,player,0,0),(Locked(exit)) ? " and locks":"");
 				    sprintf(scratch_buffer + strlen(scratch_buffer),"%s"ANSI_LWHITE"%s"ANSI_LGREEN" behind %%o.",Article(exit,LOWER,DEFINITE),getexit_firstname(player,exit,0));
-				    output_except(db[exit].location,player,NOTHING,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LGREEN,NULL));
+				    output_except(db[exit].location,player,NOTHING,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LGREEN,NULL,0));
 				 }
 			      }
 			      if(getfield(exit,DROP)) {
-				 substitute(player,scratch_buffer,(char *) getfield(exit,DROP),0,ANSI_LCYAN,NULL);
+				 substitute(player,scratch_buffer,(char *) getfield(exit,DROP),0,ANSI_LCYAN,NULL,0);
 				 output(getdsc(player),player,0,1,0,"%s",punctuate(scratch_buffer,2,'.'));
 			      }
 
@@ -452,7 +452,7 @@ unsigned char move_character(CONTEXT)
 				 char buffer[TEXT_SIZE],token[2];
 
 				 if(getfield(exit,ODROP)) {
-				    substitute(player,scratch_buffer,(char *) getfield(exit,ODROP),DEFINITE,ANSI_LCYAN,NULL);
+				    substitute(player,scratch_buffer,(char *) getfield(exit,ODROP),DEFINITE,ANSI_LCYAN,NULL,0);
 				    output_except(db[player].location,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 				 }
 				 output_except(db[player].location,player,NOTHING,0,1,0,ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN" has arrived.",Article(player,UPPER,INDEFINITE),getcname(NOTHING,player,0,0));
@@ -538,13 +538,13 @@ void move_vehicle(dbref player,dbref location,dbref vehicle,char *dest,unsigned 
 
                                    /* ---->  Success messages of vehicle  <---- */
                                    if(getfield(vehicle,SUCC)) {
-                                      substitute(player,scratch_buffer,(char *) getfield(vehicle,SUCC),0,ANSI_LCYAN,NULL);
+                                      substitute(player,scratch_buffer,(char *) getfield(vehicle,SUCC),0,ANSI_LCYAN,NULL,0);
                                       output(getdsc(player),player,0,1,0,"%s",punctuate(scratch_buffer,2,'.'));
 				   }
 
                                    if(!Invisible(location)) {
                                       if(getfield(vehicle,OSUCC)) {
-                                         substitute(player,scratch_buffer,(char *) getfield(vehicle,OSUCC),(drive) ? INDEFINITE:DEFINITE,ANSI_LCYAN,NULL);
+                                         substitute(player,scratch_buffer,(char *) getfield(vehicle,OSUCC),(drive) ? INDEFINITE:DEFINITE,ANSI_LCYAN,NULL,0);
                                          output_except(location,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 				      } else {
                                          sprintf(scratch_buffer,ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN,Article(player,UPPER,(drive) ? INDEFINITE:DEFINITE),getcname(NOTHING,player,0,0));
@@ -553,7 +553,7 @@ void move_vehicle(dbref player,dbref location,dbref vehicle,char *dest,unsigned 
 				   }
 
                                    if(!Invisible(vehicle) && getfield(vehicle,OSUCC)) {
-                                      substitute(player,scratch_buffer,(char *) getfield(vehicle,OSUCC),DEFINITE,ANSI_LCYAN,NULL);
+                                      substitute(player,scratch_buffer,(char *) getfield(vehicle,OSUCC),DEFINITE,ANSI_LCYAN,NULL,0);
                                       output_except(vehicle,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 				   }
 
@@ -592,19 +592,19 @@ void move_vehicle(dbref player,dbref location,dbref vehicle,char *dest,unsigned 
                                          if(!Invisible(db[exit].location)) {
                                             sprintf(scratch_buffer,ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN" closes%s ",Article(player,UPPER,DEFINITE),getcname(NOTHING,player,0,0),(Locked(exit)) ? " and locks":"");
                                             sprintf(scratch_buffer + strlen(scratch_buffer),"%s"ANSI_LWHITE"%s"ANSI_LGREEN" behind %%o.",Article(exit,LOWER,DEFINITE),getexit_firstname(player,exit,0));
-                                            output_except(db[exit].location,player,NOTHING,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LGREEN,NULL));
+                                            output_except(db[exit].location,player,NOTHING,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LGREEN,NULL,0));
 					 }
 				      }
 
                                       /* ---->  Drop messages of vehicle  <---- */
                                       if(getfield(vehicle,DROP)) {
-                                         substitute(player,scratch_buffer,(char *) getfield(vehicle,DROP),0,ANSI_LCYAN,NULL);
+                                         substitute(player,scratch_buffer,(char *) getfield(vehicle,DROP),0,ANSI_LCYAN,NULL,0);
                                          output(getdsc(player),player,0,1,0,"%s",punctuate(scratch_buffer,2,'.'));
 				      }
 
                                       if(!Invisible(db[player].location)) {
                                          if(getfield(vehicle,ODROP)) {
-                                            substitute(player,scratch_buffer,(char *) getfield(vehicle,ODROP),INDEFINITE,ANSI_LCYAN,NULL);
+                                            substitute(player,scratch_buffer,(char *) getfield(vehicle,ODROP),INDEFINITE,ANSI_LCYAN,NULL,0);
                                             output_except(db[player].location,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 					 } else {
                                             sprintf(scratch_buffer,ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN,Article(player,UPPER,INDEFINITE),getcname(NOTHING,player,0,0));
@@ -613,7 +613,7 @@ void move_vehicle(dbref player,dbref location,dbref vehicle,char *dest,unsigned 
 				      }
 
                                       if(!Invisible(vehicle) && getfield(vehicle,ODROP)) {
-                                         substitute(player,scratch_buffer,(char *) getfield(vehicle,ODROP),DEFINITE,ANSI_LCYAN,NULL);
+                                         substitute(player,scratch_buffer,(char *) getfield(vehicle,ODROP),DEFINITE,ANSI_LCYAN,NULL,0);
                                          output_except(vehicle,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 				      }
                                       move_to(vehicle,db[player].location);
@@ -635,17 +635,17 @@ void move_vehicle(dbref player,dbref location,dbref vehicle,char *dest,unsigned 
 
               /* ---->  Failure messages of vehicle  <---- */
               if(getfield(vehicle,FAIL)) {
-                 substitute(player,scratch_buffer,(char *) getfield(vehicle,FAIL),0,ANSI_LCYAN,NULL);
+                 substitute(player,scratch_buffer,(char *) getfield(vehicle,FAIL),0,ANSI_LCYAN,NULL,0);
                  output(getdsc(player),player,0,1,0,"%s",punctuate(scratch_buffer,2,'.'));
 	      } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" can't be %s by you.",Article(vehicle,LOWER,DEFINITE),unparse_object(player,vehicle,0),(drive) ? "driven":"riden");
 
               if(!Invisible(location) && getfield(vehicle,OFAIL)) {
-                 substitute(player,scratch_buffer,(char *) getfield(vehicle,OFAIL),(drive) ? INDEFINITE:DEFINITE,ANSI_LCYAN,NULL);
+                 substitute(player,scratch_buffer,(char *) getfield(vehicle,OFAIL),(drive) ? INDEFINITE:DEFINITE,ANSI_LCYAN,NULL,0);
                  output_except(location,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 	      } 
 
               if(!Invisible(vehicle) && getfield(vehicle,OFAIL)) {
-                 substitute(player,scratch_buffer,(char *) getfield(vehicle,OFAIL),DEFINITE,ANSI_LCYAN,NULL);
+                 substitute(player,scratch_buffer,(char *) getfield(vehicle,OFAIL),DEFINITE,ANSI_LCYAN,NULL,0);
                  output_except(vehicle,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 	      }
 	   }
@@ -758,22 +758,22 @@ void move_getdrop(CONTEXT)
 
                                                         /* ---->  Object is being dropped  <---- */
                                                         if(getfield(thing,DROP)) {
-                                                           substitute(player,scratch_buffer,(char *) getfield(thing,DROP),0,ANSI_LCYAN,NULL);
+                                                           substitute(player,scratch_buffer,(char *) getfield(thing,DROP),0,ANSI_LCYAN,NULL,0);
                                                            output(getdsc(player),player,0,1,0,"%s",punctuate(scratch_buffer,2,'.'));
                                                            notified = 1;
 							}
                                                         if(!Vehicle(container) && getfield(container,DROP)) {
-                                                           substitute(player,scratch_buffer,(char *) getfield(container,DROP),0,ANSI_LCYAN,NULL);
+                                                           substitute(player,scratch_buffer,(char *) getfield(container,DROP),0,ANSI_LCYAN,NULL,0);
                                                            output(getdsc(player),player,0,1,0,"%s",punctuate(scratch_buffer,2,'.'));
 							}
 
                                                         /* ---->  Others drop message of thing and/or new location  <---- */
                                                         if((db[thing].location == db[player].location) && !Invisible(db[player].location) && !Invisible(thing)) {
-                                                           if(getfield(thing,ODROP)) substitute(player,scratch_buffer,(char *) getfield(thing,ODROP),DEFINITE,ANSI_LCYAN,NULL);
+                                                           if(getfield(thing,ODROP)) substitute(player,scratch_buffer,(char *) getfield(thing,ODROP),DEFINITE,ANSI_LCYAN,NULL,0);
                                                               else sprintf(scratch_buffer,ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN" drops %s"ANSI_LWHITE"%s"ANSI_LGREEN".",Article(player,UPPER,DEFINITE),getcname(NOTHING,player,0,0),Article(thing,LOWER,INDEFINITE),getname(thing));
                                                            output_except(db[thing].location,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
                                                            if(getfield(db[thing].location,ODROP)) {
-                                                              substitute(player,scratch_buffer,(char *) getfield(db[thing].location,ODROP),DEFINITE,ANSI_LCYAN,NULL);
+                                                              substitute(player,scratch_buffer,(char *) getfield(db[thing].location,ODROP),DEFINITE,ANSI_LCYAN,NULL,0);
                                                               output_except(db[thing].location,player,NOTHING,0,1,2,"%s",punctuate(scratch_buffer,0,'.'));
 							   }
 							}
@@ -912,7 +912,7 @@ void move_kick(CONTEXT)
                     if(!Blank(arg2)) {
                        if(!Censor(player) && !Censor(db[player].location)) bad_language_filter(scratch_return_string,arg2);
                           else strcpy(scratch_return_string,arg2);
-                       substitute(player,scratch_buffer,punctuate(scratch_return_string,0,'!'),0,ANSI_LGREEN,NULL);
+                       substitute(player,scratch_buffer,punctuate(scratch_return_string,0,'!'),0,ANSI_LGREEN,NULL,0);
 		    } else strcpy(scratch_buffer,"!");
                     p1 = scratch_buffer;
                     strcpy(scratch_return_string,pose_string(&p1,"*"));

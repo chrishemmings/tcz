@@ -168,7 +168,7 @@ unsigned char mail_send_message(dbref player,struct mlist_data **list,const char
 		if(mail) new->next = mail;
 		   else new->next = NULL;
 
-		substitute(ptr->player,scratch_buffer,punctuate((char *) subject,2,'\0'),0,ANSI_LYELLOW,NULL);
+		substitute(ptr->player,scratch_buffer,punctuate((char *) subject,2,'\0'),0,ANSI_LYELLOW,NULL,0);
 		output(getdsc(ptr->player),ptr->player,0,1,0,ANSI_LGREEN"You have %snew mail from %s"ANSI_LWHITE"%s"ANSI_LGREEN" ('%s"ANSI_LGREEN"'.)",(new->flags & MAIL_IMPORTANT) ? "important ":(new->flags & MAIL_URGENT) ? "urgent ":"",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),scratch_buffer);
 	     }
 	 }
@@ -251,7 +251,7 @@ void mail_forward_message(dbref player,struct mlist_data **list,struct mail_data
             if(mail) new->next = mail;
                else new->next = NULL;
 
-            substitute(ptr->player,scratch_buffer,punctuate((char *) decompress(fmail->subject),2,'\0'),0,ANSI_LYELLOW,NULL);
+            substitute(ptr->player,scratch_buffer,punctuate((char *) decompress(fmail->subject),2,'\0'),0,ANSI_LYELLOW,NULL,0);
             output(getdsc(ptr->player),ptr->player,0,1,0,ANSI_LGREEN"You have %snew mail from %s"ANSI_LWHITE"%s"ANSI_LGREEN" ('%s%s"ANSI_LGREEN"'.)",(new->flags & MAIL_IMPORTANT) ? "important ":(new->flags & MAIL_URGENT) ? "urgent ":"",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),(new->flags & MAIL_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_buffer);
 	 }
      }
@@ -301,7 +301,7 @@ unsigned char mail_reply_message(dbref player,dbref who,dbref redirect,struct ma
 	    if(mail) new->next = mail;
 	       else new->next = NULL;
 
-	    substitute(who,scratch_buffer,punctuate((char *) decompress(rmail->subject),2,'\0'),0,ANSI_LYELLOW,NULL);
+	    substitute(who,scratch_buffer,punctuate((char *) decompress(rmail->subject),2,'\0'),0,ANSI_LYELLOW,NULL,0);
 	    output(getdsc(who),who,0,1,0,ANSI_LGREEN"You have %snew mail from %s"ANSI_LWHITE"%s"ANSI_LGREEN" ('%s%s"ANSI_LGREEN"'.)",(new->flags & MAIL_IMPORTANT) ? "important ":(new->flags & MAIL_URGENT) ? "urgent ":"",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),(new->flags & MAIL_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_buffer);
 	 }
 	 if(!in_command) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Reply to message "ANSI_LYELLOW"%d"ANSI_LGREEN" mailed to %s"ANSI_LWHITE"%s"ANSI_LGREEN"%s",msgno,Article(who,LOWER,DEFINITE),getcname(NOTHING,who,0,0),(Validchar(redirect)) ? " (It has been redirected.)":".");
@@ -421,7 +421,7 @@ void mail_view(dbref player,char *arg1,char *arg2)
         while(union_grouprange()) {
               loop++;
               sprintf(scratch_return_string,"(%d)",grp->before + loop);
-              substitute(player,scratch_return_string + 100,decompress(grp->cunion->mail.subject),0,ANSI_LYELLOW,NULL);
+              substitute(player,scratch_return_string + 100,decompress(grp->cunion->mail.subject),0,ANSI_LYELLOW,NULL,0);
               sprintf(scratch_buffer,ANSI_LGREEN" %-7s"ANSI_LWHITE"'%s"ANSI_LYELLOW"%s"ANSI_LWHITE"'",scratch_return_string,(grp->cunion->mail.flags & MAIL_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string + 100);
 
               if(!(grp->cunion->mail.flags & MAIL_UNREAD))
@@ -460,7 +460,7 @@ void mail_view(dbref player,char *arg1,char *arg2)
            wrap_leading   =  digit_wrap(5,no);
            mail->lastread =  now;
            mail->flags   &= ~MAIL_UNREAD;
-           substitute(player,scratch_return_string,decompress(mail->subject),0,ANSI_LYELLOW,NULL);
+           substitute(player,scratch_return_string,decompress(mail->subject),0,ANSI_LYELLOW,NULL,0);
            sprintf(scratch_buffer,ANSI_LGREEN" (%d)  "ANSI_LWHITE"'%s"ANSI_LYELLOW"%s"ANSI_LWHITE"'%s%s",no,(mail->flags & MAIL_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,(mail->flags & MAIL_URGENT) ? ANSI_LYELLOW" (*URGENT*)":(mail->flags & MAIL_IMPORTANT) ? ANSI_LBLUE" (*IMPORTANT*)":"",(mail->flags & MAIL_KEEP) ? ANSI_LBLUE" (Keep)":"");
            sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE" from "ANSI_LGREEN"%s "ANSI_LWHITE,decompress(mail->sender));
            if(mail->redirect) sprintf(scratch_buffer + strlen(scratch_buffer),"(%s%s"ANSI_LWHITE") ",(grp->cunion->mail.flags & MAIL_FORWARD) ? "Forwarded to you by "ANSI_LGREEN:(mail->flags & MAIL_MULTI) ? "Group mail to ":(who == player) ? "Redirected to you by "ANSI_LGREEN:"Redirected to them by "ANSI_LGREEN,decompress(mail->redirect));

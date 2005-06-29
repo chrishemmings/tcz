@@ -968,7 +968,7 @@ const char *option_motd(OPTCONTEXT)
 
 	 if(Validchar(player)) {
 	    if(!in_command) {
-               if(!Blank(result)) output(getdsc(player),player,0,1,0,ANSI_LGREEN"MOTD login message changed to:\n\n"ANSI_LWHITE"%s\n",substitute(player,subst,result,0,ANSI_LWHITE,NULL));
+               if(!Blank(result)) output(getdsc(player),player,0,1,0,ANSI_LGREEN"MOTD login message changed to:\n\n"ANSI_LWHITE"%s\n",substitute(player,subst,result,0,ANSI_LWHITE,NULL,0));
                   else output(getdsc(player),player,0,1,0,ANSI_LGREEN"MOTD login message reset.");
 	    }
 

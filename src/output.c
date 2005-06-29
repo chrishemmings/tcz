@@ -912,7 +912,7 @@ void output_columns(struct descriptor_data *p,dbref player,const char *text,cons
                       while(++column <= columns) sprintf(buffer + strlen(buffer),"\016<TD WIDTH=%d%%>&nbsp;</TD>\016",percent);
                       sprintf(buffer + strlen(buffer),"\016</TR></TABLE>%s\016",(table) ? "</TD></TR>":"");
 		   } else strcat(buffer,"\n");
-                   output(p,p->player,2,1,0,"%s",buffer);
+                   output(p,player,2,1,0,"%s",buffer);
 		 } else if(!itemcount && nonefound) {
                    if(IsHtml(p)) {
                       output(p,player,2,1,0,"\016<TR><TH ALIGN=CENTER BGCOLOR="HTML_TABLE_BLACK">"ANSI_LRED"<FONT SIZE=+1><B><I>\016%s\016</I></B></FONT></TH></TR></TABLE>%s\016",nonefound,(table) ? "</TD></TR>":"");
@@ -926,7 +926,7 @@ void output_columns(struct descriptor_data *p,dbref player,const char *text,cons
                  itemcount++;
                  if(++column > columns) {
                     strcat(buffer,IsHtml(p) ? "\016</TR>\016":"\n");
-                    output(p,p->player,2,1,0,"%s",buffer);
+		    output(p,player,2,1,0,"%s",buffer);
                     if(!IsHtml(p)) {
                        for(loop = 0, ptr = buffer; loop < leading; *ptr++ = ' ', loop++);
                        *ptr = '\0';
