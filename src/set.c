@@ -1127,7 +1127,7 @@ int set_flag_by_name(dbref player,dbref thing,const char *flagname,int reset,con
                    const char *rptr = NULL;
 
                    if(reason)
-                      rptr = substitute(thing,scratch_return_string,punctuate((char *) reason,2,'.'),0,ANSI_LWHITE,NULL);
+                      rptr = substitute(thing,scratch_return_string,punctuate((char *) reason,2,'.'),0,ANSI_LWHITE,NULL,0);
 		         else *scratch_return_string = '\0';
                    output(getdsc(thing),thing,0,1,0,"%s[%s"ANSI_LWHITE"%s%s has %sset your "ANSI_LYELLOW"%s%s flag%s%s%s]",colour,Article(player,UPPER,(Location(player) == Location(thing)) ? DEFINITE:INDEFINITE),getcname(NOTHING,player,0,0),colour,(reset) ? "re":"",realname,colour,(!Blank(rptr)) ? "  -  REASON:  "ANSI_LWHITE:".",(!Blank(rptr)) ? rptr:"",(!Blank(rptr)) ? colour:"");
 		}
@@ -2065,7 +2065,7 @@ void set_profile(CONTEXT)
               for(*ptr = '\0'; *params && (*params == ' '); params++);
 
               if(!Blank(scratch_return_string)) {
-                 if(!Blank(params)) sprintf(scratch_buffer,"now '"ANSI_LYELLOW"%s"ANSI_LGREEN"'",substitute(player,buffer,(char *) punctuate(params,2,'\0'),0,ANSI_LYELLOW,NULL));
+                 if(!Blank(params)) sprintf(scratch_buffer,"now '"ANSI_LYELLOW"%s"ANSI_LGREEN"'",substitute(player,buffer,(char *) punctuate(params,2,'\0'),0,ANSI_LYELLOW,NULL,0));
                     else strcpy(scratch_buffer,"no-longer set");
                  if(player != character) sprintf(buffer,"%s"ANSI_LWHITE"%s"ANSI_LGREEN"'s",Article(character,UPPER,DEFINITE),getcname(NOTHING,character,0,0));
                     else strcpy(buffer,"Your");
@@ -2429,7 +2429,7 @@ void set_profile(CONTEXT)
                     if(strlen(params) <= PROFILE_IRL) {
                        set_profile_init(character);
                        filter_spaces(params,params,1);
-                       if(!Blank(params)) sprintf(scratch_buffer,"now '"ANSI_LYELLOW"%s"ANSI_LGREEN"'",substitute(player,scratch_return_string,(char *) punctuate(params,2,'\0'),0,ANSI_LYELLOW,NULL));
+                       if(!Blank(params)) sprintf(scratch_buffer,"now '"ANSI_LYELLOW"%s"ANSI_LGREEN"'",substitute(player,scratch_return_string,(char *) punctuate(params,2,'\0'),0,ANSI_LYELLOW,NULL,0));
                        FREENULL(db[character].data->player.profile->irl);
                        db[character].data->player.profile->irl = (char *) alloc_string(compress(params,1));
                        if(!in_command) output(getdsc(player),player,0,1,0,ANSI_LGREEN"%s real name is %s.",buffer,scratch_buffer);
@@ -2537,7 +2537,7 @@ void set_race(CONTEXT)
    	                     if(ok_name(arg2)) {
                                 setfield(character,RACE,arg2,1);
                                 if(!in_command) {
-                                   strcpy(scratch_buffer,punctuate((char *) substitute(player,scratch_return_string,arg2,0,ANSI_LWHITE,NULL),2,'\0'));
+                                   strcpy(scratch_buffer,punctuate((char *) substitute(player,scratch_return_string,arg2,0,ANSI_LWHITE,NULL,0),2,'\0'));
                                    if(player != character) {
                                       if(!in_command) output(getdsc(character),character,0,1,11,ANSI_LRED"["ANSI_UNDERLINE"WARNING"ANSI_LRED"] \016&nbsp;\016 "ANSI_LWHITE"%s"ANSI_LYELLOW"%s"ANSI_LWHITE" has changed your race to '"ANSI_LYELLOW"%s"ANSI_LWHITE"'.",Article(player,UPPER,INDEFINITE),getcname(NOTHING,player,0,0),arg2);
                                       *arg2 = toupper(*arg2);
