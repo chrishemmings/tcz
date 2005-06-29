@@ -461,7 +461,7 @@ int help_display_topic(struct descriptor_data *d,struct helptopic *topic,unsigne
        if(!Blank(topic->title)) {
           if((topic->pages > 1) && !(command_type & HTML_ACCESS)) sprintf(scratch_return_string," %s \016&nbsp;\016(Page %d of %d)...",decompress(topic->title),page,topic->pages);
              else sprintf(scratch_return_string," %s...",decompress(topic->title));
-          substitute(d->player,scratch_buffer,scratch_return_string,0,ANSI_LYELLOW,NULL);
+          substitute(d->player,scratch_buffer,scratch_return_string,0,ANSI_LYELLOW,NULL,0);
        } else if((topic->pages > 1) && !(command_type & HTML_ACCESS)) sprintf(scratch_buffer,ANSI_LYELLOW" %s on '"ANSI_LWHITE"%s"ANSI_LYELLOW"' (Page %d of %d)...",(help) ? "Help":"Tutorial",String(topicname),page,topic->pages);
           else sprintf(scratch_buffer,ANSI_LYELLOW" %s on '"ANSI_LWHITE"%s"ANSI_LYELLOW"'...",(help) ? "Help":"Tutorial",String(topicname));
        output(d,d->player,2,1,1,"%s%s%s",IsHtml(d) ? "\016<TR><TH ALIGN=CENTER BGCOLOR="HTML_TABLE_YELLOW"><FONT SIZE=5><I>\016":"",scratch_buffer,IsHtml(d) ? "\016</I></FONT></TH></TR>\016":"\n");
@@ -516,7 +516,7 @@ int help_display_topic(struct descriptor_data *d,struct helptopic *topic,unsigne
                    if(*p1) for(p1++; *p1 && (*p1 == '\n'); *p2++ = *p1++);
                    *p2 = '\0';
 
-                   substitute(d->player,scratch_buffer,scratch_return_string,0,ANSI_LWHITE,&subst);
+                   substitute(d->player,scratch_buffer,scratch_return_string,0,ANSI_LWHITE,&subst,0);
                    if(!((p2 = (char *) strchr(scratch_buffer,'\x06')) && !((p2 > scratch_buffer) && (*(p2 - 1) == '\x05')))) output(d,d->player,0,1,0,"%s",scratch_buffer);
  	     }
              command_type &= ~LARGE_SUBSTITUTION;
@@ -534,7 +534,7 @@ int help_display_topic(struct descriptor_data *d,struct helptopic *topic,unsigne
           if((topic->pages > 1) && (page < topic->pages) && !Blank(topicname)) {
              output(d,d->player,0,1,0,(char *) separator(twidth,0,'-','-'));
              sprintf(scratch_return_string," Type '%%g%%l%%%cnext%%>%%x' (Or '%%g%%l%%%c%s %d%%>%%x') to see the next page...",(help) ? '<':'+',(help) ? '<':'+',String(topicname),page + 1);
-             output(d,d->player,0,1,0,"%s",substitute(d->player,scratch_buffer,scratch_return_string,0,ANSI_LWHITE,NULL));
+             output(d,d->player,0,1,0,"%s",substitute(d->player,scratch_buffer,scratch_return_string,0,ANSI_LWHITE,NULL,0));
 	  }
           output(d,d->player,0,1,0,separator(twidth,1,'-','='));
        } else output(d,d->player,1,2,0,"</TD></TR><TR><TD ALIGN=CENTER BGCOLOR="HTML_TABLE_GREY">%s</TD></TR></TABLE>%s",help_buttons(d,topic,page,connected,help,scratch_return_string),(connected) ? "<BR>":"");
@@ -626,7 +626,7 @@ void help_search(struct descriptor_data *d,char *topic,int page,int help)
                   if(!offset) {
                      if(matches < HTML_MATCHES) {
                         if(!matches) output(d,NOTHING,1,0,0,"%s<UL>",(page > 0) ? "":"&nbsp;<BR>");
-                        if(search->title) output(d,NOTHING,2,0,0,"\016<LI><A HREF=\"%sTOPIC=%s&%s\">\016%s...\016</A>\016",html_server_url(d,0,2,(help) ? "help":"tutorial"),html_encode(search->topicname,buffer,&copied,128),html_get_preferences(d),substitute(Validchar(maint_owner) ? maint_owner:ROOT,scratch_return_string,decompress(search->title),0,ANSI_LCYAN,NULL));
+                        if(search->title) output(d,NOTHING,2,0,0,"\016<LI><A HREF=\"%sTOPIC=%s&%s\">\016%s...\016</A>\016",html_server_url(d,0,2,(help) ? "help":"tutorial"),html_encode(search->topicname,buffer,&copied,128),html_get_preferences(d),substitute(Validchar(maint_owner) ? maint_owner:ROOT,scratch_return_string,decompress(search->title),0,ANSI_LCYAN,NULL,0));
                            else output(d,NOTHING,2,0,0,"\016<LI><A HREF=\"%sTOPIC=%s&%s\">\016%s on '%s'...\016</A>\016",html_server_url(d,0,2,(help) ? "help":"tutorial"),html_encode(search->topicname,buffer,&copied,128),html_get_preferences(d),(help) ? "Help":"Tutorial",search->topicname);
                         matches++;
 		     } else matches++;
