@@ -2586,7 +2586,7 @@ void html_input_form(struct descriptor_data *src,struct descriptor_data *dest,ch
 
         /* ---->  @prompt  <---- */
         output(dest,NOTHING,1,0,0,"%s<FORM NAME=INPUTFORM METHOD=POST ACTION=\"%s\"><CENTER><TABLE CELLPADDING=0><TR><TD ALIGN=LEFT><B>",buffer,html_server_url(src,0,0,NULL));
-        substitute(src->player,buffer,!Blank(src->prompt->prompt) ? src->prompt->prompt:ANSI_LWHITE"User input:",0,ANSI_LWHITE,NULL);
+        substitute(src->player,buffer,!Blank(src->prompt->prompt) ? src->prompt->prompt:ANSI_LWHITE"User input:",0,ANSI_LWHITE,NULL,0);
         dest->html->flags |= ((src->html->flags & (HTML_SIMULATE_ANSI|HTML_UNDERLINE))|HTML_WHITE_AS_BLACK);
         output(dest,NOTHING,2,0,0,"%s",buffer);
         dest->html->flags = htmlflags;
@@ -2608,7 +2608,7 @@ void html_input_form(struct descriptor_data *src,struct descriptor_data *dest,ch
 
         /* ---->  Command arguments prompt session  <---- */
         output(dest,NOTHING,1,0,0,"%s<FORM NAME=INPUTFORM METHOD=POST ACTION=\"%s\"><CENTER><TABLE CELLPADDING=0><TR><TD ALIGN=LEFT><B>",buffer,html_server_url(src,0,0,NULL));
-        substitute(src->player,buffer,!Blank(src->cmdprompt->prompt) ? src->cmdprompt->prompt:ANSI_LWHITE"User input:",0,ANSI_LWHITE,NULL);
+        substitute(src->player,buffer,!Blank(src->cmdprompt->prompt) ? src->cmdprompt->prompt:ANSI_LWHITE"User input:",0,ANSI_LWHITE,NULL,0);
         dest->html->flags |= ((src->html->flags & (HTML_SIMULATE_ANSI|HTML_UNDERLINE))|HTML_WHITE_AS_BLACK);
         output(dest,NOTHING,2,0,0,"%s",buffer);
         dest->html->flags = htmlflags;
@@ -2941,7 +2941,7 @@ unsigned char html_connect_character(struct descriptor_data *d,const char *data,
 		if(!(!(password = html_lookup("PASSWORD",1,1,1,1,1)) || !*password)) {
                    if(connect_character(name,password,d->hostname) == NOTHING) {
                       writelog(PASSWORD_LOG,1,"CONNECT","Failed login attempt as '%s' from %s (HTML descriptor %d.)",name,d->hostname,d->descriptor);
-                      error = html_error(d,0,"Sorry, incorrect password.",title,back,backurl,HTML_CODE_ERROR);
+                      error = html_error(d,0,"Sorry, incorrect password.  To request a new password, <a href=\"createform\">connect as a Guest</a> and contact an Admin.",title,back,backurl,HTML_CODE_ERROR);
 		   } else {
                       writelog(CONNECT_LOG,1,"CONNECTED","%s (%s descriptor %d) from %s.",unparse_object(ROOT,user,0),(d->html) ? "HTML":"Telnet",d->descriptor,d->hostname);
                       writelog(UserLog(user),1,"CONNECTED","%s (%s) from %s.",unparse_object(ROOT,user,0),(d->html) ? "HTML":"Telnet",d->hostname);
@@ -3426,7 +3426,7 @@ unsigned char html_process_data(struct descriptor_data *d)
 					  server_connect_peaktotal();
 
 					  /* ---->  User must re-accept terms and conditions of disclaimer  <---- */
-					  if((d->clevel == 0) && Validchar(d->player) && !option_debug(OPTSTATUS) && (now > (db[d->player].data->player.disclaimertime + (DISCLAIMER_TIME * DAY)))) d->clevel = 29;
+					  /* if((d->clevel == 0) && Validchar(d->player) && !option_debug(OPTSTATUS) && (now > (db[d->player].data->player.disclaimertime + (DISCLAIMER_TIME * DAY)))) d->clevel = 29; */
 
 					  prompt_display(d);
 				       } else {
@@ -3443,7 +3443,7 @@ unsigned char html_process_data(struct descriptor_data *d)
 					  } else look_room(d->player,db[d->player].location);
 
 					  /* ---->  User must re-accept terms and conditions of disclaimer  <---- */
-					  if((d->clevel == 0) && Validchar(d->player) && !option_debug(OPTSTATUS) && (now > (db[d->player].data->player.disclaimertime + (DISCLAIMER_TIME * DAY)))) d->clevel = 29;
+					  /* if((d->clevel == 0) && Validchar(d->player) && !option_debug(OPTSTATUS) && (now > (db[d->player].data->player.disclaimertime + (DISCLAIMER_TIME * DAY)))) d->clevel = 29; */
 
 					  prompt_display(d);
 				       }
@@ -3891,6 +3891,10 @@ unsigned char html_process_data(struct descriptor_data *d)
 			      output(d,NOTHING,1,0,0,"<P><HR><A HREF=\"%s\"><IMG SRC=\"%s\" ALIGN=MIDDLE BORDER=0 ALT=\"[BACK]\"></A> &nbsp; &nbsp; <FONT SIZE=4 COLOR="HTML_LWHITE"><B>Return to %s web site...</B></FONT><HR></BODY></HTML>",html_home_url,html_image_url("back.gif"),tcz_full_name);
 			   server_shutdown_sock(d,0,2);
 			   command_type &= ~(HTML_ACCESS|NO_FLUSH_OUTPUT);
+			} else if(!strcasecmp("ROBOTS",data)) {
+			    http_header(d,1,200,"OK","text/plain",now - WEEK,now + WEEK,1,0), header = 0;
+			    output(d, NOTHING, 1, 0, 0, "user-agent: googlebot\nDisallow: /authors");
+			    server_shutdown_sock(d,0,2);
 			} else {
 			   char buffer[TEXT_SIZE];
 
