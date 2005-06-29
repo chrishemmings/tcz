@@ -60,7 +60,7 @@
 
 
 /* ---->  Available 'feelings' ('@feeling' command)  <---- */
-/*        (HIGHEST:  182  (Musical))                       */
+/*        (HIGHEST:  190  (Feisty))                      */
 struct feeling_data feelinglist[] = {
        {NULL, "Affectionate", 138},
        {NULL, "Alert",        110},
@@ -82,6 +82,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Blonde",       142},
        {NULL, "Bloodthirsty", 162},
        {NULL, "Blue",         143},
+       {NULL, "Bold",         189},
        {NULL, "Bored",        4},
        {NULL, "Bouncy",       61},
        {NULL, "Brave",        163},
@@ -94,6 +95,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Confident",    164},
        {NULL, "Confused",     89},
        {NULL, "Cool",         70},
+       {NULL, "Corrupted",    184},
        {NULL, "Crazy",        64},
        {NULL, "Creative",     6},
        {NULL, "Criticised",   144},
@@ -109,6 +111,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Distorted",    79},
        {NULL, "Distracted",   99},
        {NULL, "Down",         11},
+       {NULL, "Druidly",      185},
        {NULL, "Drunk",        12},
        {NULL, "Ecstatic",     109},
        {NULL, "Elated",       146},
@@ -120,6 +123,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Exhausted",    55},
        {NULL, "Fandabbydozy", 81},
        {NULL, "Fantastic",    165},
+       {NULL, "Feisty",       190},
        {NULL, "Festive",      117},
        {NULL, "Fidgety",      166},
        {NULL, "Flogged",      77},
@@ -202,6 +206,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Psychotic",    96},
        {NULL, "Puzzled",      177},
        {NULL, "Random",       131},
+       {NULL, "Randy",        186},
        {NULL, "Rebellious",   48},
        {NULL, "Relaxed",      158},
        {NULL, "Restless",     24},
@@ -223,6 +228,7 @@ struct feeling_data feelinglist[] = {
        {NULL, "Stupendous",   133},
        {NULL, "Stupid",       28},
        {NULL, "Successful",   29},
+       {NULL, "Suicidal",     183},
        {NULL, "Sympathetic",  160},
        {NULL, "Terrible",     94},
        {NULL, "Terrific",     104},
@@ -233,12 +239,14 @@ struct feeling_data feelinglist[] = {
        {NULL, "Upset",        32},
        {NULL, "Vibrant",      134},
        {NULL, "Vicious",      135},
+       {NULL, "Victimised",   187},
        {NULL, "Vindictive",   180},
        {NULL, "Vitriolic",    136},
        {NULL, "Wacky",        105},
        {NULL, "Weird",        33},
        {NULL, "Wistful",      161},
        {NULL, "Witty",        68},
+       {NULL, "Wizardly",     188},
        {NULL, "Womanly",      84},
        {NULL, "Wonderful",    95},
        {NULL, "Worried",      37},
@@ -644,6 +652,10 @@ const char *check_duplicates(dbref player,const char *email,unsigned char warn,u
      char   *ptr,*back;
      int    count = 0;
      dbref  i;
+
+     if (player != NOTHING && player != db[player].data->player.controller)
+         /* ignore for puppets */
+	 return(NULL);
 
      if(!Blank(email)) {
 
