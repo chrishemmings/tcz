@@ -191,7 +191,7 @@ void userlist_who(struct descriptor_data *d)
                              strcat(scratch_return_string,pose_string(&ptr,"*"));
                              if(*ptr) {
                                 length = strlen(scratch_return_string);
-                                substitute(grp->cunion->descriptor.player,scratch_return_string + length,ptr,0,colour,NULL);
+                                substitute(grp->cunion->descriptor.player,scratch_return_string + length,ptr,0,colour,NULL,0);
                                 bad_language_filter(scratch_return_string + length,scratch_return_string + length);
 			     }
 			  }
@@ -803,7 +803,7 @@ void userlist_session(struct descriptor_data *d)
      if(IsHtml(d)) output(d,d->player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
 
      if(!in_command && !IsHtml(d)) output(d,d->player,0,1,0,"\n%s",separator(d->terminal_width,0,'-','='));
-     output(d,d->player,2,1,1,"%s%s%s",IsHtml(d) ? "\016<TR ALIGN=CENTER><TH COLSPAN=2 BGCOLOR="HTML_TABLE_CYAN"><FONT COLOR="HTML_LCYAN" SIZE=4><I>":" ",substitute(session_who,scratch_return_string,decompress(session_title),0,ANSI_LCYAN,NULL),IsHtml(d) ? "</I></FONT></TH></TR>\016":"\n");
+     output(d,d->player,2,1,1,"%s%s%s",IsHtml(d) ? "\016<TR ALIGN=CENTER><TH COLSPAN=2 BGCOLOR="HTML_TABLE_CYAN"><FONT COLOR="HTML_LCYAN" SIZE=4><I>":" ",substitute(session_who,scratch_return_string,decompress(session_title),0,ANSI_LCYAN,NULL,0),IsHtml(d) ? "</I></FONT></TH></TR>\016":"\n");
      if(!IsHtml(d)) output(d,d->player,0,1,0,separator(d->terminal_width,0,'-','-'));
 
      /* ---->  Session comments  <---- */
@@ -829,7 +829,7 @@ void userlist_session(struct descriptor_data *d)
 	   }
 
            /* ---->  Character's session comment  <---- */
-           output(d,d->player,2,1,23,"%s%s%s%s%s",scratch_buffer,IsHtml(d) ? "\016</TD><TD>\016":"  ",IsHtml(d) ? colour:"",(grp->cunion->descriptor.comment) ? substitute(grp->cunion->descriptor.player,scratch_return_string,decompress(grp->cunion->descriptor.comment),0,colour,NULL):"No comment.",IsHtml(d) ? "\016</TD></TR>\016":"\n");
+           output(d,d->player,2,1,23,"%s%s%s%s%s",scratch_buffer,IsHtml(d) ? "\016</TD><TD>\016":"  ",IsHtml(d) ? colour:"",(grp->cunion->descriptor.comment) ? substitute(grp->cunion->descriptor.player,scratch_return_string,decompress(grp->cunion->descriptor.comment),0,colour,NULL,0):"No comment.",IsHtml(d) ? "\016</TD></TR>\016":"\n");
      }
      if(Validchar(d->player)) db[d->player].data->player.scrheight = cached_scrheight;
 
@@ -890,7 +890,7 @@ void userlist_assist(struct descriptor_data *d)
 	   }
 
            /* ---->  Assist reason  <---- */
-           if(grp->cunion->descriptor.assist) substitute(grp->cunion->descriptor.player,scratch_return_string,decompress(grp->cunion->descriptor.assist),0,colour,NULL);
+           if(grp->cunion->descriptor.assist) substitute(grp->cunion->descriptor.player,scratch_return_string,decompress(grp->cunion->descriptor.assist),0,colour,NULL,0);
               else strcpy(scratch_return_string,"A new user who needs assistance.");
            output(d,d->player,2,1,32,IsHtml(d) ? "%s%s%s%s%s":"%s  %s%s%s%s",scratch_buffer,IsHtml(d) ? "\016</TD><TD>\016":"",colour,scratch_return_string,IsHtml(d) ? "\016</TD></TR>\016":"\n");
      }
@@ -1257,7 +1257,7 @@ void userlist_set_title(CONTEXT)
 		   	     ansi_code_filter((char *) arg2,arg2,0);
                              setfield(character,TITLE,arg2,0);
                              if(!in_command) {
-                                substitute(player,scratch_return_string,arg2,0,ANSI_LYELLOW,NULL);
+                                substitute(player,scratch_return_string,arg2,0,ANSI_LYELLOW,NULL,0);
                                 if(character != player) {
                                    if(Controller(character) != player) {
                                       if(!in_command) writelog(ADMIN_LOG,1,"TITLE CHANGE","%s(#%d) changed %s(#%d)'s title to '%s'.",getname(player),player,getname(character),character,arg2);
