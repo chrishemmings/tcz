@@ -1167,7 +1167,7 @@ void admin_assist(CONTEXT)
                           output(p,player,0,1,0,ANSI_LGREEN"Your request for assistance has been sent to %s's administrators  -  Someone will be along shortly to help you.",tcz_full_name);
 
                           wrap_leading = 10;
-                          if(!Blank(p->assist)) sprintf(scratch_return_string," ('"ANSI_LCYAN"%s"ANSI_LWHITE"')",substitute(player,scratch_buffer,ptr,0,ANSI_LCYAN,NULL));
+                          if(!Blank(p->assist)) sprintf(scratch_return_string," ('"ANSI_LCYAN"%s"ANSI_LWHITE"')",substitute(player,scratch_buffer,ptr,0,ANSI_LCYAN,NULL,0));
                              else *scratch_return_string = '\0';
                           sprintf(scratch_buffer,ANSI_LRED"[ASSIST] \016&nbsp;\016 "ANSI_LWHITE"%s"ANSI_LYELLOW"%s"ANSI_LWHITE" is stuck and needs some assistance from you%s  -  ",Article(player,UPPER,INDEFINITE),getcname(NOTHING,player,0,0),scratch_return_string);
                           if(!Blank(p->assist)) sprintf(scratch_return_string," ('%s')",ptr);
@@ -1188,7 +1188,7 @@ void admin_assist(CONTEXT)
 		    } else output(p,player,0,1,0,ANSI_LGREEN"Sorry, your reason for asking for assistance mustn't contain query substitutions ('"ANSI_LWHITE"%{<QUERY COMMAND>}"ANSI_LGREEN"'.)");
 		 } else output(p,player,0,1,0,ANSI_LGREEN"Sorry, the maximum length of your reason for asking for assistance is 256 characters.  It also must not contain embedded NEWLINE's (Please keep your reason short and brief, if possible.)");
 	      } else if(p->flags & ASSIST) {
-                 if(!Blank(p->assist)) sprintf(scratch_return_string," ('"ANSI_LWHITE"%s"ANSI_LGREEN"')",substitute(player,scratch_buffer,decompress(p->assist),0,ANSI_LWHITE,NULL));
+                 if(!Blank(p->assist)) sprintf(scratch_return_string," ('"ANSI_LWHITE"%s"ANSI_LGREEN"')",substitute(player,scratch_buffer,decompress(p->assist),0,ANSI_LWHITE,NULL,0));
                     else *scratch_return_string = '\0';
                  output(p,player,0,1,0,ANSI_LGREEN"Sorry, you have already asked for assistance in the past "ANSI_LWHITE"%d minute%s"ANSI_LGREEN"%s  -  Please wait until someone is available to help you.  If you don't receive any help, please ask for assistance again in "ANSI_LYELLOW"%s"ANSI_LGREEN" time.",ASSIST_TIME,Plural(ASSIST_TIME),scratch_return_string,interval(p->assist_time - now,p->assist_time - now,ENTITIES,0));
 	      } else output(p,player,0,1,0,ANSI_LGREEN"Please wait for "ANSI_LWHITE"%s"ANSI_LGREEN" before asking for further assistance.",interval(p->assist_time - now,p->assist_time - now,ENTITIES,0));
@@ -1317,7 +1317,6 @@ void admin_boot(CONTEXT)
 	               if(can_write_to(player,character,1)) {
 	                  if(character != player) {
                              if(Connected(character)) {
-
                                 /* ---->  Boot reason  <---- */
                                 split_params((char *) arg2,&reason,&bantime);
                                 if(!Blank(bantime)) tmp = reason, reason = bantime, bantime = tmp;
@@ -1326,7 +1325,7 @@ void admin_boot(CONTEXT)
                                    if(!Censor(player) && !Censor(db[player].location)) bad_language_filter(scratch_return_string,reason);
                                       else strcpy(scratch_return_string,reason);
                                    strcpy(scratch_buffer,punctuate(scratch_return_string,2,'.'));
-                                   substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL);
+                                   substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0);
 			        } else {
                                    output(getdsc(player),player,0,1,0,ANSI_LGREEN"Please specify the reason(s) for booting %s"ANSI_LWHITE"%s"ANSI_LGREEN".",Article(character,LOWER,DEFINITE),getcname(NOTHING,character,0,0));
                                    return;
@@ -2305,7 +2304,7 @@ void admin_shout(CONTEXT)
 
               if(!in_command) writelog(SHOUT_LOG,1,"SHOUT","%s(#%d) broadcasted '%s'.",getname(player),player,params + 1);
                  else writelog(SHOUT_LOG,1,"SHOUT","%s(#%d) broadcasted '%s' from within compound command %s(#%d) owned by %s(#%d).",getname(player),player,params + 1,getname(current_command),current_command,getname(db[current_command].owner),db[current_command].owner);
-              sprintf(scratch_buffer,ANSI_LRED"\007[BROADCAST MESSAGE from %s"ANSI_LYELLOW"%s"ANSI_LRED": \016&nbsp;\016 %s"ANSI_LRED"]",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),substitute(player,scratch_return_string,punctuate((char *) params + 1,2,'.'),0,ANSI_LWHITE,NULL));
+              sprintf(scratch_buffer,ANSI_LRED"\007[BROADCAST MESSAGE from %s"ANSI_LYELLOW"%s"ANSI_LRED": \016&nbsp;\016 %s"ANSI_LRED"]",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),substitute(player,scratch_return_string,punctuate((char *) params + 1,2,'.'),0,ANSI_LWHITE,NULL,0));
               for(d = descriptor_list; d; d = d->next)
                   if(d->flags & CONNECTED)
                      output(d,d->player,0,0,2,"%s",scratch_buffer);
@@ -2370,7 +2369,7 @@ void admin_shutdown(CONTEXT)
                                 /* ---->  Log who and reason, then begin shutdown  <---- */
                                 ptr = (char *) punctuate((char *) arg1,0,'.');
                                 writelog(SERVER_LOG,1,"SHUTDOWN","Shutdown started by %s(#%d) (REASON:  %s)  -   Shutdown in %d minute%s.",getname(player),player,String(ptr),minutes, Plural(minutes));
-                                shutdown_reason  = (char *) alloc_string(substitute(player,scratch_return_string,(char *) String(ptr),0,ANSI_LWHITE,NULL));
+                                shutdown_reason  = (char *) alloc_string(substitute(player,scratch_return_string,(char *) String(ptr),0,ANSI_LWHITE,NULL,0));
                                 shutdown_counter = minutes + 1;
                                 shutdown_timing  = 0;
                                 shutdown_who     = player;
@@ -2541,7 +2540,7 @@ void admin_warn(CONTEXT)
                  if(can_write_to(player,character,1)) {
 	            if(character != player) {
                        if(!Blank(arg2)) {
-                          output(getdsc(player),player,0,1,2,ANSI_LGREEN"You issue an official warning to %s"ANSI_LYELLOW"%s"ANSI_LGREEN":  "ANSI_LWHITE"%s%s",Article(character,LOWER,DEFINITE),getcname(NOTHING,character,0,0),substitute(player,scratch_return_string,ptr = punctuate(arg2,2,'.'),0,ANSI_LWHITE,NULL),Connected(character) ? "":"\n");
+                          output(getdsc(player),player,0,1,2,ANSI_LGREEN"You issue an official warning to %s"ANSI_LYELLOW"%s"ANSI_LGREEN":  "ANSI_LWHITE"%s%s",Article(character,LOWER,DEFINITE),getcname(NOTHING,character,0,0),substitute(player,scratch_return_string,ptr = punctuate(arg2,2,'.'),0,ANSI_LWHITE,NULL,0),Connected(character) ? "":"\n");
                           if(!Connected(character)) output(getdsc(player),player,0,1,14,ANSI_LCYAN"PLEASE NOTE:  "ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN" isn't currently connected  -  Please also mail details of %s official warning to %s.\n",Article(character,UPPER,DEFINITE),getcname(NOTHING,character,0,0),Possessive(character,0),Objective(character,0));
                           output(getdsc(character),character,0,1,0,"\n\x05\x09\x05\x02"ANSI_LRED"\007["ANSI_UNDERLINE"WARNING"ANSI_LRED"] \016&nbsp;\016 "ANSI_LMAGENTA"This is an "ANSI_LYELLOW""ANSI_UNDERLINE""ANSI_BLINK"OFFICIAL WARNING"ANSI_LMAGENTA" from %s"ANSI_LCYAN"%s"ANSI_LMAGENTA": \016&nbsp;\016 "ANSI_LWHITE"%s\n",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),scratch_return_string);
                           writelog(WARN_LOG,1,"OFFICIAL WARNING","%s(#%d) issued an official warning to %s(#%d):  %s",getname(player),player,getname(character),character,ptr);

@@ -648,11 +648,11 @@ void command_execute(dbref player,dbref command,const char *commands,unsigned ch
  
                           /* ---->  Follow the failure route if possible  <---- */
                           if(getfield(current_command,FAIL)) {
-                             substitute(player,scratch_return_string,(char *) getfield(current_command,FAIL),0,ANSI_LCYAN,NULL);
+                             substitute(player,scratch_return_string,(char *) getfield(current_command,FAIL),0,ANSI_LCYAN,NULL,0);
                              output(p,player,0,1,0,"%s",punctuate(scratch_return_string,2,'.'));
 			  }
                           if(getfield(current_command,OFAIL) && !Invisible(db[player].location)) {
-                             substitute(player,scratch_return_string,(char *) getfield(current_command,OFAIL),DEFINITE,ANSI_LCYAN,NULL);
+                             substitute(player,scratch_return_string,(char *) getfield(current_command,OFAIL),DEFINITE,ANSI_LCYAN,NULL,0);
                              output_except(db[player].location,player,NOTHING,0,1,2,"%s",punctuate(scratch_return_string,0,'.'));
 			  }
                           if(db[current_command].exits == HOME) {
@@ -668,11 +668,11 @@ void command_execute(dbref player,dbref command,const char *commands,unsigned ch
 
                           /* ---->  Follow the success route if possible  <---- */
                           if(getfield(current_command,SUCC)) {
-                             substitute(player,scratch_return_string,(char *) getfield(current_command,SUCC),0,ANSI_LCYAN,NULL);
+                             substitute(player,scratch_return_string,(char *) getfield(current_command,SUCC),0,ANSI_LCYAN,NULL,0);
                              output(p,player,0,1,0,"%s",punctuate(scratch_return_string,2,'.'));
 			  }
                           if(getfield(current_command,OSUCC) && !Invisible(db[player].location)) {
-                             substitute(player,scratch_return_string,(char *) getfield(current_command,OSUCC),DEFINITE,ANSI_LCYAN,NULL);
+                             substitute(player,scratch_return_string,(char *) getfield(current_command,OSUCC),DEFINITE,ANSI_LCYAN,NULL,0);
                              output_except(db[player].location,player,NOTHING,0,1,2,"%s",punctuate(scratch_return_string,0,'.'));
 			  }
                           if(db[current_command].contents == HOME) {

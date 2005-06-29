@@ -76,12 +76,12 @@ unsigned char can_satisfy_lock(dbref player,dbref object,const char *defaultfail
 
 	    /* ---->  Lock not satisfied  <---- */
 	    if(getfield(object,FAIL)) {
-	       substitute(player,scratch_buffer,(char *) getfield(object,FAIL),0,ANSI_LCYAN,NULL);
+	       substitute(player,scratch_buffer,(char *) getfield(object,FAIL),0,ANSI_LCYAN,NULL,0);
 	       output(getdsc(player),player,0,1,0,"%s%s",punctuate(scratch_buffer,2,'.'),(cr) ? "\n":"");
 	    } else if(defaultfailuremsg) output(getdsc(player),player,0,1,0,ANSI_LGREEN"%s",defaultfailuremsg);
 
 	    if(getfield(object,OFAIL) && (Typeof(object) != TYPE_COMMAND) && !Invisible(db[player].location) && (!Invisible(object) || (Typeof(object) == TYPE_EXIT))) {
-	       substitute(player,scratch_buffer,(char *) getfield(object,OFAIL),DEFINITE,ANSI_LCYAN,NULL);
+	       substitute(player,scratch_buffer,(char *) getfield(object,OFAIL),DEFINITE,ANSI_LCYAN,NULL,0);
 	       output_except(Location(player),player,NOTHING,0,1,2,"%s%s",punctuate(scratch_buffer,0,'.'),(cr) ? "\n":"");
 	    }
 	    return(0);
@@ -89,12 +89,12 @@ unsigned char can_satisfy_lock(dbref player,dbref object,const char *defaultfail
 
 	    /* ---->  Lock satisfied  <---- */
 	    if(getfield(object,SUCC)) {
-	       substitute(player,scratch_buffer,(char *) getfield(object,SUCC),0,ANSI_LCYAN,NULL);
+	       substitute(player,scratch_buffer,(char *) getfield(object,SUCC),0,ANSI_LCYAN,NULL,0);
 	       output(getdsc(player),player,0,1,0,"%s%s",punctuate(scratch_buffer,2,'.'),(cr) ? "\n":"");
 	    }
 
 	    if(getfield(object,OSUCC) && (Typeof(object) != TYPE_COMMAND) && !Invisible(Location(player)) && (!Invisible(object) || (Typeof(object) == TYPE_EXIT))) {
-	       substitute(player,scratch_buffer,(char *) getfield(object,OSUCC),DEFINITE,ANSI_LCYAN,NULL);
+	       substitute(player,scratch_buffer,(char *) getfield(object,OSUCC),DEFINITE,ANSI_LCYAN,NULL,0);
 	       output_except(Location(player),player,NOTHING,0,1,2,"%s%s",punctuate(scratch_buffer,0,'.'),(cr) ? "\n":"");
 	    }
 	    return(1);

@@ -346,7 +346,7 @@ void channel_show_motd(struct channel_data *channel,dbref player,int flags)
         if(channel->flags & CHANNEL_CENSOR)
            bad_language_filter(scratch_buffer,decompress(channel->motd));
               else strcpy(scratch_buffer,channel->motd);
-        channel_output(channel,player,NOTHING,SEARCH_ALL,CHANNEL_COMMAND_ALL,"Message of the day for the channel '"ANSI_LWHITE"%s"ANSI_LGREEN"':\n\n"ANSI_LYELLOW"%s\n",channel->name,substitute(channel->owner,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL));
+        channel_output(channel,player,NOTHING,SEARCH_ALL,CHANNEL_COMMAND_ALL,"Message of the day for the channel '"ANSI_LWHITE"%s"ANSI_LGREEN"':\n\n"ANSI_LYELLOW"%s\n",channel->name,substitute(channel->owner,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL,0));
         for(current = channel->userlist; current && (current->player != player); current = current->next);
         if(current) current->flags &= ~CHANNEL_USER_MOTD;
      }
@@ -430,7 +430,7 @@ void channel_join(CHANNEL_CONTEXT)
                        if(channel->flags & CHANNEL_CENSOR)
                           bad_language_filter(scratch_return_string,decompress(channel->title));
                              else strcpy(scratch_buffer,channel->title);
-                       channel_output(channel,d->player,NOTHING,SEARCH_ALL,CHANNEL_COMMAND_ALL,"Welcome to the channel '"ANSI_LWHITE"%s"ANSI_LGREEN"' ("ANSI_LYELLOW"%s"ANSI_LGREEN"), %s"ANSI_LWHITE"%s"ANSI_LGREEN".",chname,substitute(channel->owner,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL),Article(d->player,LOWER,DEFINITE),getcname(NOTHING,d->player,0,0));
+                       channel_output(channel,d->player,NOTHING,SEARCH_ALL,CHANNEL_COMMAND_ALL,"Welcome to the channel '"ANSI_LWHITE"%s"ANSI_LGREEN"' ("ANSI_LYELLOW"%s"ANSI_LGREEN"), %s"ANSI_LWHITE"%s"ANSI_LGREEN".",chname,substitute(channel->owner,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL,0),Article(d->player,LOWER,DEFINITE),getcname(NOTHING,d->player,0,0));
 		    } else channel_output(channel,d->player,NOTHING,SEARCH_ALL,CHANNEL_COMMAND_ALL,"Welcome to the channel '"ANSI_LWHITE"%s"ANSI_LGREEN"', %s"ANSI_LYELLOW"%s"ANSI_LGREEN".",chname,Article(d->player,LOWER,DEFINITE),getcname(NOTHING,d->player,0,0));
 		 }
                  channel_output(channel,NOTHING,d->player,CHANNEL_OUTPUT_FLAGS,CHANNEL_COMMAND_ALL,"%s"ANSI_LWHITE"%s"ANSI_LGREEN"%s has joined the channel.",Article(d->player,UPPER,INDEFINITE),getcname(NOTHING,d->player,0,0),(current->flags & CHANNEL_USER_ACTIVE) ? "":" (Silenced)");
@@ -508,7 +508,7 @@ void channel_list(CHANNEL_CONTEXT)
 
            /* ---->  Channel title  <---- */
            if(grp->cunion->channel.title) {
-              substitute(d->player,scratch_return_string,decompress(grp->cunion->channel.title),0,ANSI_LYELLOW,NULL);
+              substitute(d->player,scratch_return_string,decompress(grp->cunion->channel.title),0,ANSI_LYELLOW,NULL,0);
               ansi_code_filter(scratch_return_string,scratch_return_string,0);
 	   } else strcpy(scratch_return_string,ANSI_LYELLOW"This channel has no title.");
 
@@ -614,7 +614,7 @@ void channel_banner(CHANNEL_CONTEXT)
                     if(!Blank(params)) {
                        if(!Level3(Owner(d->player)) && !Censor(d->player) && !Censor(Location(d->player)))
                           bad_language_filter(params,params);
-                       substitute(d->player,scratch_buffer,params,0,ANSI_LCYAN,NULL);
+                       substitute(d->player,scratch_buffer,params,0,ANSI_LCYAN,NULL,0);
                        if(strlen(scratch_buffer) <= CHANNEL_BANNER_MAX) {
                           if((ptr = channel_makebanner(scratch_buffer,CHANNEL_BANNER_LENGTH,scratch_return_string,&count))) {
 
@@ -870,7 +870,7 @@ void channel_title(CHANNEL_CONTEXT)
                                 channel->title = (char *) alloc_string(compress(ptr = punctuate(params,2,'.'),0));
                                 channel_show_motd(channel,d->player,flags);
                                 if(channel->flags & CHANNEL_CENSOR) bad_language_filter(ptr,ptr);
-                                if(!in_command) channel_output(channel,NOTHING,NOTHING,CHANNEL_OUTPUT_FLAGS,CHANNEL_COMMAND_ALL,"%s"ANSI_LWHITE"%s"ANSI_LGREEN" has changed the title of the channel to '"ANSI_LYELLOW"%s"ANSI_LGREEN"'.",Article(d->player,UPPER,INDEFINITE),getcname(NOTHING,d->player,0,0),substitute(channel->owner,scratch_return_string,ptr,0,ANSI_LYELLOW,NULL));
+                                if(!in_command) channel_output(channel,NOTHING,NOTHING,CHANNEL_OUTPUT_FLAGS,CHANNEL_COMMAND_ALL,"%s"ANSI_LWHITE"%s"ANSI_LGREEN" has changed the title of the channel to '"ANSI_LYELLOW"%s"ANSI_LGREEN"'.",Article(d->player,UPPER,INDEFINITE),getcname(NOTHING,d->player,0,0),substitute(channel->owner,scratch_return_string,ptr,0,ANSI_LYELLOW,NULL,0));
 			     } else output(d,d->player,0,1,0,ANSI_LGREEN"Sorry, the maximum length of the title of the channel '"ANSI_LWHITE"%s"ANSI_LGREEN" is %d characters (Including ANSI colour substitutions.)",chname,CHANNEL_TITLE_MAX);
 			  } else output(d,d->player,0,1,0,ANSI_LGREEN"Sorry, the maximum length of the title of the channel '"ANSI_LWHITE"%s"ANSI_LGREEN" is %d characters (Excluding ANSI colour substitutions.)",chname,CHANNEL_TITLE_LENGTH);
 		       } else output(d,d->player,0,1,0,ANSI_LGREEN"Sorry, the title of the channel '"ANSI_LWHITE"%s"ANSI_LGREEN"' must not contain embedded NEWLINE's.",params);
