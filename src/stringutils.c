@@ -140,10 +140,10 @@ const char *construct_message(dbref player,const char *ansi1,const char *ansi2,c
 
       /* ---->  Punctuate and format message  <---- */
       if(pose != 1) {
-         substitute(player,scratch_return_string,punctuate((char *) message,1,defpunct),0,ansi1,NULL);
+         substitute(player,scratch_return_string,punctuate((char *) message,1,defpunct),0,ansi1,NULL,0);
          if((autoaction == PLAYER) || (autoaction == -1)) sprintf(scratch_buffer,"%sYou",ansi2);
             else sprintf(scratch_buffer,ANSI_LWHITE"%s%s",Article(player,UPPER,article_setting),getcname(NOTHING,player,0,0));
-      } else substitute(player,scratch_buffer,punctuate((char *) message,0,defpunct),article_setting,ansi2,NULL);
+      } else substitute(player,scratch_buffer,punctuate((char *) message,0,defpunct),article_setting,ansi2,NULL,0);
 
       if(pose == 2) {
          if((autoaction == PLAYER) || (autoaction == -1)) sprintf(scratch_buffer + strlen(scratch_buffer),"%s think ",ansi2);
