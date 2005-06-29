@@ -67,14 +67,15 @@ unsigned char friend(dbref player,dbref friend)
 	     if(Validchar(ptr->friend)) {
 		if(ptr->friend == friend) found = 1;
 		if(newlist) {
-		   if(ptr->flags & (FRIEND_READ|FRIEND_WRITE)) {
+		    /* if(ptr->flags & (FRIEND_READ|FRIEND_WRITE)) {
 		      ptr->next = newlist;
 		      newlist   = ptr;
-		   } else {
+		      } else {
+		    (Removed because the reordering interferes with @with friends do fset $6 = <FLAG>) */
 		      newptr->next = ptr;
 		      newptr       = ptr;
 		      ptr->next    = NULL;
-		   }
+		      /* } */
 		} else {
 		   newlist = newptr = ptr;
 		   ptr->next        = NULL;
@@ -105,14 +106,14 @@ int friend_flags(dbref player,dbref friend)
         if(Validchar(ptr->friend)) {
            if(ptr->friend == friend) flags = ptr->flags|0x80000000;
            if(newlist) {
-              if(ptr->flags & (FRIEND_READ|FRIEND_WRITE)) {
+	       /* if(ptr->flags & (FRIEND_READ|FRIEND_WRITE)) {
                  ptr->next = newlist;
                  newlist   = ptr;
-	      } else {
+		 } else { */
                  newptr->next = ptr;
                  newptr       = ptr;
                  ptr->next    = NULL;
-	      }
+		 /* } */
 	   } else {
               newlist = newptr = ptr;
               ptr->next        = NULL;
@@ -134,7 +135,8 @@ int friendflags_set(dbref player,dbref friend,dbref object,int flags)
     struct friend_data *current;
 
     if(!Validchar(player) || !Validchar(friend)) return(0);
-    for(current = db[player].data->player.friends; current && !((flags & (FRIEND_READ|FRIEND_WRITE)) && !(current->flags & (FRIEND_READ|FRIEND_WRITE))); current = current->next)
+    /* for(current = db[player].data->player.friends; current && !((flags & (FRIEND_READ|FRIEND_WRITE)) && !(current->flags & (FRIEND_READ|FRIEND_WRITE))); current = current->next) */
+    for (current = db[player].data->player.friends; current; current = current->next)
         if(current->friend == friend) {
            if((flags & (FRIEND_READ|FRIEND_WRITE)) && (((flags & FRIEND_WRITE) && !(Builder(friend) || (Controller(friend) == player))) || (Valid(object) && (current->flags & FRIEND_SHARABLE) && !Sharable(object)))) return(0);
            if(flags == FRIEND_READ) flags |= FRIEND_WRITE;
@@ -208,19 +210,19 @@ unsigned char friendflags_check(dbref player,dbref subject,dbref user,int flag,c
 			      sprintf(scratch_buffer,ANSI_LGREEN"\nSorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" doesn't want ",Article(user,LOWER,INDEFINITE),getcname(NOTHING,user,0,0));
 			      sprintf(scratch_buffer + strlen(scratch_buffer),"%s"ANSI_LWHITE"%s"ANSI_LGREEN" in %%p rooms/locations.\n",Article(subject,LOWER,DEFINITE),getcname(NOTHING,subject,0,0));
 			   } else sprintf(scratch_buffer,ANSI_LGREEN"\nSorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" doesn't want you in %%p rooms/locations.\n",Article(user,LOWER,INDEFINITE),getcname(NOTHING,user,0,0));
-			   output(getdsc(player),player,0,1,0,"%s",substitute(user,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL));
+			   output(getdsc(player),player,0,1,0,"%s",substitute(user,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0));
 			}
 			break;
 		   case FRIEND_MAIL:
 			if(Valid(automatic) && !Blank(getfield(automatic,ODROP))) {
 			   sprintf(scratch_buffer,ANSI_LGREEN"\nMail refusal message from %s"ANSI_LWHITE"%s"ANSI_LGREEN":  ",Article(user,LOWER,DEFINITE),getcname(NOTHING,user,0,0));
 			   sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE"%s\n",punctuate((char *) getfield(automatic,ODROP),2,'.'));
-			   substitute(user,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL);
+			   substitute(user,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0);
 			} else if(player != subject) {
 			   sprintf(scratch_return_string,ANSI_LGREEN"\nSorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" doesn't want to receive mail from ",Article(user,LOWER,DEFINITE),getcname(NOTHING,user,0,0));
 			   sprintf(scratch_return_string + strlen(scratch_return_string),"%s"ANSI_LWHITE"%s"ANSI_LGREEN".\n",Article(subject,LOWER,DEFINITE),getcname(NOTHING,subject,0,0));
 			} else sprintf(scratch_return_string,ANSI_LGREEN"\nSorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" doesn't want to receive mail from you.\n",Article(user,LOWER,DEFINITE),getcname(NOTHING,user,0,0));
-			output(getdsc(player),player,0,1,0,"%s",substitute(user,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL));
+			output(getdsc(player),player,0,1,0,"%s",substitute(user,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0));
 			break;
 		   default:
 			break;
