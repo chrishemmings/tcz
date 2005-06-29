@@ -374,7 +374,7 @@ void exit_editor(struct descriptor_data *d,int save)
                           gettime(now);
                           bbs_cyclicdelete(topic->topic_id,(subtopic) ? subtopic->topic_id:0);
                           msgno = bbs_addmessage(d->player,topic->topic_id,(subtopic) ? subtopic->topic_id:0,d->edit->data1,d->edit->text,now,(anon) ? MESSAGE_ANON:0,0);
-                          substitute(d->player,scratch_return_string,punctuate(d->edit->data1,2,'\0'),0,ANSI_LYELLOW,NULL);
+                          substitute(d->player,scratch_return_string,punctuate(d->edit->data1,2,'\0'),0,ANSI_LYELLOW,NULL,0);
                           if(d->flags & BBS_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                           if(subtopic) {
                              if(!Valid(editsucc)) output(d,d->player,0,1,0,ANSI_LGREEN"%sessage '"ANSI_LYELLOW"%s"ANSI_LGREEN"' added to the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%d"ANSI_LGREEN".)\n",(anon) ? "Anonymous m":"M",scratch_return_string,topic->name,subtopic->name,msgno);
@@ -406,7 +406,7 @@ void exit_editor(struct descriptor_data *d,int save)
                           bbs_cyclicdelete(topic->topic_id,(subtopic) ? subtopic->topic_id:0);
                           strcpy(scratch_buffer,decompress(d->edit->data->message.subject));
                           msgno = bbs_addmessage(d->player,topic->topic_id,(subtopic) ? subtopic->topic_id:0,scratch_buffer,d->edit->text,now,(anon) ? MESSAGE_REPLY|MESSAGE_ANON:MESSAGE_REPLY,d->edit->data->message.id);
-                          substitute(d->player,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL);
+                          substitute(d->player,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL,0);
                           if(d->flags & BBS_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                           if(subtopic) {
                              if(!Valid(editsucc)) output(d,d->player,0,1,0,ANSI_LGREEN"%seply to the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' left in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%d"ANSI_LGREEN".)\n",(anon) ? "Anonymous r":"R",(d->edit->data->message.flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,topic->name,subtopic->name,msgno);
@@ -429,12 +429,25 @@ void exit_editor(struct descriptor_data *d,int save)
                  if(save) {
                     if(!Blank(d->edit->text)) {
                        struct bbs_topic_data *topic,*subtopic;
+		       struct   bbs_reader_data *reader,*next,*last = NULL;
 
                        if((topic = lookup_topic(d->player,NULL,&topic,&subtopic))) {
                           update_field(d);
                           anon = ((d->edit->data->message.flags & MESSAGE_ANON) != 0);
-                          substitute(d->player,scratch_return_string,decompress(d->edit->data->message.subject),0,ANSI_LYELLOW,NULL);
+                          substitute(d->player,scratch_return_string,decompress(d->edit->data->message.subject),0,ANSI_LYELLOW,NULL,0);
                           if(d->flags & BBS_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
+			  for(reader = d->edit->data->message.readers; reader; reader = next) {
+			      next = reader->next;
+			      if(!(reader->flags & READER_VOTE_MASK)) {
+				  if(last) last->next = reader->next;
+				  else d->edit->data->message.readers =
+					   reader->next;
+				  FREENULL(reader);
+			      } else {
+				  reader->flags &= ~(READER_READ|READER_IGNORE);
+				  last           =  reader;
+			      }
+			  }
                           if(subtopic) {
                              if(!Valid(editsucc)) output(d,d->player,0,1,0,ANSI_LGREEN"Changes to the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%s"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' saved.\n",(d->edit->data->message.flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,d->edit->data1,topic->name,subtopic->name);
                              if(anon) bbs_output_except(d->player,d->edit->temp,0,1,2,ANSI_LGREEN"An anonymous user makes some changes to the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%s"ANSI_LGREEN".)",(d->edit->data->message.flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,topic->name,subtopic->name,d->edit->data1);
@@ -463,7 +476,7 @@ void exit_editor(struct descriptor_data *d,int save)
 
                        if((topic = lookup_topic(d->player,NULL,&topic,&subtopic))) {
                           bbs_appendmessage(d->player,&(d->edit->data->message),topic,subtopic,d->edit->text,anon);
-                          substitute(d->player,scratch_return_string,decompress(d->edit->data->message.subject),0,ANSI_LYELLOW,NULL);
+                          substitute(d->player,scratch_return_string,decompress(d->edit->data->message.subject),0,ANSI_LYELLOW,NULL,0);
                           if(d->flags & BBS_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                           if(subtopic) {
                              if(!Valid(editsucc)) output(d,d->player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%s"ANSI_LGREEN") appended to%s in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.\n",(d->edit->data->message.flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,d->edit->data1,(anon) ? " anonymously":"",topic->name,subtopic->name);
