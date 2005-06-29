@@ -363,7 +363,7 @@ void sanity_general(dbref player,unsigned char log)
              if(!Validchar(message->owner)) {
                 if(!log) {
                    if(!cr) output(p,player,0,1,0,""), cr = 1;
-                   output(p,player,0,1,2,ANSI_LRED"Owner of BBS message '%s"ANSI_LYELLOW"%s"ANSI_LRED"' in the topic '"ANSI_LYELLOW"%s"ANSI_LRED"' is invalid  -  Owner set to "ANSI_LWHITE"%s(#%d)"ANSI_LRED".",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",substitute(player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL),topic->name,getname(newowner),newowner);
+                   output(p,player,0,1,2,ANSI_LRED"Owner of BBS message '%s"ANSI_LYELLOW"%s"ANSI_LRED"' in the topic '"ANSI_LYELLOW"%s"ANSI_LRED"' is invalid  -  Owner set to "ANSI_LWHITE"%s(#%d)"ANSI_LRED".",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",substitute(player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0),topic->name,getname(newowner),newowner);
 		}
                 writelog(SANITY_LOG,0,"SANITY","Owner of BBS message '%s%s' in the topic '%s' is invalid  -  Owner set to %s(#%d).",(message->flags & MESSAGE_REPLY) ? "Re:  ":"",decompress(message->subject),topic->name,getname(newowner),newowner);
                 message->owner = newowner, found++;
@@ -386,7 +386,7 @@ void sanity_general(dbref player,unsigned char log)
                     if(!Validchar(message->owner)) {
                        if(!log) {
                           if(!cr) output(p,player,0,1,0,""), cr = 1;
-                          output(p,player,0,1,2,ANSI_LRED"Owner of BBS message '%s"ANSI_LYELLOW"%s"ANSI_LRED"' in the sub-topic '"ANSI_LYELLOW"%s/%s"ANSI_LRED"' is invalid  -  Owner set to "ANSI_LWHITE"%s(#%d)"ANSI_LRED".",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",substitute(player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL),topic->name,subtopic->name,getname(newowner),newowner);
+                          output(p,player,0,1,2,ANSI_LRED"Owner of BBS message '%s"ANSI_LYELLOW"%s"ANSI_LRED"' in the sub-topic '"ANSI_LYELLOW"%s/%s"ANSI_LRED"' is invalid  -  Owner set to "ANSI_LWHITE"%s(#%d)"ANSI_LRED".",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",substitute(player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0),topic->name,subtopic->name,getname(newowner),newowner);
 		       }
                        writelog(SANITY_LOG,0,"SANITY","Owner of BBS message '%s%s' in the sub-topic '%s/%s' is invalid  -  Owner set to %s(#%d).",(message->flags & MESSAGE_REPLY) ? "Re:  ":"",decompress(message->subject),topic->name,subtopic->name,getname(newowner),newowner);
                        message->owner = newowner, found++;

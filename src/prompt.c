@@ -92,7 +92,7 @@ void prompt_display(struct descriptor_data *d)
 	   } else if(!override && (Location(d->player) == bankroom)) {
               output(d,d->player,2,0,0,ANSI_LWHITE""TELNET_BANK_PROMPT""ANSI_DWHITE" ",tcz_short_name);
 	   } else {
-              substitute(d->player,buffer,(d->prompt) ? !Blank(d->prompt->prompt) ? d->prompt->prompt:ANSI_LWHITE"INPUT> "ANSI_DWHITE:d->user_prompt,0,ANSI_LWHITE,NULL);
+              substitute(d->player,buffer,(d->prompt) ? !Blank(d->prompt->prompt) ? d->prompt->prompt:ANSI_LWHITE"INPUT> "ANSI_DWHITE:d->user_prompt,0,ANSI_LWHITE,NULL,0);
               output(d,d->player,2,0,0,"%s",buffer);
 	   }
 	} else output(d,d->player,2,0,0,ANSI_LWHITE"%s"ANSI_DWHITE" ",tcz_prompt);

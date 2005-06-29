@@ -142,14 +142,14 @@ const char *pagetell_construct_list(dbref pager,dbref player,union group_data *l
 	 } else names[0] = NOTHING;
          if(targetgroup == FRIENDS) {
             if(player != pager) {
-               if(names[0] == player) substitute(pager,buffer,"you and %p friends",0,ansi2,NULL);
-                  else substitute(pager,buffer,"%p friends",0,ansi2,NULL);
+               if(names[0] == player) substitute(pager,buffer,"you and %p friends",0,ansi2,NULL,0);
+                  else substitute(pager,buffer,"%p friends",0,ansi2,NULL,0);
                return(buffer);
 	    } else return("your friends");
 	 } else if(targetgroup == ENEMIES) {
             if(player != pager) {
-               if(names[0] == player) substitute(pager,buffer,"you and %p enemies",0,ansi2,NULL);
-                  else substitute(pager,buffer,"%p enemies",0,ansi2,NULL);
+               if(names[0] == player) substitute(pager,buffer,"you and %p enemies",0,ansi2,NULL,0);
+                  else substitute(pager,buffer,"%p enemies",0,ansi2,NULL,0);
                return(buffer);
 	    } else return("your enemies");
 	 } else if(targetgroup == ADMIN) {
@@ -196,7 +196,7 @@ int pagetell_cansend(dbref player,dbref target,unsigned char tell,unsigned char 
              now -= temp;
              if(db[player].data->player.timediff) temp += (db[player].data->player.timediff * HOUR);
              sprintf(scratch_buffer,"%s"ANSI_LGREEN"Sleeping message from %s"ANSI_LWHITE"%s"ANSI_LGREEN", who hasn't connected since "ANSI_LYELLOW"%s"ANSI_LGREEN" ("ANSI_LWHITE"%s"ANSI_LGREEN" ago):  "ANSI_LWHITE"%s\n",(*cr) ? "":"\n",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0),date_to_string(temp,UNSET_DATE,player,FULLDATEFMT),interval(now,now,ENTITIES,0),punctuate((char *) getfield(automatic,OFAIL),2,'.'));
-             output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL));
+             output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0));
              *cr = 1;
           } else {
              if((temp = db[target].data->player.lasttime) == 0) temp = now;
@@ -224,7 +224,7 @@ int pagetell_cansend(dbref player,dbref target,unsigned char tell,unsigned char 
     if((targetgroup != ADMIN) && !friends && d && d->afk_message) {
        sprintf(scratch_buffer,"%s"ANSI_LGREEN"AFK message from %s"ANSI_LWHITE"%s"ANSI_LGREEN", who's been away from %s keyboard for "ANSI_LYELLOW"%s"ANSI_LGREEN":  ",(*cr) ? "":"\n",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0),Possessive(target,0),interval(now - d->afk_time,now - d->afk_time,ENTITIES,0));
        sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE"%s\n",punctuate(d->afk_message,2,'.'));
-       output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL)), *cr = 1;
+       output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0)), *cr = 1;
     }
 
     /* ---->  Recipient reset PAGETELL friend flag on character sending message?  <---- */
@@ -235,7 +235,7 @@ int pagetell_cansend(dbref player,dbref target,unsigned char tell,unsigned char 
           if(Valid(automatic) && !Blank(getfield(automatic,DROP))) {
              sprintf(scratch_buffer,"%s"ANSI_LGREEN"%s-block message from %s"ANSI_LWHITE"%s"ANSI_LGREEN":  ",(*cr) ? "":"\n",(tell) ? "Tell":"Page",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0));
              sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE"%s\n",punctuate((char *) getfield(automatic,DROP),2,'.'));
-             output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL)), *cr = 1;
+             output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0)), *cr = 1;
 	  } else output(getdsc(player),player,0,1,0,"%s"ANSI_LGREEN"Sorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" doesn't want to receive messages from you.\n",(*cr) ? "":"\n",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0)), *cr = 1;
        }
        return(0);
@@ -255,7 +255,7 @@ int pagetell_cansend(dbref player,dbref target,unsigned char tell,unsigned char 
           if(Valid(automatic) && !Blank(getfield(automatic,FAIL))) {
              sprintf(scratch_buffer,"%s"ANSI_LGREEN"Haven message from %s"ANSI_LWHITE"%s"ANSI_LGREEN":  ",(*cr) ? "":"\n",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0));
              sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE"%s\n",punctuate((char *) getfield(automatic,FAIL),2,'.'));
-             output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL)), *cr = 1;
+             output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0)), *cr = 1;
 	  } else output(getdsc(player),player,0,1,0,"%s"ANSI_LGREEN"Sorry, %s"ANSI_LWHITE"%s"ANSI_LGREEN" doesn't want to be disturbed.\n",(*cr) ? "":"\n",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0)), *cr = 1;
        }
        return(0);
@@ -271,7 +271,7 @@ int pagetell_cansend(dbref player,dbref target,unsigned char tell,unsigned char 
              if((now <= temp) && !Blank(getfield(automatic,OSUCC))) {
                 sprintf(scratch_buffer,"%s"ANSI_LGREEN"Idle message from %s"ANSI_LWHITE"%s"ANSI_LGREEN", who's been idle for "ANSI_LYELLOW"%s"ANSI_LGREEN":  ",(*cr) ? "":"\n",Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0),interval(temp,temp,ENTITIES,0));
                 sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE"%s\n",punctuate((char *) getfield(automatic,OSUCC),2,'.'));
-                output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL)), *cr = 1;
+                output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0)), *cr = 1;
 	     }
 	  } else if(temp > 120) output(getdsc(player),player,0,1,0,"%s"ANSI_LGREEN"%s"ANSI_LWHITE"%s"ANSI_LGREEN" has been idle for "ANSI_LYELLOW"%s"ANSI_LGREEN".\n",(*cr) ? "":"\n",Article(target,UPPER,DEFINITE),getcname(NOTHING,target,0,0),interval(temp,temp,ENTITIES,0)), *cr = 1;
        }
