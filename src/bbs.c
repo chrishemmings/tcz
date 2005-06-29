@@ -892,7 +892,7 @@ void bbs_add(CONTEXT)
                                                   if(topic->flags & TOPIC_CYCLIC) bbs_cyclicdelete(topic->topic_id,(subtopic) ? subtopic->topic_id:0);
                                                   temp = bbs_addmessage(player,topic->topic_id,(subtopic) ? subtopic->topic_id:0,arg1,arg2,now,(val1) ? MESSAGE_ANON:0,0);
                                                   if(!in_command) {
-                                                     substitute(player,scratch_return_string,punctuate(arg1,2,'\0'),0,ANSI_LYELLOW,NULL);
+                                                     substitute(player,scratch_return_string,punctuate(arg1,2,'\0'),0,ANSI_LYELLOW,NULL,0);
                                                      if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                                      if(subtopic) {
                                                         output(getdsc(player),player,0,1,0,ANSI_LGREEN"%sessage '"ANSI_LYELLOW"%s"ANSI_LGREEN"' added to the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%d"ANSI_LGREEN".)",(val1) ? "Anonymous m":"M",scratch_return_string,topic->name,subtopic->name,temp);
@@ -908,7 +908,7 @@ void bbs_add(CONTEXT)
 					       } else {
                                                   if(editing(player)) return;
                                                   edit_initialise(player,(val1) ? 106:100,NULL,NULL,alloc_string(arg1),NULL,(topic->flags & TOPIC_CENSOR)|EDIT_LAST_CENSOR,MIN(topic->accesslevel,((subtopic) ? subtopic->accesslevel:255)));
-                                                  substitute(player,scratch_return_string,punctuate(arg1,2,'\0'),0,ANSI_LYELLOW,NULL);
+                                                  substitute(player,scratch_return_string,punctuate(arg1,2,'\0'),0,ANSI_LYELLOW,NULL,0);
                                                   if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                                   if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LCYAN"\nAdding %snew message with the subject '"ANSI_LYELLOW"%s"ANSI_LCYAN"' to the sub-topic '"ANSI_LWHITE"%s"ANSI_LCYAN"' in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(val1) ? "anonymous ":"",scratch_return_string,topic->name,subtopic->name);
                                                      else output(getdsc(player),player,0,1,0,ANSI_LCYAN"\nAdding %snew message with the subject '"ANSI_LYELLOW"%s"ANSI_LCYAN"' to the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(val1) ? "anonymous ":"",scratch_return_string,topic->name);
@@ -978,7 +978,7 @@ void bbs_anonymous(CONTEXT)
 		             else message->flags |= MESSAGE_ANON;
 		       } else if(string_prefix("no",arg2) || string_prefix("off",arg2)) message->flags &= ~MESSAGE_ANON;
 
-                       substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,punctuate(decompress(message->subject),2,'\0'),0,ANSI_LYELLOW,NULL);
+                       substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,punctuate(decompress(message->subject),2,'\0'),0,ANSI_LYELLOW,NULL,0);
                        if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                        if(!in_command) {
                           if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LGREEN"The message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' is %s anonymous.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name,(message->flags & MESSAGE_ANON) ? "now":"no-longer");
@@ -1228,7 +1228,7 @@ void bbs_latest(CONTEXT)
             sprintf(scratch_return_string + 200,"%s%s%s",(ranking[loop].subtopic) ? ranking[loop].subtopic->name:"",(ranking[loop].subtopic) ? "/":"",ranking[loop].topic->name);
             if(IsHtml(p)) sprintf(scratch_buffer,"\016<TR ALIGN=CENTER><TD WIDTH=10%% BGCOLOR="HTML_TABLE_RED">\016"ANSI_LRED"%s\016</TD><TD ALIGN=CENTER WIDTH=30%% BGCOLOR="HTML_TABLE_BLUE"><A HREF=\"%sSUBST=OK&COMMAND=%%7Cbbs+topic+%s&\" TARGET=TCZINPUT>\016%s\016</A></TD><TD WIDTH=10%% BGCOLOR="HTML_TABLE_GREEN">\016"ANSI_LGREEN"%s\016</TD><TD ALIGN=LEFT WIDTH=50%%>\016",scratch_return_string,html_server_url(p,1,2,"input"),html_encode(scratch_return_string + 200,scratch_return_string + 500,&copied,128),scratch_return_string + 200,scratch_return_string + 100);
                else sprintf(scratch_buffer,ANSI_LRED" %-8s"ANSI_LWHITE"%-28s"ANSI_LGREEN"%-7s",scratch_return_string,scratch_return_string + 200,scratch_return_string + 100);
-            substitute(Validchar(ranking[loop].message->owner) ? ranking[loop].message->owner:player,scratch_return_string,decompress(ranking[loop].message->subject),0,ANSI_LYELLOW,NULL);
+            substitute(Validchar(ranking[loop].message->owner) ? ranking[loop].message->owner:player,scratch_return_string,decompress(ranking[loop].message->subject),0,ANSI_LYELLOW,NULL,0);
             if(ranking[loop].topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
             if(!IsHtml(p)) truncatestr(scratch_return_string,scratch_return_string,0,(ranking[loop].message->flags & MESSAGE_REPLY) ? 28:32);
             sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LWHITE"'%s"ANSI_LYELLOW"%s"ANSI_LWHITE"'",(ranking[loop].message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string);
@@ -1269,7 +1269,7 @@ void bbs_query_latest(CONTEXT)
         if(!subtopic || can_access_topic(player,subtopic,NULL,1)) {
            if(can_access_topic(player,topic,subtopic,1)) {
      	      if((message = lookup_message(player,&topic,&subtopic,"LAST",&message,&temp,0))) {
-                 substitute(Validchar(message->owner) ? message->owner:player,querybuf,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                 substitute(Validchar(message->owner) ? message->owner:player,querybuf,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                  if(topic->flags & TOPIC_CENSOR) bad_language_filter(querybuf,querybuf);
                  sprintf(cmpbuf,"%s"ANSI_LYELLOW"%s",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",querybuf);
                  sprintf(querybuf,"%s%s",bbs_unread_message(message,player,&ignored) ? ANSI_LMAGENTA" (*UNREAD*)":(ignored) ? ANSI_LMAGENTA" (Ignored)":"",(message->flags & MESSAGE_APPEND) ? ANSI_LBLUE" (Appended)":"");
@@ -1392,7 +1392,7 @@ void bbs_reply(CONTEXT)
                                          strcpy(scratch_buffer,decompress(message->subject));
                                          temp = bbs_addmessage(player,topic->topic_id,(subtopic) ? subtopic->topic_id:0,scratch_buffer,arg2,now,(val1) ? MESSAGE_REPLY|MESSAGE_ANON:MESSAGE_REPLY,message->id);
                                          if(!in_command) {
-                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL);
+                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,scratch_buffer,0,ANSI_LYELLOW,NULL,0);
                                             if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                             if(subtopic) {
                                                output(getdsc(player),player,0,1,0,ANSI_LGREEN"%seply to the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' left in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%d"ANSI_LGREEN".)",(val1) ? "Anonymous r":"R",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,topic->name,subtopic->name,temp);
@@ -1409,7 +1409,7 @@ void bbs_reply(CONTEXT)
                                          if(editing(player)) return;
                                          message->flags |= MESSAGE_MODIFY;
                                          edit_initialise(player,(val1) ? 107:101,NULL,(union group_data *) message,NULL,NULL,(topic->flags & TOPIC_CENSOR)|EDIT_LAST_CENSOR,MIN(topic->accesslevel,((subtopic) ? subtopic->accesslevel:255)));
-                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                          if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                          if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LCYAN"\nLeaving %sreply to the message '%s"ANSI_LYELLOW"%s"ANSI_LCYAN"' in the sub-topic '"ANSI_LWHITE"%s"ANSI_LCYAN"' in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(val1) ? "an anonymous ":"",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,topic->name,subtopic->name);
                                             else output(getdsc(player),player,0,1,0,ANSI_LCYAN"\nLeaving %sreply to the message '%s"ANSI_LYELLOW"%s"ANSI_LCYAN"' in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(val1) ? "an anonymous ":"",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,topic->name);
@@ -1453,7 +1453,7 @@ void bbs_settings(CONTEXT)
 
         if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_buffer,decompress(topic->desc));
            else strcpy(scratch_buffer,decompress(topic->desc));
-        substitute(Validchar(topic->owner) ? topic->owner:player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL);
+        substitute(Validchar(topic->owner) ? topic->owner:player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0);
         if(IsHtml(p)) output(p,player,2,1,0,"\016<TR><TH ALIGN=CENTER WIDTH=20%% BGCOLOR="HTML_TABLE_YELLOW"><FONT SIZE=4><I>\016"ANSI_LYELLOW""ANSI_UNDERLINE"%s%s%s"ANSI_DCYAN"\016</I></FONT></TH><TH ALIGN=LEFT BGCOLOR="HTML_TABLE_BLUE"><FONT SIZE=4><I>\016"ANSI_LWHITE"%s\016</I></FONT></TH></TR>\016",(subtopic) ? subtopic->name:"",(subtopic) ? "/":"",topic->name,scratch_return_string);
            else output(p,player,0,1,strlen(topic->name) + ((subtopic) ? (strlen(subtopic->name) + 1):0) + 4,ANSI_LYELLOW" "ANSI_UNDERLINE"%s%s%s"ANSI_DCYAN":  "ANSI_LWHITE"%s",(subtopic) ? subtopic->name:"",(subtopic) ? "/":"",topic->name,scratch_return_string);
 
@@ -1566,7 +1566,7 @@ void bbs_summary(CONTEXT)
            if(topicnew > 999) topicnew = 999;
            if(!latest) latest = last, latestmsg = msgcount;
            sprintf(scratch_return_string,"(%d)",latestmsg);
-           substitute(Validchar(latest->owner) ? latest->owner:player,scratch_return_string + 50,decompress(latest->subject),0,ANSI_LYELLOW,NULL);
+           substitute(Validchar(latest->owner) ? latest->owner:player,scratch_return_string + 50,decompress(latest->subject),0,ANSI_LYELLOW,NULL,0);
            truncatestr(scratch_return_string + 50,scratch_return_string + 50,0,(latest->flags & MESSAGE_REPLY) ? 30:34);
            if(grp->cunion->bbslist.topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string + 50,scratch_return_string + 50);
            sprintf(scratch_return_string + 200,"%s%s%s",(grp->cunion->bbslist.subtopic) ? grp->cunion->bbslist.subtopic->name:"",(grp->cunion->bbslist.subtopic) ? "/":"",grp->cunion->bbslist.topic->name);
@@ -1881,7 +1881,7 @@ void bbs_view(CONTEXT)
                           if(!in_command) {
                              if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_buffer,decompress(topic->desc));
                                 else strcpy(scratch_buffer,decompress(topic->desc));
-                             substitute(Validchar(topic->owner) ? topic->owner:player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL);
+                             substitute(Validchar(topic->owner) ? topic->owner:player,scratch_return_string,scratch_buffer,0,ANSI_LWHITE,NULL,0);
                              if(!IsHtml(p)) {
                                 output(p,player,0,1,0,"");
                                 output(p,player,0,1,strlen(topic->name) + ((subtopic) ? (strlen(subtopic->name) + 1):0) + 4,ANSI_LYELLOW" "ANSI_UNDERLINE"%s%s%s"ANSI_DCYAN":  "ANSI_LWHITE"%s",(subtopic) ? subtopic->name:"",(subtopic) ? "/":"",topic->name,scratch_return_string);
@@ -1897,7 +1897,7 @@ void bbs_view(CONTEXT)
                                    for(ptr = topic->messages, loop = 1; ptr && (ptr != &(grp->cunion->message)); loop++, ptr = ptr->next);
 				} else loop++;
                                 sprintf(scratch_return_string,"(%d)",(val2) ? loop:(grp->before + loop));
-                                substitute(Validchar(grp->cunion->message.owner) ? grp->cunion->message.owner:player,scratch_return_string + 100,decompress(grp->cunion->message.subject),0,ANSI_LYELLOW,NULL);
+                                substitute(Validchar(grp->cunion->message.owner) ? grp->cunion->message.owner:player,scratch_return_string + 100,decompress(grp->cunion->message.subject),0,ANSI_LYELLOW,NULL,0);
                                 if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string + 100,scratch_return_string + 100);
                                 if(IsHtml(p)) sprintf(scratch_buffer,"\016<TR><TD ALIGN=CENTER WIDTH=20%% BGCOLOR="HTML_TABLE_CYAN"><FONT SIZE=4><A HREF=\"%sCOMMAND=%%7Cbbs+read+%d&\" TARGET=TCZINPUT>\016%s\016</A></FONT></TD><TD ALIGN=LEFT>\016"ANSI_LWHITE"'%s"ANSI_LYELLOW"%s"ANSI_LWHITE"' left by ",html_server_url(p,1,2,"input"),(val2) ? loop:(grp->before + loop),scratch_return_string,(grp->cunion->message.flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string + 100);
                                    else sprintf(scratch_buffer,ANSI_LGREEN" %-7s"ANSI_LWHITE"'%s"ANSI_LYELLOW"%s"ANSI_LWHITE"' left by ",scratch_return_string,(grp->cunion->message.flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string + 100);
@@ -2029,7 +2029,7 @@ void bbs_view(CONTEXT)
                              if(IsHtml(p)) output(p,player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
                                 else output(p,player,0,1,0,"");
 
-                             substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                             substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                              if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                              sprintf(scratch_buffer,"%s"ANSI_UNDERLINE"%s%s%s"ANSI_DCYAN"%s"ANSI_LGREEN"(%d) \016&nbsp;\016 "ANSI_LWHITE"'%s"ANSI_LYELLOW"%s"ANSI_LWHITE"' left by ",IsHtml(p) ? "\016<TR><TH ALIGN=CENTER WIDTH=20%% BGCOLOR="HTML_TABLE_YELLOW"><FONT SIZE=4><I>\016"ANSI_LYELLOW:ANSI_LYELLOW" ",(subtopic) ? subtopic->name:"",(subtopic) ? "/":"",topic->name,IsHtml(p) ? "\016</I></FONT></TH><TH ALIGN=LEFT BGCOLOR="HTML_TABLE_BLUE"><I>\016":":  ",no,(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string);
                              sprintf(scratch_buffer + strlen(scratch_buffer),ANSI_LGREEN"%s%s"ANSI_LWHITE" on "ANSI_LCYAN,((message->flags & MESSAGE_ANON) && !(val1 && ((!Level4(message->owner) && Level4(player)) || (Level4(message->owner) && Level1(player))))) ? "":decompress(message->name),(message->flags & MESSAGE_ANON) ? (val1 && ((!Level4(message->owner) && Level4(player)) || (Level4(message->owner) && Level1(player)))) ? ANSI_LYELLOW" (ANONYMOUS)":"<ANONYMOUS>":"");
@@ -2055,7 +2055,7 @@ void bbs_view(CONTEXT)
                                    time_t now;
 
                                    gettime(now);
-                                   now = (grp->cunion->message.expiry * DAY) - (now % DAY);
+                                   now = (message->expiry * DAY) - (now % DAY);
                                    sprintf(scratch_return_string," \016&nbsp;\016 Voting on this message closes in "ANSI_LCYAN"%s"ANSI_LWHITE" time.",interval(now,now,ENTITIES,0));
 				} else *scratch_return_string = '\0';
 
@@ -2201,7 +2201,7 @@ void bbs_vote(CONTEXT)
 
                           html_anti_reverse(p,1);
                           if(!in_command && p && !p->pager && !IsHtml(p) && More(player)) pager_init(p);
-                          substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                          substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                           if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                           if(IsHtml(p)) {
                              output(p,player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_GREY">",(in_command) ? "":"<BR>");
@@ -2314,7 +2314,7 @@ void bbs_vote(CONTEXT)
 	                  if(Bbs(player)) {
                              if(!message->expiry) {
                                 if(!in_command) {
-                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                    if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                    if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Votes of the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' reset.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name);
                                       else output(p,player,0,1,0,ANSI_LGREEN"Votes of the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' reset.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name);
@@ -2336,7 +2336,7 @@ void bbs_vote(CONTEXT)
   	                        if(!(!reset && (message->flags & MESSAGE_VOTING))) {
                                    if(!(reset && !(message->flags & MESSAGE_VOTING))) {
                                       if(!in_command) {
-                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                          if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                          if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Users may %s vote on the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(reset) ? "no-longer":"now",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name);
                                             else output(p,player,0,1,0,ANSI_LGREEN"Users may %s vote on the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(reset) ? "no-longer":"now",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name);
@@ -2365,7 +2365,7 @@ void bbs_vote(CONTEXT)
                                 if(!message->expiry || (expiry >= message->expiry) || Root(player)) {
                                    if(expiry <= BBS_VOTE_EXPIRY) {
                                       if(!in_command) {
-                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                          if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                          if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Users may now vote on the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' for the next "ANSI_LWHITE"%d"ANSI_LGREEN" day%s.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name,expiry,Plural(expiry));
                                             else output(p,player,0,1,0,ANSI_LGREEN"Users may now vote on the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' for the next "ANSI_LWHITE"%d"ANSI_LGREEN" day%s.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,expiry,Plural(expiry));
@@ -2389,7 +2389,7 @@ void bbs_vote(CONTEXT)
 	                     if(!(!reset && (message->flags & MESSAGE_MAJORITY))) {
                                 if(!(reset && !(message->flags & MESSAGE_MAJORITY))) {
                                    if(!in_command) {
-                                      substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                      substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                       if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                       if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Votes of the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' will %s be subject to the majority factor.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name,(reset) ? "no-longer":"now");
                                          else output(p,player,0,1,0,ANSI_LGREEN"Votes of the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' will %s be subject to the majority factor.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,(reset) ? "no-longer":"now");
@@ -2411,7 +2411,7 @@ void bbs_vote(CONTEXT)
   	                        if(!(!reset && (message->flags & MESSAGE_PRIVATE))) {
                                    if(!(reset && !(message->flags & MESSAGE_PRIVATE))) {
                                       if(!in_command) {
-                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                         substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                          if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                          if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Votes of the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' are now %s",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name,(reset) ? "public.":"private (Subject to a secret ballot.)");
                                             else output(p,player,0,1,0,ANSI_LGREEN"Votes of the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' are now %s",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,(reset) ? "public.":"private (Subject to a secret ballot.)");
@@ -2482,7 +2482,7 @@ void bbs_vote(CONTEXT)
 					  }
 				       }
 
-                                       substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                       substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                        if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                        if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Your %s the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' has been registered.",(reset == READER_VOTE_FOR) ? "vote for":(reset == READER_VOTE_AGAINST) ? "vote against":(reset == READER_VOTE_ABSTAIN) ? "abstained vote on":"unknown vote on",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name);
                                           else output(p,player,0,1,0,ANSI_LGREEN"Your %s the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' has been registered.",(reset == READER_VOTE_FOR) ? "vote for":(reset == READER_VOTE_AGAINST) ? "vote against":(reset == READER_VOTE_ABSTAIN) ? "abstained vote on":"unknown vote on",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name);
@@ -2547,7 +2547,7 @@ void bbs_append(CONTEXT)
                                 if(message->flags & MESSAGE_ALLOWAPPEND) {
                                    bbs_appendmessage(player,message,topic,subtopic,arg2,val1);
                                    if(!in_command) {
-                                      substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                      substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                       if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                       if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN")%s appended to in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,(val1) ? " anonymously":"",topic->name,subtopic->name);
                                          else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN")%s appended to in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,(val1) ? " anonymously":"",topic->name);
@@ -2565,7 +2565,7 @@ void bbs_append(CONTEXT)
                                 message->flags           &= ~MESSAGE_ALLOWAPPEND; 
                                 if(state) message->flags |=  MESSAGE_ALLOWAPPEND; 
                                 if(!in_command) {
-                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                    if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                    if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") can %s be appended to in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,(state) ? "now":"no-longer",topic->name,subtopic->name);
                                       else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") can %s be appended to in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,(state) ? "now":"no-longer",topic->name);
@@ -2581,7 +2581,7 @@ void bbs_append(CONTEXT)
                                 message->flags |= MESSAGE_MODIFY;
                                 sprintf(scratch_return_string,"%d",msgno);
                                 edit_initialise(player,(val1) ? 108:103,NULL,(union group_data *) message,alloc_string(scratch_return_string),NULL,(topic->flags & TOPIC_CENSOR)|EDIT_LAST_CENSOR,MIN(topic->accesslevel,((subtopic) ? subtopic->accesslevel:255)));
-                                substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                 if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                 if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LCYAN"\n%sppending to the message '%s"ANSI_LYELLOW"%s"ANSI_LCYAN"' (Message number "ANSI_LWHITE"%d"ANSI_LCYAN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LCYAN"' in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(val1) ? "Anonymously a":"A",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name);
                                    else output(getdsc(player),player,0,1,0,ANSI_LCYAN"\n%sppending to the message '%s"ANSI_LYELLOW"%s"ANSI_LCYAN"' (Message number "ANSI_LWHITE"%d"ANSI_LCYAN") in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(val1) ? "Anonymously a":"A",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name);
@@ -2642,7 +2642,7 @@ void bbs_delete(CONTEXT)
                                       if(Owner(player) != grp->cunion->message.owner)
                                          writelog(BBS_LOG,1,"DELETE","%s%s(#%d) deleted this message.",bbs_logmsg(&(grp->cunion->message),topic,subtopic,start + deleted,0),getname(player),player);
 
-                                      substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                      substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                       if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                       if(subtopic) output(p,player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%d"ANSI_LGREEN") deleted from the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,start + deleted,topic->name,subtopic->name);
                                          else output(p,player,0,1,0,ANSI_LGREEN"Message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LYELLOW"%d"ANSI_LGREEN") deleted from the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,start + deleted,topic->name);
@@ -2707,7 +2707,7 @@ void bbs_modify(CONTEXT)
                                    message->flags |= MESSAGE_MODIFY;
                                    sprintf(scratch_return_string,"%d",msgno);
                                    edit_initialise(player,102,decompress(message->message),(union group_data *) message,alloc_string(scratch_return_string),NULL,(topic->flags & TOPIC_CENSOR)|EDIT_LAST_CENSOR,MIN(topic->accesslevel,((subtopic) ? subtopic->accesslevel:255)));
-                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                    if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                    if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LCYAN"\nEditing the message '%s"ANSI_LYELLOW"%s"ANSI_LCYAN"' (Message number "ANSI_LWHITE"%d"ANSI_LCYAN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LCYAN"' in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name,subtopic->name);
                                       else output(getdsc(player),player,0,1,0,ANSI_LCYAN"\nEditing the message '%s"ANSI_LYELLOW"%s"ANSI_LCYAN"' (Message number "ANSI_LWHITE"%d"ANSI_LCYAN") in the topic '"ANSI_LWHITE"%s"ANSI_LCYAN"'...\n",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,msgno,topic->name);
@@ -2768,7 +2768,7 @@ void bbs_move(CONTEXT)
                                                      if(newtopic->flags & TOPIC_ADD) {
  	  	                                        if(!(!(newtopic->flags & TOPIC_CYCLIC) && (bbs_messagecount(newtopic->messages,NOTHING,&temp) >= newtopic->messagelimit))) {
                                                            if(newtopic->flags & TOPIC_CYCLIC) bbs_cyclicdelete(newtopic->topic_id,(newsubtopic) ? newsubtopic->topic_id:0);
-                                                           substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                                           substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                                            if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                                            if(subtopic) sprintf(scratch_buffer,"sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'",topic->name,subtopic->name);
                                                               else sprintf(scratch_buffer,"topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'",topic->name);
@@ -2796,7 +2796,7 @@ void bbs_move(CONTEXT)
 					       } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, the %stopic '"ANSI_LWHITE"%s"ANSI_LGREEN"' may only be accessed by %s.",(newsubtopic) ? "sub-":"",newtopic->name,clevels[(int) newtopic->accesslevel]);
 					    } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' may only be accessed by %s (The sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' is within this topic.)",newsubtopic->name,clevels[(int) newsubtopic->accesslevel],newtopic->name);
 					 } else {
-                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                             if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                             output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, the message '%s"ANSI_LYELLOW"%s"ANSI_LGREEN"' is already in the %stopic '"ANSI_LWHITE"%s"ANSI_LGREEN"'.",(message->flags & MESSAGE_REPLY) ? ANSI_LMAGENTA"Re:  ":"",scratch_return_string,(newsubtopic) ? "sub-":"",newtopic->name);
 					 }
@@ -2854,11 +2854,11 @@ void bbs_subject(CONTEXT)
                                          if(!instring("%h",arg2)) {
                                             ansi_code_filter(arg2,arg2,0);
                                             ptr = punctuate(arg2,2,'\0');
-                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                             if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                             if(subtopic) sprintf(scratch_buffer,ANSI_LGREEN"Subject of message '"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' changed to '",scratch_return_string,msgno,topic->name,subtopic->name);
                                                else sprintf(scratch_buffer,ANSI_LGREEN"Subject of message '"ANSI_LYELLOW"%s"ANSI_LGREEN"' (Message number "ANSI_LWHITE"%d"ANSI_LGREEN") in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' changed to '",scratch_return_string,msgno,topic->name);
-                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,ptr,0,ANSI_LYELLOW,NULL);
+                                            substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,ptr,0,ANSI_LYELLOW,NULL,0);
                                             if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                             output(getdsc(player),player,0,1,0,"%s"ANSI_LYELLOW"%s"ANSI_LGREEN"'.",scratch_buffer,scratch_return_string);
                                             if(Owner(player) != message->owner)
@@ -3111,7 +3111,7 @@ void bbs_copy(CONTEXT)
    		                               if(can_access_topic(player,newtopic,newsubtopic,1)) {
 			                          if(!(!(newtopic->flags & TOPIC_CYCLIC) && (bbs_messagecount(newtopic->messages,player,&count) >= newtopic->messagelimit))) {
                                                      if(newtopic->flags & TOPIC_CYCLIC) bbs_cyclicdelete(newtopic->topic_id,(newsubtopic) ? newsubtopic->topic_id:0);
-                                                     substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                                     substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                                      if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                                      if(subtopic) sprintf(scratch_buffer,"sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'",topic->name,subtopic->name);
                                                         else sprintf(scratch_buffer,"topic '"ANSI_LWHITE"%s"ANSI_LGREEN"'",topic->name);
@@ -3200,7 +3200,7 @@ void bbs_desctopic(CONTEXT)
                                 if(!instring("%h",arg2)) {
                                    if(!((strlen((arg2 = (char *) punctuate(arg2,3,'.'))) > 140) || strchr(arg2,'\n'))) {
                                       ansi_code_filter(arg2,arg2,0);
-                                      substitute(Validchar(topic->owner) ? topic->owner:player,scratch_return_string,arg2,0,ANSI_LWHITE,NULL);
+                                      substitute(Validchar(topic->owner) ? topic->owner:player,scratch_return_string,arg2,0,ANSI_LWHITE,NULL,0);
                                       if(subtopic) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Short description of sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' changed to '"ANSI_LWHITE"%s"ANSI_LGREEN"'",topic->name,subtopic->name,scratch_return_string);
                                          else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Short description of topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' changed to '"ANSI_LWHITE"%s"ANSI_LGREEN"'",topic->name,scratch_return_string);
                                       FREENULL(topic->desc);
@@ -3306,7 +3306,7 @@ void bbs_owner(CONTEXT)
 	                     if((newowner = lookup_character(player,arg2,1)) != NOTHING) {
 		                if(can_write_to(player,newowner,0)) {
                                    ptr = punctuate(arg2,2,'\0');
-                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                                   substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                                    if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                                    if(subtopic) sprintf(scratch_buffer,ANSI_LGREEN"Owner of message '"ANSI_LYELLOW"%s"ANSI_LGREEN"' in the sub-topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' changed to ",scratch_return_string,topic->name,subtopic->name);
                                       else sprintf(scratch_buffer,ANSI_LGREEN"Owner of message '"ANSI_LYELLOW"%s"ANSI_LGREEN"' in the topic '"ANSI_LWHITE"%s"ANSI_LGREEN"' changed to ",scratch_return_string,topic->name);
@@ -3421,7 +3421,7 @@ void bbs_readers(CONTEXT)
                     parse_grouprange(player,arg2,FIRST,1);
                     set_conditions_ps(player,0,0,0,0,0,0,message->owner,NULL,513);
                     if(!in_command && p && !p->pager && !IsHtml(p) && More(player)) pager_init(p);
-                    substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL);
+                    substitute(Validchar(message->owner) ? message->owner:player,scratch_return_string,decompress(message->subject),0,ANSI_LYELLOW,NULL,0);
                     if(topic->flags & TOPIC_CENSOR) bad_language_filter(scratch_return_string,scratch_return_string);
                     union_initgrouprange((union group_data *) message->readers);
 
