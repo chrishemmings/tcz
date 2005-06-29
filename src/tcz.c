@@ -82,7 +82,7 @@ void tcz_version(struct descriptor_data *d,int console)
         if(IsHtml(d)) {
            html_anti_reverse(d,1);
            output(d,d->player,1,2,0,"%s<TABLE BORDER WIDTH=100%% CELLPADDING=4 BGCOLOR="HTML_TABLE_BLACK">",(in_command) ? "":"<BR>");
-	} else if(!in_command && !d->pager && More(d->player)) pager_init(d);
+	} else if(!in_command && d->player != NOTHING && !d->pager && More(d->player)) pager_init(d);
 
         /* ---->  TCZ version header  <---- */
         if(!IsHtml(d)) output(d,d->player,0,1,0,"");
@@ -93,7 +93,7 @@ void tcz_version(struct descriptor_data *d,int console)
                  else tilde_string(d->player,buffer,"",ANSI_DCYAN,0,0,5);
 	} else output(d,d->player,2,1,0,"%s",buffer);
 
-        output(d,d->player,2,1,0,"%s%s%s",IsHtml(d) ? "\016<TR><TD ALIGN=LEFT COLSPAN=2>\016":"",substitute(d->player,buffer,ANSI_LWHITE"TCZ is free software, which is distributed under %c%lversion 2%x of the %c%lGNU General Public License%x (See '%g%l%<gpl%>%x' in TCZ, or visit %b%l%u%{@?link \"\" \"http://www.gnu.org\" \"Visit the GNU web site...\"}%x)  For more information about the %y%lTCZ%x, please visit:  %b%l%u%{@?link \"\" \"http://www.sourceforge.net/projects/tcz\" \"Visit the TCZ project web site...\"}%x",0,ANSI_LWHITE,NULL),IsHtml(d) ? "\016</TD></TR>\016":"\n\n\n");
+        output(d,d->player,2,1,0,"%s%s%s",IsHtml(d) ? "\016<TR><TD ALIGN=LEFT COLSPAN=2>\016":"",substitute(d->player,buffer,ANSI_LWHITE"TCZ is free software, which is distributed under %c%lversion 2%x of the %c%lGNU General Public License%x (See '%g%l%<gpl%>%x' in TCZ, or visit %b%l%u%{@?link \"\" \"http://www.gnu.org\" \"Visit the GNU web site...\"}%x)  For more information about the %y%lTCZ%x, please visit:  %b%l%u%{@?link \"\" \"http://www.sourceforge.net/projects/tcz\" \"Visit the TCZ project web site...\"}%x",0,ANSI_LWHITE,NULL,0),IsHtml(d) ? "\016</TD></TR>\016":"\n\n\n");
      }
 
      /* ---->  Description of TCZ  <---- */
@@ -179,7 +179,7 @@ void tcz_version(struct descriptor_data *d,int console)
 	       "            %g%l%(help gpl%)               %c-  %xThe GNU General Public License.");
 
         strcat(buffer,"%]");
-        output(d,d->player,2,1,0,"%s%s",substitute(d->player,buffer2,buffer,0,ANSI_LWHITE,NULL),IsHtml(d) ? "":"\n\n");
+        output(d,d->player,2,1,0,"%s%s",substitute(d->player,buffer2,buffer,0,ANSI_LWHITE,NULL,0),IsHtml(d) ? "":"\n\n");
         if(IsHtml(d)) output(d,d->player,1,1,0,"</TD></TR>");
 
         if(IsHtml(d)) {
