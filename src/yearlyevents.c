@@ -128,9 +128,9 @@ void yearly_event_show(dbref player,unsigned char timed)
                       if(!timed || (ptr->hour > rtime->tm_hour) || ((ptr->hour == rtime->tm_hour) && (ptr->minute >= rtime->tm_min))) {
                          if(timed) {
                             if(ptr->notify && (ptr->minute == rtime->tm_min) && !Quiet(d->player) && !Quiet(Location(d->player)))
-                               output(d,d->player,0,1,0,ANSI_LRED"\n\x05\x02[%s"ANSI_LRED"]\n",substitute(player,buffer,(char *) ptr->banner,0,ANSI_LRED,NULL));
+                               output(d,d->player,0,1,0,ANSI_LRED"\n\x05\x02[%s"ANSI_LRED"]\n",substitute(player,buffer,(char *) ptr->banner,0,ANSI_LRED,NULL,0));
 			 } else if(Validchar(player)) {
-                            output(d,d->player,0,1,0,"%s\n",substitute(player,buffer,(char *) ptr->banner,0,ANSI_LRED,NULL));
+                            output(d,d->player,0,1,0,"%s\n",substitute(player,buffer,(char *) ptr->banner,0,ANSI_LRED,NULL,0));
 			 }
 		      }
 		   }
@@ -179,7 +179,7 @@ void yearly_event_list(CONTEXT)
 
            adjust = timeadjust;
            timeadjust += (date - now);
-           output(p,player,0,1,0,"%s%s",substitute(player,buffer,(char *) ptr->banner,0,ANSI_LRED,NULL),IsHtml(p) ? "":"\n");
+           output(p,player,0,1,0,"%s%s",substitute(player,buffer,(char *) ptr->banner,0,ANSI_LRED,NULL,0),IsHtml(p) ? "":"\n");
            timeadjust = adjust;
 
            if(IsHtml(p)) {
