@@ -678,9 +678,9 @@
 #define IDLE_STATE_INTERVAL            30        /*  Time (In minutes) of inactivity before entering semi-idle state  */
 #define INPUT_MAX_EDITOR               256       /*  Maximum number of queued user commands (Per user) while using the editor (Higher to allow cut 'n' paste of text)  */
 #define IDLE_STATE_DELAY               5         /*  Idle state delay (In seconds)  */
-#define OUTPUT_MAX                     16384     /*  Maximum amount of queued user output in bytes (Per user)  */
+#define OUTPUT_MAX                     17408     /*  Maximum amount of queued user output in bytes (Per user)  */
 #define OUTPUT_HTML	               4         /*  OUTPUT_MAX multiplier for HTML connections (HTML tags increase generated output, so larger maximum output setting is required.)  */
-#define INPUT_MAX                      32        /*  Maximum number of queued user commands (Per user)  */
+#define INPUT_MAX                      64        /*  Maximum number of queued user commands (Per user)  */
 #define KEEPALIVE                      5         /*  Time (In minutes) to keep connection open, if closed improperly  */
 #define PRIORITY                       0         /*  Default scheduling priority (-20 = Highest, 20 = Lowest)  -  Needs to be ran as root for priority < 0  */
 
