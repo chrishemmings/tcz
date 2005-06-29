@@ -167,7 +167,7 @@ void comms_areawrite(CONTEXT)
      setreturn(ERROR,COMMAND_FAIL);
      if(!(!Level3(db[player].owner) && !can_write_to(player,db[player].location,0))) {
         if(!(Level4(db[player].owner) && !Shout(db[player].owner) && !can_write_to(player,db[player].location,0))) {
-           substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL);
+           substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL,0);
            for(d = descriptor_list; d; d = d->next)
 	       if((d->flags & CONNECTED) && Validchar(d->player) && ((d == p) || (!Quiet(d->player) && !Quiet(db[d->player].location))) && in_area(d->player,db[player].location))
                   output(d,d->player,0,1,0,"%s",scratch_buffer);
@@ -419,7 +419,7 @@ void comms_chat(CONTEXT)
         /* ---->  List all currently active chatting channels and their operators  <---- */
         userlist_view(d->player,(char *) p1,NULL,NULL,NULL,9,0);
         return;
-     } else if(string_prefix("subject",scratch_buffer) || string_prefix("topic",scratch_buffer)) {
+     } else if(string_prefix("subject",scratch_buffer)) {
         dbref  operator = comms_chat_operator(d->channel);
         struct descriptor_data *ptr;
 
@@ -476,7 +476,7 @@ void comms_converse(CONTEXT)
 void comms_echo(CONTEXT)
 {
      command_type |=  LEADING_BACKGROUND;
-     output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL));
+     output(getdsc(player),player,0,1,0,"%s",substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL,0));
      command_type &= ~LEADING_BACKGROUND;
      setreturn(OK,COMMAND_SUCC);
 }
@@ -488,7 +488,7 @@ void comms_echolist(CONTEXT)
      char buffer[16];
 
      if(item < 0) return;     
-     substitute(player,scratch_return_string,(char *) arg2,0,ANSI_LWHITE,NULL);
+     substitute(player,scratch_return_string,(char *) arg2,0,ANSI_LWHITE,NULL,0);
      if(item < 10000) sprintf(buffer,"(%d)",item);
         else strcpy(buffer,"(10k+)");
      output(getdsc(player),player,0,1,8,ANSI_LGREEN" %-7s\016&nbsp;\016"ANSI_LWHITE"%s",buffer,scratch_return_string);
@@ -518,7 +518,7 @@ void comms_emergency(CONTEXT)
                                     if(p->player == user)
      			               p->emergency_time = (now + (EMERGENCY_TIME * MINUTE));
 			        sprintf(scratch_buffer,"%s"ANSI_LMAGENTA"%s"ANSI_LWHITE,Article(user,LOWER,INDEFINITE),getcname(NOTHING,user,0,0));
-			        output_admin(0,0,1,13,ANSI_LRED"["ANSI_UNDERLINE"EMERGENCY"ANSI_LRED"] \016&nbsp;\016 "ANSI_LWHITE"Emergency command logging started by %s"ANSI_LYELLOW"%s"ANSI_LWHITE" on %s  "ANSI_DRED"-  "ANSI_LRED"REASON:  "ANSI_LCYAN"%s",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),scratch_buffer,substitute(player,scratch_return_string,params = punctuate(arg2,1,'.'),0,ANSI_LCYAN,NULL));
+			        output_admin(0,0,1,13,ANSI_LRED"["ANSI_UNDERLINE"EMERGENCY"ANSI_LRED"] \016&nbsp;\016 "ANSI_LWHITE"Emergency command logging started by %s"ANSI_LYELLOW"%s"ANSI_LWHITE" on %s  "ANSI_DRED"-  "ANSI_LRED"REASON:  "ANSI_LCYAN"%s",Article(player,LOWER,INDEFINITE),getcname(NOTHING,player,0,0),scratch_buffer,substitute(player,scratch_return_string,params = punctuate(arg2,1,'.'),0,ANSI_LCYAN,NULL,0));
 			        output(getdsc(player),player,0,1,0,ANSI_LGREEN"Emergency command logging started on %s"ANSI_LWHITE"%s"ANSI_LGREEN"  -  All commands typed by %s will be logged to the '"ANSI_LWHITE"Emergency"ANSI_LGREEN"' log file for the next "ANSI_LYELLOW"%d"ANSI_LGREEN" minutes.",Article(user,LOWER,DEFINITE),getcname(NOTHING,user,0,0),Objective(user,0),EMERGENCY_TIME);
 			        writelog(ADMIN_LOG,1,"EMERGENCY","Emergency command logging started by %s(#%d) on %s(#%d)  -  REASON:  %s",getname(player),player,getname(user),user,arg2);
 			        writelog(EMERGENCY_LOG,1,"EMERGENCY","Emergency command logging started by %s(#%d) on %s(#%d)  -  REASON:  %s",getname(player),player,getname(user),user,arg2);
@@ -599,7 +599,7 @@ void comms_notify(CONTEXT)
               if(Level3(db[player].owner) || (in_command && (Wizard(current_command) || Apprentice(current_command))) || (db[player].owner == recipient) || (db[player].owner == Controller(recipient)) || can_write_to(player,db[recipient].location,0)) {
                  if((player == recipient) || (!Quiet(recipient) && !Quiet(db[recipient].location)) || (level(db[player].owner) > level(recipient))) {
                     command_type |=  LEADING_BACKGROUND;
-                    output(getdsc(recipient),recipient,0,1,0,"%s",substitute(recipient,scratch_buffer,(char *) arg2,0,ANSI_LCYAN,NULL));
+                    output(getdsc(recipient),recipient,0,1,0,"%s",substitute(recipient,scratch_buffer,(char *) arg2,0,ANSI_LCYAN,NULL,player));
                     command_type &= ~LEADING_BACKGROUND;
                     if(!in_command) {
                        if(player != recipient)
@@ -632,11 +632,18 @@ void comms_notify(CONTEXT)
 /* ---->  Echo message to everyone in same room's screen (Except you)  <---- */
 void comms_oecho(CONTEXT)
 {
+    struct descriptor_data *d;
+
      setreturn(ERROR,COMMAND_FAIL);
      if(Level3(db[player].owner) || (in_command && (Wizard(current_command) || Apprentice(current_command))) || can_write_to(player,db[player].location,0)) {
         if(!Quiet(db[player].location)) {
            command_type |=  LEADING_BACKGROUND;
-           output_except(db[player].location,player,NOTHING,0,1,0,"%s",substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL));
+	   for (d = descriptor_list; d; d = d->next) {
+	       if ((d->flags & CONNECTED) && Validchar(d->player) && (db[d->player].location == db[player].location) && (d->player != player)) {
+		   output(d,d->player,0,1,0,"%s", (char *) substitute(d->player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL,player));
+	       }
+	   }
+           /* output_except(db[player].location,player,NOTHING,0,1,0,"%s",substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL,0)); */
            command_type &= ~LEADING_BACKGROUND;
            setreturn(OK,COMMAND_SUCC);
 	} else if(!in_command) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, this is a quiet %s  -  You can't '"ANSI_LWHITE"@oecho"ANSI_LGREEN"' in here.",(Typeof(db[player].location) == TYPE_ROOM) ? "room":"container");
@@ -723,7 +730,7 @@ void comms_session(CONTEXT)
 
                        /* ---->  Tell session users of title change/reset  <---- */
                        command_type |= COMM_CMD;
-                       substitute(player,scratch_return_string,ptr,0,ANSI_LWHITE,NULL);
+                       substitute(player,scratch_return_string,ptr,0,ANSI_LWHITE,NULL,0);
                        for(d = descriptor_list; d; d = d->next) {
                            if(!Blank(d->comment)) {
                               FREENULL(d->comment);
@@ -789,7 +796,7 @@ void comms_session(CONTEXT)
                            if(!count) d->comment = (char *) alloc_string(compress(ptr,0));
                            count++;
 			}
-                    if(!in_command) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Your session comment is now '"ANSI_LWHITE"%s"ANSI_LGREEN"'",substitute(player,scratch_return_string,ptr,0,ANSI_LWHITE,NULL));
+                    if(!in_command) output(getdsc(player),player,0,1,0,ANSI_LGREEN"Your session comment is now '"ANSI_LWHITE"%s"ANSI_LGREEN"'",substitute(player,scratch_return_string,ptr,0,ANSI_LWHITE,NULL,0));
                     setreturn(OK,COMMAND_SUCC);
 		 } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, your session comment can't contain query command substitutions ('"ANSI_LWHITE"%%{<QUERY COMMAND>}"ANSI_LGREEN"'.)");
 	      } else output(getdsc(player),player,0,1,0,ANSI_LGREEN"Sorry, the maximum length of your session comment is 55 characters.  It also must not contain embedded NEWLINE's.");
@@ -926,7 +933,7 @@ void comms_whisper(CONTEXT)
                              whisper_who    = player;
 
                              command_type |= COMM_CMD;
-                             substitute(player,scratch_return_string,punctuate((char *) arg2,1,'\0'),0,ANSI_LWHITE,NULL);
+                             substitute(player,scratch_return_string,punctuate((char *) arg2,1,'\0'),0,ANSI_LWHITE,NULL,0);
                              output(getdsc(player),player,0,1,2,ANSI_LCYAN"You whisper \"%s"ANSI_LCYAN"\" to %s"ANSI_LWHITE"%s"ANSI_LCYAN".",scratch_return_string,Article(target,LOWER,DEFINITE),getcname(NOTHING,target,0,0));
                              command_type &= ~COMM_CMD;
 #ifdef QMW_RESEARCH
@@ -971,7 +978,7 @@ void comms_write(CONTEXT)
 {
      setreturn(ERROR,COMMAND_FAIL);
      if(Level3(db[player].owner) || (in_command && (Wizard(current_command) || Apprentice(current_command))) || can_write_to(player,db[player].location,0)) {
-        substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL);
+        substitute(player,scratch_buffer,(char *) params,0,ANSI_LCYAN,NULL,0);
         if(!Quiet(db[player].location)) {
            command_type |=  LEADING_BACKGROUND;
            output_except(db[player].location,NOTHING,NOTHING,0,1,0,"%s",scratch_buffer);
