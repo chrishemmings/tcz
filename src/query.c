@@ -327,13 +327,15 @@ void query_charclass(CONTEXT)
             case 4:
 
                  /* ---->  Lowercase (a-z)  <---- */
-		 for(ptr = arg.text[0]; *ptr && islower(*ptr); ptr++);
+		 for(ptr = arg.text[0];
+		     *ptr && (!isalpha(*ptr) || islower(*ptr)); ptr++);
                  if(!*ptr) setreturn(querybuf,COMMAND_SUCC);
                  break;
             case 5:
 
                  /* ---->  Uppercase (A-Z)  <---- */
-		 for(ptr = arg.text[0]; *ptr && isupper(*ptr); ptr++);
+		 for(ptr = arg.text[0];
+		     *ptr && (!isalpha(*ptr) || isupper(*ptr)); ptr++);
                  if(!*ptr) setreturn(querybuf,COMMAND_SUCC);
                  break;
      }
