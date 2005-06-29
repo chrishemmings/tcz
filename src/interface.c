@@ -366,7 +366,7 @@ void process_basic_command(dbref player,char *original_command,unsigned char con
      /* ---->  {%} substitution (E.g:  '{%@%n}')  <---- */
      if(!compoundonly && *original_command && (*original_command == '%')) {
         command_type     |=  NESTED_SUBSTITUTION;
-        substitute(player,command,original_command,0,"",NULL);
+        substitute(player,command,original_command,0,"",NULL,0);
         command_type     &= ~NESTED_SUBSTITUTION;
         current_character =  cached_curchar;
         current_cmdptr    =  cached_curcmdptr;
