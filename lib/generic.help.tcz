@@ -1145,7 +1145,19 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %TOPIC bugfixes
 %TOPIC codefixes
 %TITLE Brief summary of latest %w%l%@%M v%{@?version version}%x source code bug fixes
-%9%9%c%l24/01/2005 %y %lSM  %x HTML users receiving output from '%g%l%(@notify%)%x' now get correctly formatted output if the %g%l%%%%[%%%%]%x substitutions are used.
+%9%9%c%l13/03/2005 %y %lSM  %x Viewing output from '%g%l%(@request%)%x' no-longer crashes the game.
+%9%9%c%l02/03/2005 %y %lSM  %x Outputting columns to a non-connected character (I.e: displayed via '%g%l%(@force%)%x') no-longer crashes the game.
+%9%9%c%l01/03/2005 %y %lSM  %x The '%g%l%(@?isupper%)%x' and '%g%l%(@?islower%)%x' query commands now ignore non-alphanumeric characters.
+%9%9%c%l17/02/2005 %y %lSM  %x The '%g%l%(@email%)%x' command no-longer gives duplicate warnings when setting the address of a puppet.
+%9%9%c%l17/02/2005 %y %lJV  %x Incorrect passwords now give extra information about logging on as a Guest on both Telnet and HTML connections.
+%9%9%c%l16/02/2005 %y %lSM  %x Entire text no-longer ignored if a Telnet user receives %g%l%%|%x as the first two characters in substitute().
+%9%9%c%l09/02/2005 %y %lSM  %x Typing '%g%l%(version%)%x' at the command line no-longer crashes the game.
+%9%9%c%l07/02/2005 %y %lSM  %x Friends command no-longer reorganised the friends list by putting %y%lREAD%x and %y%lWRITE%x flags at the front.  This fixes problems with '%g%l%(@with%) friends do fset $6 = <FLAG>%x'
+%9%9%c%l04/02/2005 %y %lSM  %x HTML users receiving output from %g%l%(@oecho%)%x' now get correctly formatted output if the %g%l%%[%%]%x substitutions are used.
+%9%9%c%l26/01/2005 %y %lSM  %x Setting the expiry on a BBS post then immediately reading it no longer crashes the game.
+%9%9%c%l24/01/2005 %y %lSM  %x HTML users receiving output from '%g%l%(@notify%)%x' now get correctly formatted output if the %g%l%%[%%]%x substitutions are used.
+
+%PAGE
 %9%9%c%l24/01/2005 %y %lSM  %x The '%g%l%(@delay%)%x' command has been fixed so it adds only the amount specified and doesn't double the current delay.
 %9%9%c%l24/01/2005 %y %lSM  %x The '%g%l%(@destall%)%x' command can no longer destroy ashcanned Assistants.  Also, it produces the correct message when trying to destroy Retired Admin.
 %9%9%c%l29/12/2004 %y %lJV  %x New feelings added to the '%g%l%(@feeling%)%x' command and redundant ones removed.
@@ -1156,9 +1168,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l09/12/2004 %y %lSM  %x Fixed crash when player types '%g%l%(authors%)%x' or '%g%l%(modules%)%x' at the login prompt under certain situations.
 %9%9%c%l01/12/2004 %y %lSM  %x Fixed crash when player types a string which begins with a digit at the username of the login prompt.
 %9%9%c%l26/08/2001 %y %lJPB %x Brief/full '%g%l%(scan%)%x' implemented ('%g%l%(scanbrief%)%x'/'%g%l%(scanfull%)%x'.)
+%9%9%c%l24/08/2001 %y %lJPB %x Fixed problem with simple '%g%l%(more%)%x' pager used by '%g%l%(disclaimer%)%x'.
 
 %PAGE
-%9%9%c%l24/08/2001 %y %lJPB %x Fixed problem with simple '%g%l%(more%)%x' pager used by '%g%l%(disclaimer%)%x'.
 %9%9%c%l22/08/2001 %y %lJPB %x '%y%lCommand%x' log file is now %m%lSupreme Being%x only.
 %9%9%c%l15/08/2001 %y %lJPB %x Pointer bug in '%g%l%(afk%)%x' fixed (Caused crash.)
 %9%9%c%l06/08/2001 %y %lJPB %x Infinite loop bug in %(matching%) code fixed.
@@ -1169,9 +1181,9 @@ Also, see '%g%l%<promotions%>%x', '%g%l%<admin rules%>%x', '%g%l%<safety guideli
 %9%9%c%l26/07/2001 %y %lJPB %x '%g%l%(lastcommand%)%x' no-longer logs unnecesary hack warning in '%y%lHack%x' log file.
 %9%9%c%l26/07/2001 %y %lJPB %x '%y%lCommand%x' log restricted to %m%lDeity%x only.
 %9%9%c%l26/07/2001 %y %lJPB %x Guardian alarm implemented (Shuts %@%m down if it gets stuck in an infinite loop.)
+%9%9%c%l25/07/2001 %y %lJPB %x Problem with alias binary tree fixed (Add/change alias.)  %r%lPlease check your aliases list for duplicate/corrupt aliases.
 
 %PAGE
-%9%9%c%l25/07/2001 %y %lJPB %x Problem with alias binary tree fixed (Add/change alias.)  %r%lPlease check your aliases list for duplicate/corrupt aliases.
 %9%9%c%l25/07/2001 %y %lJPB %x '%g%l%(emergency%)%x' can no-longer be used on an administrator.
 %9%9%c%l25/07/2001 %y %lJPB %x Write permission rules to self within Mortal-owned compound command have been changed  -  See '%g%l%<@chpid%>%x', 2nd page.
 %9%9%c%l25/07/2001 %y %lJPB %x Permission check on '%g%l{%(@?lastsite%)}%x' fixed.
@@ -3172,7 +3184,7 @@ Also, see '%g%l%<bbs append%>%x' and '%g%l%<bbs%>%x'.
 %TOPIC bbsappendanonymous
 %TITLE Help on '%w%lappend%x' and '%w%lappendanon%x' (BBS)
 %[%c%lUSAGE:  %g%l[bbs] append[anon] <NUMBER> [= <MESSAGE>]
-        [bbs] append <NUMBER> = on|off%]%x
+        [bbs] append <NUMBER> [=] on|off%]%x
 
 The '%g%lappend%x' BBS command appends to the bottom of a BBS message.
 
@@ -5866,7 +5878,7 @@ Returns %y%l0%x if the item %y%l<ITEM>%x isn't found in the list %y%l<LIST>%x, o
 %~%c~~~~~~~~~%x
 %[%g%l{@?itemexact "chips" ";" "eggs;bacon;sausage;chips;mushrooms"}%]%x
 
-...returns %y%l4%x  ('%y%lchips%x' is %c%lexactly%x matched with the %y%l3rd%x item in the list.)
+...returns %y%l4%x  ('%y%lchips%x' is %c%lexactly%x matched with the %y%l4th%x item in the list.)
 
 %[%g%l{@?item "bac" ";" "eggs;bacon;sausage;chips;mushrooms"}%]%x
 
