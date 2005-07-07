@@ -1261,7 +1261,7 @@ extern  void            substitute_command      (dbref player,char *src,char *de
 extern  void            substitute_sub_variable (dbref player,struct str_ops *str_data);
 extern  void            substitute_variable     (dbref player,char *src,char *dest);
 extern  void            substitute_query        (dbref player,struct str_ops *str_data);
-extern  const char      *substitute             (dbref player,char *dest,char *src,unsigned char addname,const char *def_ansi,struct substitution_data *subst);
+extern  const char      *substitute             (dbref player,char *dest,char *src,unsigned char addname,const char *def_ansi,struct substitution_data *subst,dbref sender);
 extern  void            substitute_large        (dbref player,dbref who,const char *str,const char *def_ansi,char *buffer,unsigned char censor);
 
 
